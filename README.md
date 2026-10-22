@@ -16,13 +16,13 @@ Built on open-source tools:
 | `edit.py` | The editor: renders a plan into a finished video |
 | `transcribe.py` | Word-by-word transcript of a stream |
 | `upscale.py` | AI upscaling for low-res sources (only if the original is gone) |
-| `tools/` | `find_moments.py`, `contact_sheet.py`, `import_pack.py` |
+| `tools/` | `find_moments.py`, `contact_sheet.py`, `import_pack.py`, `vizard.py` (Shorts via Vizard.ai) |
 | `plans/` | Edit plans; `crafting.json` and `cod-mw4.json` are finished examples |
 | `pack/` | The CoryxKenshin 8-BitRyan FX sound and music pack (MP3) |
 | `sfx/` | Homemade sounds; `sfx/pack/` is built from `pack/` |
 | `brand/` | Channel intro and outro |
 | `intro/` | Alternate animated intro made with EffectCraft |
-| `.claude/skills/` | Claude skills: `coryxkenshin-edit` and `stream-editor-setup` |
+| `.claude/skills/` | Claude skills: `coryxkenshin-edit`, `stream-editor-setup`, `using-vizard-api` |
 | `docs/TOOLS.md` | Every tool used and why |
 
 ## Setup (once)
@@ -114,3 +114,12 @@ effectcraft-cli render --project intro/intro.ecproj --comp Intro --out intro/int
 
 Any finished clip can go in a plan as its own segment: `{"label": "channel intro", "clip": "../intro/intro.mp4"}`.
 You can also open `intro.ecproj` in the EffectCraft app to tweak it by hand.
+
+## Shorts with Vizard.ai (optional, paid plan)
+
+Put your key in a `.env` file in this folder (`VIZARDAI_API_KEY=...`, git-ignored) or set it as an environment
+variable, then turn the uploaded long video into Shorts:
+
+```bash
+python tools/vizard.py clip "https://www.youtube.com/watch?v=XXXX" --length 1
+```

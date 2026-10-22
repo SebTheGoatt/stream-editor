@@ -101,6 +101,11 @@ python edit.py plans/<name>.json            # full 1080p
 Then tell the person to **listen once before uploading**: bleeps rely on speech recognition and can
 miss a word. Remind them borrowed music can trigger a YouTube copyright claim.
 
+## 5. Shorts (optional)
+
+After the long video is on YouTube, use the `using-vizard-api` skill: `python tools/vizard.py clip <youtube link> --length 1`
+turns it into ranked vertical Shorts with captions. Get the owner's OK before publishing anything.
+
 ## Gotchas learned the hard way
 
 - `pgrep -f "edit.py plans/x.json"` inside a shell loop matches its own command line; wait on a PID instead.

@@ -20,6 +20,7 @@
 | `tools/find_moments.py` | Read/search the transcript, exact word times, loudest moments |
 | `tools/contact_sheet.py` | Timestamped frame grid to find deaths/kills and to review a finished edit |
 | `tools/import_pack.py` | Convert any sound pack into `sfx/pack/` with even loudness and short names |
+| `tools/vizard.py` | Vizard.ai API: long video to ranked vertical Shorts, AI captions/titles, scheduled publishing (needs a paid plan + `VIZARDAI_API_KEY`) |
 
 ## Used while building this (outside the repo)
 
@@ -37,3 +38,4 @@
 |---|---|
 | `.claude/skills/coryxkenshin-edit` | Edit a stream into a CoryxKenshin-style video, start to finish |
 | `.claude/skills/stream-editor-setup` | Install everything on a new computer; OBS recording settings |
+| `.claude/skills/using-vizard-api` | Shorts, captions and publishing through Vizard.ai |

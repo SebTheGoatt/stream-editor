@@ -3,6 +3,8 @@
 Seb The Goat's tool for turning gaming streams into CoryxKenshin-style YouTube edits.
 
 - Editing a stream: use the `coryxkenshin-edit` skill. New computer or missing tools: `stream-editor-setup`.
+  Shorts, captions, publishing: `using-vizard-api` (`tools/vizard.py`; key in `VIZARDAI_API_KEY`, never in chat
+  or git; publishing needs the owner's explicit yes).
 - Pipeline: `transcribe.py` (word timings) → plan in `plans/*.json` → `edit.py` (render) → listen-through.
 - Helpers: `tools/find_moments.py`, `tools/contact_sheet.py`, `tools/import_pack.py`. Every tool used and
   why is in `docs/TOOLS.md`.

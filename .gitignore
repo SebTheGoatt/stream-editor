@@ -10,3 +10,4 @@ __pycache__/
 sfx/pack/
 !pack/**/*.mp4
 !brand/*.mp4
+.env
