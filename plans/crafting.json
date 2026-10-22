@@ -14,6 +14,8 @@
       {"type": "freeze", "at": 2888.2, "dur": 2.2, "text": "ANYWAY. LET'S BACK UP.", "sfx": "scratch", "zoom": 1.15, "target": "center"}
     ]},
 
+    {"label": "channel intro (EffectCraft)", "clip": "../intro/intro.mp4"},
+
     {"label": "favorite streamer", "start": 47.0, "end": 68.0, "fx": [
       {"type": "sfx", "at": 47.0, "name": "whoosh"},
       {"type": "text", "at": 47.0, "dur": 2.4, "text": "CRAFTING IT WITH THE BABEZ", "pos": "center", "color": "#FFD400"},

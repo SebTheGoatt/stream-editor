@@ -17,6 +17,8 @@
       {"type": "freeze", "at": 1209.6, "dur": 2.0, "text": "ANYWAY. LET'S BACK UP.", "sfx": "scratch", "zoom": 1.0, "look": "bw"}
     ]},
 
+    {"label": "channel intro (EffectCraft)", "clip": "../intro/intro.mp4"},
+
     {"label": "number one hater + bedtime", "start": 41.0, "end": 76.0, "fx": [
       {"type": "sfx", "at": 41.0, "name": "whoosh"},
       {"type": "text", "at": 41.0, "dur": 1.6, "text": "*NEW* COD MW4", "pos": "center", "color": "#FFD400"},

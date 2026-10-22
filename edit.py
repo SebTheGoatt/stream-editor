@@ -117,6 +117,8 @@ def keep_ranges(seg, src, cfg):
 
 def pieces_for(seg, src, cfg):
     """Split a segment into normal / slow / freeze pieces."""
+    if "clip" in seg:
+        return [{"kind": "clip", "a": 0.0, "b": 0.0}]
     slows = sorted((f for f in seg.get("fx", []) if f["type"] == "slowmo"), key=lambda f: f["at"])
     freezes = sorted((f for f in seg.get("fx", []) if f["type"] == "freeze"), key=lambda f: f["at"])
     out = []
@@ -236,6 +238,14 @@ def render_piece(i, piece, seg, ctx):
     inputs, vf, af_extra, sfx_list = [], [], [], []
 
     base_v = f"scale={W}:{H}:flags=lanczos:force_original_aspect_ratio=decrease,pad={W}:{H}:(ow-iw)/2:(oh-ih)/2,setsar=1,fps={fps}"
+
+    if piece["kind"] == "clip":
+        # A finished clip (e.g. the EffectCraft intro): just match the edit's format.
+        run(["ffmpeg", "-v", "error", "-y", "-i", seg["_clip_path"], "-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo",
+             "-filter_complex", f"[0:v]{base_v},format=yuv420p[v];[0:a]aformat=sample_rates=48000:channel_layouts=stereo[a]"
+             if seg.get("_clip_has_audio") else f"[0:v]{base_v},format=yuv420p[v];[1:a]anull[a]",
+             "-map", "[v]", "-map", "[a]", *ctx["enc"], "-shortest", out])
+        return out
 
     if piece["kind"] == "freeze":
         f = piece["fx"]
@@ -393,6 +403,13 @@ def main():
            "upscale": args.upscale, "cache_dir": os.path.join(os.path.dirname(src), "upscaled")}
     jobs = []
     for n, seg in enumerate(segs, 1):
+        if "clip" in seg:
+            seg["_clip_path"] = rel(seg["clip"])
+            seg["_clip_has_audio"] = bool(run(["ffprobe", "-v", "error", "-select_streams", "a", "-show_entries",
+                                               "stream=index", "-of", "csv=p=0", seg["_clip_path"]]).stdout.strip())
+            print(f"segment {n}: {seg.get('label', 'clip')!s:28} inserted clip {seg['clip']}")
+            jobs.append((len(jobs), pieces_for(seg, src, cfg)[0], seg))
+            continue
         if args.upscale:
             seg["_upscaled"] = upscaled_source(seg, ctx)
         ps = pieces_for(seg, src, cfg)
