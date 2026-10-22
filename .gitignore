@@ -7,3 +7,5 @@ __pycache__/
 *.mov
 *.png
 !intro/intro.mp4
+sfx/pack/
+brand/

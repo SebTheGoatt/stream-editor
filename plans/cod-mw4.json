@@ -4,37 +4,47 @@
   "transcript": "../work/cod_transcript.json",
   "sfx_dir": "../sfx",
   "output": "../out/cod-mw4.mp4",
-  "facecam": [0.83, 0.78],
-  "tighten": {"min_silence": 0.8, "pad": 0.15, "noise_db": -34},
+  "facecam": [
+    0.83,
+    0.78
+  ],
+  "tighten": {
+    "min_silence": 0.8,
+    "pad": 0.15,
+    "noise_db": -34
+  },
   "segments": [
     {"label": "cold open: rage", "start": 1196.5, "end": 1209.6, "tighten": false, "fx": [
       {"type": "text", "at": 1196.6, "dur": 2.5, "text": "THE MW4 EXPERIENCE:", "pos": "top", "color": "#FFD400"},
-      {"type": "slowmo", "at": 1199.6, "dur": 2.0, "factor": 0.5, "deep": true, "sfx": "fall"},
+      {"type": "slowmo", "at": 1199.6, "dur": 2.0, "factor": 0.5, "deep": true, "sfx": "falling"},
       {"type": "text", "at": 1203.3, "dur": 2.0, "text": "\"I GOTTA CHEAT\"", "pos": "top"},
       {"type": "zoom", "at": 1203.7, "dur": 3.0, "scale": 1.8, "target": "face", "shake": true},
       {"type": "look", "at": 1203.7, "dur": 3.0, "look": "red"},
-      {"type": "sfx", "at": 1203.7, "name": "boom"},
-      {"type": "freeze", "at": 1209.6, "dur": 2.0, "text": "ANYWAY. LET'S BACK UP.", "sfx": "scratch", "zoom": 1.0, "look": "bw"}
+      {"type": "sfx", "at": 1203.7, "name": "boom_meme"},
+      {"type": "freeze", "at": 1209.6, "dur": 2.0, "text": "ANYWAY. LET'S BACK UP.", "sfx": "flashback", "zoom": 1.0, "look": "bw"}
     ]},
 
-    {"label": "channel intro (EffectCraft)", "clip": "../intro/intro.mp4"},
+    {"label": "channel intro", "clip": "../brand/intro.mp4", "fx": [
+      {"type": "music", "at": 0, "dur": 1.2, "name": "glitch", "vol": 1.0},
+      {"type": "music", "at": 0.3, "dur": 9.7, "name": "music_cory_dance_music", "vol": 0.8}
+    ]},
 
     {"label": "number one hater + bedtime", "start": 41.0, "end": 76.0, "fx": [
-      {"type": "sfx", "at": 41.0, "name": "whoosh"},
+      {"type": "sfx", "at": 41.0, "name": "cinematic_whoosh"},
       {"type": "text", "at": 41.0, "dur": 1.6, "text": "*NEW* COD MW4", "pos": "center", "color": "#FFD400"},
       {"type": "text", "at": 42.2, "dur": 3.0, "text": "#1 HATER", "pos": "top", "color": "#FF4040"},
       {"type": "zoom", "at": 55.8, "dur": 3.0, "scale": 1.8, "target": "face"},
       {"type": "text", "at": 55.8, "dur": 4.2, "text": "8:46 PM: BEDTIME, WILLIAMS", "pos": "top"},
-      {"type": "sfx", "at": 60.0, "name": "ding"},
+      {"type": "sfx", "at": 60.0, "name": "correct_ding"},
       {"type": "text", "at": 63.6, "dur": 3.4, "text": "\"DEROGATORY TERMS INCOMING\"", "pos": "top", "color": "#FF4040"},
-      {"type": "freeze", "at": 67.9, "dur": 1.8, "text": "PARENTAL ADVISORY", "sfx": "sting", "zoom": 1.8, "target": "face", "look": "bw"}
+      {"type": "freeze", "at": 67.9, "dur": 1.8, "text": "PARENTAL ADVISORY", "sfx": "dun_dun_dun", "zoom": 1.8, "target": "face", "look": "bw"}
     ]},
 
     {"label": "filter roast", "start": 84.0, "end": 108.0, "fx": [
       {"type": "text", "at": 86.0, "dur": 2.2, "text": "\"WHY YOU GOT THAT FILTER ON\"", "pos": "top"},
-      {"type": "freeze", "at": 88.7, "dur": 1.8, "text": "\"YOU'RE NOT SKINNY\"", "sfx": "boom", "zoom": 1.8, "target": "face"},
+      {"type": "freeze", "at": 88.7, "dur": 1.8, "text": "\"YOU'RE NOT SKINNY\"", "sfx": "boom_meme", "zoom": 1.8, "target": "face"},
       {"type": "text", "at": 96.8, "dur": 3.0, "text": "*CHANGES BACKGROUND*", "pos": "top", "color": "#FFD400"},
-      {"type": "sfx", "at": 96.8, "name": "whoosh"},
+      {"type": "sfx", "at": 96.8, "name": "cinematic_whoosh"},
       {"type": "shake", "at": 103.1, "dur": 1.5}
     ]},
 
@@ -42,15 +52,15 @@
       {"type": "text", "at": 172.0, "dur": 3.0, "text": "\"CAN WE DO A COUNTDOWN NEXT TIME?\"", "pos": "top"},
       {"type": "zoom", "at": 188.3, "dur": 3.0, "scale": 1.8, "target": "face"},
       {"type": "text", "at": 188.3, "dur": 3.4, "text": "\"HE JUST DOWNLOADED THE SOUNDBOARD\"", "pos": "top", "color": "#FFD400"},
-      {"type": "sfx", "at": 188.5, "name": "ding"}
+      {"type": "sfx", "at": 188.5, "name": "correct_ding"}
     ]},
 
     {"label": "not funny / friends", "start": 214.5, "end": 259.0, "fx": [
-      {"type": "freeze", "at": 218.3, "dur": 1.8, "text": "\"YOU'RE NOT FUNNY\"", "sfx": "crickets", "zoom": 1.8, "target": "face"},
+      {"type": "freeze", "at": 218.3, "dur": 1.8, "text": "\"YOU'RE NOT FUNNY\"", "sfx": "crickets_gaming", "zoom": 1.8, "target": "face"},
       {"type": "text", "at": 245.6, "dur": 4.0, "text": "\"I THOUGHT WE WERE FRIENDS\"", "pos": "top"},
       {"type": "text", "at": 252.2, "dur": 3.4, "text": "\"LEADERSHIP STICKS TOGETHER\"", "pos": "top"},
       {"type": "text", "at": 256.0, "dur": 3.0, "text": "NO THEY DON'T", "pos": "center", "color": "#FF4040"},
-      {"type": "sfx", "at": 256.0, "name": "fail"}
+      {"type": "sfx", "at": 256.0, "name": "bruh"}
     ]},
 
     {"label": "finally a gamer", "start": 590.0, "end": 637.0, "fx": [
@@ -59,16 +69,16 @@
       {"type": "shake", "at": 602.0, "dur": 2.5},
       {"type": "text", "at": 609.0, "dur": 4.0, "text": "\"I'M FINALLY A GAMER\"", "pos": "top", "color": "#FFD400"},
       {"type": "zoom", "at": 609.0, "dur": 2.5, "scale": 1.8, "target": "face"},
-      {"type": "sfx", "at": 622.5, "name": "boom"},
+      {"type": "sfx", "at": 622.5, "name": "hit_marker"},
       {"type": "text", "at": 633.0, "dur": 3.0, "text": "LEVEL UP", "pos": "center", "color": "#7CFC00"},
-      {"type": "sfx", "at": 633.0, "name": "ding"}
+      {"type": "sfx", "at": 633.0, "name": "anime_shine"}
     ]},
 
     {"label": "sorry for having responsibilities", "start": 807.5, "end": 821.0, "fx": [
       {"type": "text", "at": 807.6, "dur": 3.5, "text": "\"I'M NOT EVEN ONLY PLAYING ON WEEKENDS\"", "pos": "top"},
       {"type": "zoom", "at": 815.8, "dur": 3.5, "scale": 1.8, "target": "face"},
       {"type": "text", "at": 815.8, "dur": 4.0, "text": "\"SORRY FOR HAVING RESPONSIBILITIES\"", "pos": "top", "color": "#FFD400"},
-      {"type": "sfx", "at": 816.0, "name": "sting"}
+      {"type": "music", "at": 815.8, "dur": 5.5, "name": "music_sad_violin", "vol": 0.7}
     ]},
 
     {"label": "numb nuts / flying dude / shotty", "start": 912.5, "end": 960.0, "fx": [
@@ -77,15 +87,15 @@
       {"type": "text", "at": 917.1, "dur": 1.6, "text": "NUMB NUTS (AGAIN)", "pos": "center", "color": "#FFD400"},
       {"type": "sfx", "at": 917.1, "name": "bonk"},
       {"type": "look", "at": 927.0, "dur": 2.0, "look": "red"},
-      {"type": "slowmo", "at": 934.5, "dur": 2.4, "factor": 0.5, "deep": true, "sfx": "fall"},
+      {"type": "slowmo", "at": 934.5, "dur": 2.4, "factor": 0.5, "deep": true, "sfx": "falling"},
       {"type": "text", "at": 937.1, "dur": 3.0, "text": "\"YOU SAW THAT DUDE FLY?\"", "pos": "top"},
       {"type": "text", "at": 956.8, "dur": 3.0, "text": "\"HITMARKER ON THE SHOTTY\"", "pos": "top"},
-      {"type": "sfx", "at": 957.5, "name": "fail"}
+      {"type": "sfx", "at": 957.5, "name": "mission_failed_we_ll_get_em_next_time_call_of_duty"}
     ]},
 
     {"label": "gotcha / slide", "start": 1138.5, "end": 1152.5, "fx": [
       {"type": "text", "at": 1140.1, "dur": 2.6, "text": "GOTCHA", "pos": "center", "color": "#7CFC00"},
-      {"type": "sfx", "at": 1140.1, "name": "boom"},
+      {"type": "sfx", "at": 1140.1, "name": "oh_oh_my_god_mlg"},
       {"type": "zoom", "at": 1150.0, "dur": 2.4, "scale": 1.8, "target": "face"},
       {"type": "text", "at": 1150.0, "dur": 2.4, "text": "\"YOU CAN SLIDE LIKE THAT?!\"", "pos": "top"}
     ]},
@@ -93,11 +103,11 @@
     {"label": "that's how you sound", "start": 1210.5, "end": 1258.0, "fx": [
       {"type": "text", "at": 1214.0, "dur": 3.0, "text": "\"PC PLAYERS ALWAYS CHANGING THINGS\"", "pos": "top"},
       {"type": "text", "at": 1221.1, "dur": 2.6, "text": "\"I GOTTA CHANGE SOMETHING\"", "pos": "top"},
-      {"type": "freeze", "at": 1224.2, "dur": 1.2, "text": "UH OH", "sfx": "scratch", "zoom": 1.8, "target": "face"},
+      {"type": "freeze", "at": 1224.2, "dur": 1.2, "text": "UH OH", "sfx": "what", "zoom": 1.8, "target": "face"},
       {"type": "text", "at": 1227.6, "dur": 3.0, "text": "\"THAT'S HOW YOU SOUND\"", "pos": "top", "color": "#FFD400"},
-      {"type": "sfx", "at": 1228.4, "name": "ding", "vol": 0.6},
-      {"type": "sfx", "at": 1229.9, "name": "ding", "vol": 0.7},
-      {"type": "sfx", "at": 1232.4, "name": "ding", "vol": 0.8},
+      {"type": "sfx", "at": 1228.4, "name": "correct_ding", "vol": 0.6},
+      {"type": "sfx", "at": 1229.9, "name": "correct_ding", "vol": 0.7},
+      {"type": "sfx", "at": 1232.4, "name": "correct_ding", "vol": 0.8},
       {"type": "text", "at": 1231.0, "dur": 3.0, "text": "x5", "pos": "center", "color": "#FFD400"},
       {"type": "text", "at": 1236.0, "dur": 3.0, "text": "HE'S STILL GOING", "pos": "top"},
       {"type": "text", "at": 1243.0, "dur": 2.0, "text": "x10", "pos": "center", "color": "#FF4040"},
@@ -108,26 +118,27 @@
 
     {"label": "the IRS is watching", "start": 1386.0, "end": 1464.0, "fx": [
       {"type": "text", "at": 1387.5, "dur": 2.5, "text": "\"HOW MUCH DID YOU SPEND ON IT?\"", "pos": "top"},
-      {"type": "freeze", "at": 1397.3, "dur": 1.8, "text": "*NO ANSWERS*", "sfx": "crickets", "zoom": 1.8, "target": "face"},
+      {"type": "freeze", "at": 1397.3, "dur": 1.8, "text": "*NO ANSWERS*", "sfx": "crickets_gaming", "zoom": 1.8, "target": "face"},
       {"type": "text", "at": 1404.9, "dur": 3.0, "text": "THE IRS IS WATCHING", "pos": "center", "color": "#FF4040"},
       {"type": "look", "at": 1404.9, "dur": 3.0, "look": "red"},
-      {"type": "sfx", "at": 1404.9, "name": "sting"},
+      {"type": "sfx", "at": 1404.9, "name": "fbi_open_up"},
       {"type": "text", "at": 1420.7, "dur": 3.5, "text": "\"HYPOTHETICALLY...\"", "pos": "top"},
       {"type": "text", "at": 1446.7, "dur": 2.0, "text": "\"NOT A FEW SCHMECKLES\"", "pos": "top"},
       {"type": "text", "at": 1451.6, "dur": 2.0, "text": "A FEW PS5s", "pos": "center"},
-      {"type": "sfx", "at": 1452.1, "name": "ding", "vol": 0.6},
+      {"type": "sfx", "at": 1452.1, "name": "cash_register", "vol": 0.6},
       {"type": "text", "at": 1453.6, "dur": 2.3, "text": "2 OR 3 PS5s", "pos": "center"},
-      {"type": "sfx", "at": 1454.3, "name": "ding", "vol": 0.8},
+      {"type": "sfx", "at": 1454.3, "name": "cash_register", "vol": 0.8},
       {"type": "zoom", "at": 1455.9, "dur": 3.0, "scale": 1.8, "target": "face", "shake": true},
       {"type": "text", "at": 1455.9, "dur": 3.0, "text": "...OR 4 PS5s", "pos": "center", "color": "#FFD400"},
-      {"type": "sfx", "at": 1456.2, "name": "boom"}
+      {"type": "sfx", "at": 1456.2, "name": "boom_meme"},
+      {"type": "music", "at": 1420.7, "dur": 12, "name": "music_sneaky_snitch_gaming_background_music", "vol": 0.5}
     ]},
 
     {"label": "mega run", "start": 1513.0, "end": 1556.0, "fx": [
       {"type": "text", "at": 1513.7, "dur": 3.0, "text": "\"YOU LEFT ME HANGING\"", "pos": "top"},
       {"type": "text", "at": 1524.6, "dur": 2.0, "text": "*CRICKETS*", "pos": "center"},
-      {"type": "sfx", "at": 1524.6, "name": "crickets"},
-      {"type": "freeze", "at": 1537.0, "dur": 1.8, "text": "\"I WAS MAKING MEGA RUN\"", "sfx": "scratch", "zoom": 1.8, "target": "face"},
+      {"type": "sfx", "at": 1524.6, "name": "crickets_gaming"},
+      {"type": "freeze", "at": 1537.0, "dur": 1.8, "text": "\"I WAS MAKING MEGA RUN\"", "sfx": "huh_ceeday", "zoom": 1.8, "target": "face"},
       {"type": "text", "at": 1550.4, "dur": 1.0, "text": "MEGA RUN", "pos": "center", "color": "#FFD400"},
       {"type": "text", "at": 1553.0, "dur": 0.9, "text": "MEGA RUN", "pos": "center", "color": "#FF4040"},
       {"type": "text", "at": 1554.0, "dur": 1.5, "text": "MEGA RUN", "pos": "center", "color": "#7CFC00"},
@@ -136,11 +147,16 @@
 
     {"label": "making cars finale", "start": 1910.5, "end": 1948.0, "fx": [
       {"type": "text", "at": 1911.9, "dur": 2.6, "text": "\"I THOUGHT YOU WERE MAKING CARS\"", "pos": "top"},
-      {"type": "freeze", "at": 1915.2, "dur": 2.0, "text": "\"WHAT'S THE DIFFERENCE?\"", "sfx": "scratch", "zoom": 1.8, "target": "face"},
+      {"type": "freeze", "at": 1915.2, "dur": 2.0, "text": "\"WHAT'S THE DIFFERENCE?\"", "sfx": "what", "zoom": 1.8, "target": "face"},
       {"type": "zoom", "at": 1920.4, "dur": 2.5, "scale": 1.8, "target": "face"},
       {"type": "text", "at": 1941.9, "dur": 3.0, "text": "\"A PLANE CAMPING THE BOMB\"", "pos": "top", "color": "#FF4040"},
-      {"type": "sfx", "at": 1942.0, "name": "boom"},
-      {"type": "freeze", "at": 1948.0, "dur": 3.5, "text": "SUBSCRIBE\nOR GET DOWNLOADED\nLIKE A SOUNDBOARD", "sfx": "boom", "zoom": 1.0, "look": "", "color": "#FFD400"}
+      {"type": "sfx", "at": 1942.0, "name": "boom_meme"},
+      {"type": "freeze", "at": 1948.0, "dur": 3.5, "text": "SUBSCRIBE\nOR GET DOWNLOADED\nLIKE A SOUNDBOARD", "sfx": "boom_meme", "zoom": 1.0, "look": "", "color": "#FFD400"},
+      {"type": "music", "at": 1946.0, "dur": 6, "name": "music_curb_your_enthusiasm_meme_background_music", "vol": 0.9}
+    ]},
+
+    {"label": "outro", "clip": "../brand/outro.mp4", "fx": [
+      {"type": "music", "at": 0, "dur": 6, "name": "music_cory_happy_music", "vol": 0.8}
     ]}
   ]
 }

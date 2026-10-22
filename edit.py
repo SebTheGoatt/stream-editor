@@ -90,7 +90,8 @@ def keep_ranges(seg, src, cfg):
         return [(a, b)]
     t = cfg.get("tighten", {})
     pad = t.get("pad", 0.18)
-    protected = [fx_window(f) for f in seg.get("fx", [])]
+    # Music beds run under the cut, so they don't stop dead air from being trimmed.
+    protected = [fx_window(f) for f in seg.get("fx", []) if f["type"] != "music"]
     cuts = []
     for s, e in silences(src, a, b, t.get("noise_db", -34), t.get("min_silence", 0.9)):
         s, e = s + pad, e - pad
@@ -212,6 +213,42 @@ def bleep_words(transcript, a, b, patterns):
     return hits
 
 
+def find_sound(sfx_dir, name):
+    """sfx/<name>.wav, falling back to a dropped-in pack in sfx/pack/."""
+    for path in (os.path.join(sfx_dir, f"{name}.wav"), os.path.join(sfx_dir, "pack", f"{name}.wav")):
+        if os.path.exists(path):
+            return path
+    return None
+
+
+def piece_length(piece, seg):
+    if piece["kind"] == "clip":
+        return seg["_clip_dur"]
+    if piece["kind"] == "freeze":
+        return piece["fx"].get("dur", 1.5)
+    speed = piece["slow"].get("factor", 0.5) if piece.get("slow") else 1.0
+    return (piece["b"] - piece["a"]) / speed
+
+
+def music_cues(jobs):
+    """Place each music bed on the finished timeline: (name, start, dur, vol)."""
+    cues, t = [], 0.0
+    for _, piece, seg in jobs:
+        for f in seg.get("fx", []):
+            if f["type"] != "music":
+                continue
+            if piece["kind"] == "clip":
+                local = f["at"]
+            elif piece["kind"] != "freeze" and piece["a"] <= f["at"] < piece["b"]:
+                speed = piece["slow"].get("factor", 0.5) if piece.get("slow") else 1.0
+                local = (f["at"] - piece["a"]) / speed
+            else:
+                continue
+            cues.append((f["name"], t + local, f.get("dur", 8.0), f.get("vol", 0.5)))
+        t += piece_length(piece, seg)
+    return cues
+
+
 def upscaled_source(seg, ctx):
     """AI-upscale just this segment once (cached) and return (file, offset)."""
     a = max(0.0, seg["start"] - 1.0)
@@ -243,8 +280,9 @@ def render_piece(i, piece, seg, ctx):
         # A finished clip (e.g. the EffectCraft intro): just match the edit's format.
         run(["ffmpeg", "-v", "error", "-y", "-i", seg["_clip_path"], "-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo",
              "-filter_complex", f"[0:v]{base_v},format=yuv420p[v];[0:a]aformat=sample_rates=48000:channel_layouts=stereo[a]"
-             if seg.get("_clip_has_audio") else f"[0:v]{base_v},format=yuv420p[v];[1:a]anull[a]",
-             "-map", "[v]", "-map", "[a]", *ctx["enc"], "-shortest", out])
+             if seg.get("_clip_has_audio") else
+             f"[0:v]{base_v},format=yuv420p[v];[1:a]atrim=duration={seg['_clip_dur']:.3f}[a]",
+             "-map", "[v]", "-map", "[a]", *ctx["enc"], "-t", f"{seg['_clip_dur']:.3f}", out])
         return out
 
     if piece["kind"] == "freeze":
@@ -333,8 +371,8 @@ def render_piece(i, piece, seg, ctx):
         graph.append(f"{chain}[x{k}]")
         mix.append(f"[x{k}]")
     for name, at, vol in sfx_list:
-        path = os.path.join(sfx_dir, f"{name}.wav")
-        if not os.path.exists(path):
+        path = find_sound(sfx_dir, name)
+        if not path:
             print(f"  ! missing sound effect {name}.wav, skipped", file=sys.stderr)
             continue
         inputs += ["-i", path]
@@ -407,6 +445,8 @@ def main():
             seg["_clip_path"] = rel(seg["clip"])
             seg["_clip_has_audio"] = bool(run(["ffprobe", "-v", "error", "-select_streams", "a", "-show_entries",
                                                "stream=index", "-of", "csv=p=0", seg["_clip_path"]]).stdout.strip())
+            seg["_clip_dur"] = float(run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                                          "-of", "csv=p=0", seg["_clip_path"]]).stdout)
             print(f"segment {n}: {seg.get('label', 'clip')!s:28} inserted clip {seg['clip']}")
             jobs.append((len(jobs), pieces_for(seg, src, cfg)[0], seg))
             continue
@@ -425,10 +465,30 @@ def main():
             f.writelines(f"file '{p}'\n" for p in files)
         joined = os.path.join(tmp, "joined.mp4")
         run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", listing, "-c", "copy", joined])
+        # Music beds: mixed over the finished cut and ducked under voices.
+        inputs, graph, mix = ["-i", joined], [], []
+        for k, (name, start, dur, vol) in enumerate(music_cues(jobs), 1):
+            path = find_sound(ctx["sfx_dir"], name)
+            if not path:
+                print(f"  ! missing music {name}.wav, skipped", file=sys.stderr)
+                continue
+            inputs += ["-i", path]
+            ms = int(start * 1000)
+            graph.append(f"[{k}:a]atrim=duration={dur:.3f},afade=t=in:d=0.3,afade=t=out:st={max(0, dur - 0.8):.3f}:d=0.8,"
+                         f"volume={vol},adelay={ms}|{ms}[m{k}]")
+            mix.append(f"[m{k}]")
         # YouTube plays back at about -14 LUFS; level the whole edit to that.
-        run(["ffmpeg", "-v", "error", "-y", "-i", joined, "-c:v", "copy",
-             "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k", "-ar", "48000",
-             "-movflags", "+faststart", out])
+        level = "loudnorm=I=-14:TP=-1.5:LRA=11"
+        if mix:
+            graph.append(f"{''.join(mix)}amix=inputs={len(mix)}:normalize=0[mus]")
+            graph.append("[0:a]asplit=2[main][key]")
+            graph.append("[mus][key]sidechaincompress=threshold=0.04:ratio=5:attack=20:release=350[duck]")
+            graph.append(f"[main][duck]amix=inputs=2:normalize=0:duration=first,{level}[a]")
+            amap = ["-filter_complex", ";".join(graph), "-map", "0:v", "-map", "[a]"]
+        else:
+            amap = ["-af", level]
+        run(["ffmpeg", "-v", "error", "-y", *inputs, *amap, "-c:v", "copy",
+             "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart", out])
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
     dur = float(run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", out]).stdout)
