@@ -1,3 +1,6 @@
 faster-whisper>=1.0
 numpy
 auto-editor
+# Only for upscale.py (AI upscaling of low-res sources). CPU build:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch

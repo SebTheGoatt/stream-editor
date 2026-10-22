@@ -1,0 +1,1 @@
+Real-ESRGAN compact models (BSD-3-Clause) from https://github.com/xinntao/Real-ESRGAN/releases/tag/v0.2.5.0

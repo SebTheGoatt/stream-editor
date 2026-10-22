@@ -185,13 +185,16 @@ def drawtext(text, la, lb, pos, W, H, tmp, color="white", size=None):
     path.close()
     size = size or (0.13 if pos == "center" else 0.095)
     fs = int(H * size)
+    # Shrink long lines so they fit: Anton caps run about 0.5 em wide.
+    longest = max((len(line) for line in text.split("\n")), default=1)
+    fs = min(fs, int(W * 0.92 / (0.5 * max(1, longest))))
     y = {"top": f"{int(H * 0.05)}", "center": "(h-text_h)/2", "bottom": f"h-text_h-{int(H * 0.08)}"}[pos]
     # Pop in: text starts 30% bigger and settles over 0.12 s.
     return (
         f"drawtext=fontfile='{FONT}':textfile='{path.name}':fontcolor={color}:"
         f"fontsize='{fs}*(1+0.3*max(0,1-(t-{la:.3f})/0.12))':"
         f"borderw={max(3, fs // 12)}:bordercolor=black:shadowx=4:shadowy=4:shadowcolor=black@0.6:"
-        f"x=(w-text_w)/2:y={y}:enable='between(t,{la:.3f},{lb:.3f})'"
+        f"line_spacing={fs // 8}:text_align=C:x=(w-text_w)/2:y={y}:enable='between(t,{la:.3f},{lb:.3f})'"
     )
 
 
@@ -207,9 +210,27 @@ def bleep_words(transcript, a, b, patterns):
     return hits
 
 
+def upscaled_source(seg, ctx):
+    """AI-upscale just this segment once (cached) and return (file, offset)."""
+    a = max(0.0, seg["start"] - 1.0)
+    b = seg["end"] + 1.0
+    cache = os.path.join(ctx["cache_dir"], f"{os.path.basename(ctx['src'])}_{a:.2f}_{b:.2f}_{ctx['upscale']}.mp4")
+    if not os.path.exists(cache):
+        os.makedirs(ctx["cache_dir"], exist_ok=True)
+        print(f"  upscaling {a:.1f}-{b:.1f}s with the {ctx['upscale']} model...", flush=True)
+        subprocess.run([sys.executable, os.path.join(HERE, "upscale.py"), ctx["src"], cache + ".part.mp4",
+                        "--model", ctx["upscale"], "--start", f"{a:.3f}", "--end", f"{b:.3f}"], check=True)
+        os.replace(cache + ".part.mp4", cache)
+    return cache, a
+
+
 def render_piece(i, piece, seg, ctx):
     cfg, W, H, fps, tmp = ctx["cfg"], ctx["W"], ctx["H"], ctx["fps"], ctx["tmp"]
     src, sfx_dir = ctx["src"], ctx["sfx_dir"]
+    # Seek offset: source time t lives at (t - shift) in the file being read.
+    shift = 0.0
+    if seg.get("_upscaled"):
+        src, shift = seg["_upscaled"]
     out = os.path.join(tmp, f"p{i:04d}.mp4")
     fxs = seg.get("fx", [])
     inputs, vf, af_extra, sfx_list = [], [], [], []
@@ -219,7 +240,7 @@ def render_piece(i, piece, seg, ctx):
     if piece["kind"] == "freeze":
         f = piece["fx"]
         dur = f.get("dur", 1.5)
-        inputs = ["-ss", f"{piece['a']:.3f}", "-i", src]
+        inputs = ["-ss", f"{piece['a'] - shift:.3f}", "-i", src]
         v = f"[0:v]trim=end_frame=1,{base_v},loop=loop=-1:size=1:start=0,trim=duration={dur:.3f},setpts=N/{fps}/TB"
         zooms = [(0.0, dur + 1, f.get("zoom", 1.8), target_xy(f, cfg), f.get("shake", False))] if f.get("zoom", 1.8) > 1 else []
         looks = [(f.get("look", "bw"), 0.0, dur + 1)] if f.get("look", "bw") else []
@@ -234,7 +255,7 @@ def render_piece(i, piece, seg, ctx):
         slow = piece.get("slow")
         speed = slow.get("factor", 0.5) if slow else 1.0
         length = (b0 - a0) / speed
-        inputs = ["-ss", f"{a0:.3f}", "-t", f"{b0 - a0:.3f}", "-i", src]
+        inputs = ["-ss", f"{a0 - shift:.3f}", "-t", f"{b0 - a0:.3f}", "-i", src]
         v = f"[0:v]setpts=(PTS-STARTPTS)/{speed},{base_v}"
 
         def loc(t):
@@ -330,6 +351,8 @@ def main():
     ap.add_argument("--out", help="override the output path")
     ap.add_argument("--only", help="render only these segment numbers, e.g. 1,4")
     ap.add_argument("--jobs", type=int, default=2)
+    ap.add_argument("--upscale", choices=["general", "anime"],
+                    help="AI-upscale each kept segment first (for low-res sources; slow on CPU)")
     args = ap.parse_args()
 
     base = os.path.dirname(os.path.abspath(args.plan))
@@ -366,9 +389,12 @@ def main():
 
     tmp = tempfile.mkdtemp(prefix="edit_", dir=os.path.dirname(out))
     ctx = {"cfg": cfg, "W": W, "H": H, "fps": fps, "tmp": tmp, "src": src,
-           "sfx_dir": rel(cfg.get("sfx_dir", "../sfx")), "transcript": transcript, "enc": enc}
+           "sfx_dir": rel(cfg.get("sfx_dir", "../sfx")), "transcript": transcript, "enc": enc,
+           "upscale": args.upscale, "cache_dir": os.path.join(os.path.dirname(src), "upscaled")}
     jobs = []
     for n, seg in enumerate(segs, 1):
+        if args.upscale:
+            seg["_upscaled"] = upscaled_source(seg, ctx)
         ps = pieces_for(seg, src, cfg)
         kept = sum((p["b"] - p["a"]) for p in ps if p["kind"] != "freeze")
         print(f"segment {n}: {seg.get('label', '')!s:28} {seg['end'] - seg['start']:5.1f}s -> {kept:5.1f}s kept, {len(ps)} pieces")
