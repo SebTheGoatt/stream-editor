@@ -182,6 +182,11 @@ def zoom_exprs(zooms, W, H):
     return zw, zh, x, y
 
 
+def ff_path(p):
+    """A file path that survives FFmpeg filter parsing, including Windows drive letters."""
+    return p.replace("\\", "/").replace(":", "\\:")
+
+
 def drawtext(text, la, lb, pos, W, H, tmp, color="white", size=None):
     path = tempfile.NamedTemporaryFile("w", suffix=".txt", dir=tmp, delete=False)
     path.write(text)
@@ -194,7 +199,7 @@ def drawtext(text, la, lb, pos, W, H, tmp, color="white", size=None):
     y = {"top": f"{int(H * 0.05)}", "center": "(h-text_h)/2", "bottom": f"h-text_h-{int(H * 0.08)}"}[pos]
     # Pop in: text starts 30% bigger and settles over 0.12 s.
     return (
-        f"drawtext=fontfile='{FONT}':textfile='{path.name}':fontcolor={color}:"
+        f"drawtext=fontfile='{ff_path(FONT)}':textfile='{ff_path(path.name)}':fontcolor={color}:"
         f"fontsize='{fs}*(1+0.3*max(0,1-(t-{la:.3f})/0.12))':"
         f"borderw={max(3, fs // 12)}:bordercolor=black:shadowx=4:shadowy=4:shadowcolor=black@0.6:"
         f"line_spacing={fs // 8}:text_align=C:x=(w-text_w)/2:y={y}:enable='between(t,{la:.3f},{lb:.3f})'"

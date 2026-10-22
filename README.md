@@ -9,16 +9,40 @@ Built on open-source tools:
 - [auto-editor](https://github.com/WyattBlue/auto-editor): optional rough pass that cuts silence from a whole VOD
 - [Anton](https://github.com/googlefonts/AntonFont) font (SIL Open Font License) for captions
 
+## What's in here
+
+| Path | What |
+|---|---|
+| `edit.py` | The editor: renders a plan into a finished video |
+| `transcribe.py` | Word-by-word transcript of a stream |
+| `upscale.py` | AI upscaling for low-res sources (only if the original is gone) |
+| `tools/` | `find_moments.py`, `contact_sheet.py`, `import_pack.py` |
+| `plans/` | Edit plans; `crafting.json` and `cod-mw4.json` are finished examples |
+| `pack/` | The CoryxKenshin 8-BitRyan FX sound and music pack (MP3) |
+| `sfx/` | Homemade sounds; `sfx/pack/` is built from `pack/` |
+| `brand/` | Channel intro and outro |
+| `intro/` | Alternate animated intro made with EffectCraft |
+| `.claude/skills/` | Claude skills: `coryxkenshin-edit` and `stream-editor-setup` |
+| `docs/TOOLS.md` | Every tool used and why |
+
 ## Setup (once)
 
-Needs Python 3.10+ and FFmpeg on your PATH (Windows: `winget install ffmpeg`; Mac: `brew install ffmpeg`).
+**Windows:** from the repo folder in PowerShell run `powershell -ExecutionPolicy Bypass -File setup.ps1`.
+It installs Python and FFmpeg if needed, the Python packages, the homemade sounds and the sound pack.
+
+**Mac/Linux:** needs Python 3.10+ and FFmpeg (`brew install ffmpeg` / `apt install ffmpeg`).
 
 ```bash
 python -m venv .venv
-. .venv/bin/activate            # Windows: .venv\Scripts\activate
+. .venv/bin/activate
 pip install -r requirements.txt
-python make_sfx.py sfx          # builds the original sound-effect pack
+python make_sfx.py sfx          # homemade sound effects
+python tools/import_pack.py pack   # the sound pack -> sfx/pack/
 ```
+
+**With Claude:** open this folder in Claude Code (desktop app or `claude` in a terminal) and say
+"set up stream-editor", then "edit work/<recording>.mp4 like CoryxKenshin". The skills in
+`.claude/skills/` walk it through everything.
 
 ## Edit a stream
 
@@ -62,9 +86,12 @@ is trimmed unless you set `"tighten": false`; effect moments are never cut.
 | `look` | `at`, `dur`, `look` (bw/deepfry/red/blue) | Color effect |
 | `shake` | `at`, `dur`, `scale` | Camera shake |
 
-Sound effects in `sfx/`: boom, ding, scratch, fall, thud, bonk, crickets, sting, whoosh, fail. They're synthesized,
-so there is nothing to license. To use your own, drop a `.wav` with the same name (or a new name) in `sfx/`.
-Only use sounds you have the rights to; copyrighted meme audio can get a video claimed.
+Sounds are looked up in `sfx/` (homemade: boom, ding, scratch, fall, thud, bonk, crickets, sting, whoosh, fail)
+and then `sfx/pack/` (the imported pack: `boom_meme`, `mgs_alert`, `bruh`, `fbi_open_up`… run `ls sfx/pack`).
+A `music` effect (`at`, `dur`, `name`, `vol`) plays a bed across cuts and ducks under voices, e.g.
+`{"type": "music", "at": 2410.4, "dur": 14, "name": "music_sad_violin", "vol": 0.7}`.
+A segment can also be a finished clip: `{"label": "outro", "clip": "../brand/outro.mp4", "fx": [music cues]}`.
+Borrowed music and meme audio can get a YouTube copyright claim; check before monetizing.
 
 Bleeping uses the word list in `edit.py` (`DEFAULT_BLEEP`); set `"bleep_words": [...]` in a plan to change it.
 Speech recognition can miss a word, so listen through before uploading.

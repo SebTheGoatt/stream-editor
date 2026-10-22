@@ -8,4 +8,5 @@ __pycache__/
 *.png
 !intro/intro.mp4
 sfx/pack/
-brand/
+!pack/**/*.mp4
+!brand/*.mp4
