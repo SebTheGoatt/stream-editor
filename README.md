@@ -74,3 +74,16 @@ Speech recognition can miss a word, so listen through before uploading.
 ```bash
 auto-editor work/stream.mp4 --margin 0.3s -o work/stream_tight.mp4
 ```
+
+## Channel intro (EffectCraft)
+
+`intro/intro.jsx` builds the animated "SEB THE GOAT" intro with [EffectCraft](https://github.com/storytold/effectcraft)
+(free, open source, After Effects-style scripting). Edit the text or colors in the script, then:
+
+```bash
+effectcraft-cli script intro/intro.jsx --empty --save-as intro/intro.ecproj
+effectcraft-cli render --project intro/intro.ecproj --comp Intro --out intro/intro_raw.mp4 --format h264 --audio off
+```
+
+Any finished clip can go in a plan as its own segment: `{"label": "channel intro", "clip": "../intro/intro.mp4"}`.
+You can also open `intro.ecproj` in the EffectCraft app to tweak it by hand.
