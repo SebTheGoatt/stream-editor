@@ -1,0 +1,721 @@
+{
+  "title": "COD MW4 with the boys (dad duty edition)",
+  "source": "C:/Users/Raymu/Videos/2026-10-23 15-29-37.mp4",
+  "transcript": "../work/stream-1023_transcript.json",
+  "sfx_dir": "../sfx",
+  "output": "../out/stream-1023.mp4",
+  "fps": 60,
+  "crf": 10,
+  "x264_preset": "fast",
+  "facecam": [
+    0.84,
+    0.83
+  ],
+  "tighten": {
+    "min_silence": 0.7,
+    "pad": 0.15,
+    "noise_db": -30
+  },
+  "palette": {
+    "text": "white",
+    "punch": "#FF2B2B",
+    "danger": "#FF2B2B",
+    "win": "#7CFC00",
+    "box": "#E01B24"
+  },
+  "goat_sound": "goat",
+  "layout": {
+    "game": [
+      1920,
+      0,
+      1920,
+      1080
+    ],
+    "cam": [
+      0,
+      0,
+      1920,
+      1080
+    ],
+    "cam_size": [
+      568,
+      320
+    ],
+    "cam_pos": [
+      1324,
+      732
+    ],
+    "border": 4
+  },
+  "audio_tracks": {
+    "mic": 1,
+    "game": 2,
+    "friends": 3
+  },
+  "bleeps": [[279.77, 280.27, "mic"], [412.49, 416.17, "friends"], [495.55, 496.05, "friends"], [669.97, 670.47, "mic"], [723.57, 724.07, "friends"], [809.39, 809.89, "mic"], [856.17, 856.67, "mic"], [968.49, 969.85, "friends"], [1028.87, 1029.37, "friends"]],
+  "segments": [
+    {
+      "label": "cold open: diaper mission",
+      "chapter": "Intro",
+      "start": 743.9,
+      "end": 754.95,
+      "tighten": false,
+      "fx": [
+        {
+          "type": "text",
+          "at": 744.0,
+          "dur": 2.6,
+          "text": "THE DIAPER MISSION:",
+          "pos": "top",
+          "color": "punch"
+        },
+        {
+          "type": "freeze",
+          "at": 754.9,
+          "dur": 2.2,
+          "text": "ANYWAY. LET'S BACK UP.",
+          "sfx": "flashback",
+          "zoom": 1.15,
+          "target": "center"
+        }
+      ]
+    },
+    {
+      "label": "channel intro",
+      "clip": "../brand/intro.mp4",
+      "fx": [
+        {
+          "type": "music",
+          "at": 0,
+          "dur": 1.2,
+          "name": "glitch",
+          "vol": 1.0
+        },
+        {
+          "type": "music",
+          "at": 0.3,
+          "dur": 9.7,
+          "name": "music_cory_dance_music",
+          "vol": 0.8
+        }
+      ]
+    },
+    {
+      "label": "the drip",
+      "chapter": "I dressed up for Call of Duty",
+      "start": 104.4,
+      "end": 163.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 104.5,
+          "dur": 3.0,
+          "text": "\"I EVEN GOT MY DESERT COMBAT JACKET ON\"",
+          "pos": "top"
+        },
+        {
+          "type": "zoom",
+          "at": 110.0,
+          "dur": 2.4,
+          "scale": 2.4,
+          "target": "face"
+        },
+        {
+          "type": "text",
+          "at": 156.2,
+          "dur": 2.6,
+          "text": "\"YOU WOULD BE WEARING THAT\"",
+          "pos": "top"
+        },
+        {
+          "type": "text",
+          "at": 157.8,
+          "dur": 2.6,
+          "text": "\"WELL, IT'S CALL OF DUTY BRO\"",
+          "pos": "bottom",
+          "color": "punch"
+        },
+        {
+          "type": "sfx",
+          "at": 158.0,
+          "name": "boom_meme"
+        }
+      ]
+    },
+    {
+      "label": "super saiyan",
+      "chapter": "Super Saiyan God Mode",
+      "start": 274.0,
+      "end": 287.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 274.4,
+          "dur": 2.6,
+          "text": "\"SUPER SAIYAN GOD MODE\"",
+          "pos": "top",
+          "color": "punch"
+        },
+        {
+          "type": "zoom",
+          "at": 274.4,
+          "dur": 2.4,
+          "scale": 2.4,
+          "target": "face"
+        },
+        {
+          "type": "sfx",
+          "at": 274.6,
+          "name": "anime_shine"
+        },
+        {
+          "type": "text",
+          "at": 279.4,
+          "dur": 2.6,
+          "text": "\"I'M SORRY JOHN\"",
+          "pos": "bottom"
+        },
+        {
+          "type": "sfx",
+          "at": 280.0,
+          "name": "bruh"
+        }
+      ]
+    },
+    {
+      "label": "because I'm so good",
+      "chapter": "Because I'm so good",
+      "start": 394.0,
+      "end": 439.5,
+      "cuts": [
+        [
+          418.9,
+          428.2
+        ]
+      ],
+      "fx": [
+        {
+          "type": "text",
+          "at": 394.2,
+          "dur": 2.6,
+          "text": "\"19 AND 9 IS LOOKING CRAZY\"",
+          "pos": "top"
+        },
+        {
+          "type": "text",
+          "at": 428.3,
+          "dur": 2.6,
+          "text": "\"I'VE BEEN WATCHING TIPS AND TRICKS\"",
+          "pos": "top",
+          "color": "punch"
+        },
+        {
+          "type": "zoom",
+          "at": 428.3,
+          "dur": 2.4,
+          "scale": 2.4,
+          "target": "face"
+        },
+        {
+          "type": "counter",
+          "at": 433.6,
+          "dur": 2.5,
+          "text": "DEATHS: 1",
+          "sfx": "pop_1"
+        },
+        {
+          "type": "freeze",
+          "at": 434.4,
+          "dur": 1.8,
+          "text": "SKILL ISSUE",
+          "sfx": "fail_1",
+          "zoom": 2.4,
+          "target": "face"
+        }
+      ]
+    },
+    {
+      "label": "stuck in the doorway",
+      "chapter": "Stuck in the doorway",
+      "start": 491.0,
+      "end": 500.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 491.3,
+          "dur": 2.6,
+          "text": "\"I GOT STUCK IN THE DOORWAY\"",
+          "pos": "top",
+          "color": "danger"
+        },
+        {
+          "type": "zoom",
+          "at": 497.6,
+          "dur": 2.0,
+          "scale": 2.4,
+          "target": "face",
+          "shake": true
+        },
+        {
+          "type": "sfx",
+          "at": 497.6,
+          "name": "bonk"
+        }
+      ]
+    },
+    {
+      "label": "dad duty calls",
+      "chapter": "Dad duty calls",
+      "start": 573.5,
+      "end": 596.5,
+      "fx": [
+        {
+          "type": "text",
+          "at": 581.0,
+          "dur": 2.6,
+          "text": "DAD DUTY CALLS",
+          "pos": "top",
+          "color": "punch"
+        },
+        {
+          "type": "text",
+          "at": 587.4,
+          "dur": 2.6,
+          "text": "\"PLEASE NO EXCREMENT\"",
+          "pos": "bottom",
+          "color": "punch"
+        },
+        {
+          "type": "zoom",
+          "at": 587.4,
+          "dur": 2.4,
+          "scale": 2.4,
+          "target": "face"
+        },
+        {
+          "type": "sfx",
+          "at": 587.6,
+          "name": "dun_dun_dun"
+        },
+        {
+          "type": "text",
+          "at": 592.6,
+          "dur": 2.6,
+          "text": "\"YOU NEED TO CHANGE YOUR DIAPER\"",
+          "pos": "top"
+        }
+      ]
+    },
+    {
+      "label": "player 2",
+      "chapter": "Player 2 takes the controller",
+      "start": 626.0,
+      "end": 673.9,
+      "cuts": [
+        [
+          632.4,
+          633.5
+        ],
+        [
+          641.3,
+          644.3
+        ]
+      ],
+      "fx": [
+        {
+          "type": "text",
+          "at": 626.1,
+          "dur": 2.6,
+          "text": "DAD MODE: ACTIVATED",
+          "pos": "top",
+          "color": "win"
+        },
+        {
+          "type": "text",
+          "at": 636.0,
+          "dur": 2.6,
+          "text": "\"HERE, YOU PLAY!\"",
+          "pos": "bottom"
+        },
+        {
+          "type": "text",
+          "at": 648.6,
+          "dur": 2.6,
+          "text": "\"OH NO, YOU GOTTA MOVE THE CONTROLLER\"",
+          "pos": "top"
+        },
+        {
+          "type": "text",
+          "at": 668.7,
+          "dur": 2.6,
+          "text": "\"I DON'T EVEN KNOW WHAT I'M DOING\"",
+          "pos": "bottom"
+        },
+        {
+          "type": "freeze",
+          "at": 672.0,
+          "dur": 1.8,
+          "text": "PLAYER 2 DOWN",
+          "sfx": "fail_1",
+          "zoom": 1.15,
+          "target": "center"
+        }
+      ]
+    },
+    {
+      "label": "the diaper mission",
+      "chapter": "The diaper mission",
+      "start": 712.0,
+      "end": 779.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 714.1,
+          "dur": 2.6,
+          "text": "\"HOW DO YOU, LIKE, SHOOT AT PEOPLE?\"",
+          "pos": "top"
+        },
+        {
+          "type": "text",
+          "at": 721.5,
+          "dur": 2.6,
+          "text": "\"GOOD JOB, DADDY\"",
+          "pos": "bottom",
+          "color": "win"
+        },
+        {
+          "type": "text",
+          "at": 743.9,
+          "dur": 2.6,
+          "text": "\"YOUR BUTT IS CLEAN NOW\"",
+          "pos": "top"
+        },
+        {
+          "type": "goat",
+          "at": 754.4,
+          "dur": 2.6
+        },
+        {
+          "type": "counter",
+          "at": 754.4,
+          "dur": 2.5,
+          "text": "DAD: 1  KIDS: 0",
+          "sfx": "pop_1"
+        },
+        {
+          "type": "text",
+          "at": 756.1,
+          "dur": 2.6,
+          "text": "\"HE DEFEATED THE MONSTER\"",
+          "pos": "top"
+        },
+        {
+          "type": "text",
+          "at": 769.6,
+          "dur": 2.6,
+          "text": "\"THE SWAMP MONSTER\"",
+          "pos": "top",
+          "color": "punch"
+        },
+        {
+          "type": "sfx",
+          "at": 769.8,
+          "name": "boom_meme"
+        }
+      ]
+    },
+    {
+      "label": "daniel joins the squad",
+      "chapter": "Daniel joins the squad",
+      "start": 784.0,
+      "end": 848.5,
+      "fx": [
+        {
+          "type": "text",
+          "at": 799.4,
+          "dur": 2.6,
+          "text": "\"BOOM BOOM\"",
+          "pos": "top"
+        },
+        {
+          "type": "text",
+          "at": 803.6,
+          "dur": 3.0,
+          "text": "\"YOU'RE ABOUT TO WATCH A WAR CRIMINAL AT WORK\"",
+          "pos": "top",
+          "color": "punch"
+        },
+        {
+          "type": "zoom",
+          "at": 803.6,
+          "dur": 3.0,
+          "scale": 2.4,
+          "target": "face"
+        },
+        {
+          "type": "sfx",
+          "at": 804.0,
+          "name": "boom_meme"
+        },
+        {
+          "type": "text",
+          "at": 816.7,
+          "dur": 2.6,
+          "text": "\"YOU'RE NOT A MARINE\"",
+          "pos": "bottom"
+        },
+        {
+          "type": "text",
+          "at": 825.5,
+          "dur": 2.6,
+          "text": "\"DAMN DANIEL!\"",
+          "pos": "top",
+          "color": "punch"
+        }
+      ]
+    },
+    {
+      "label": "oh boss",
+      "chapter": "OH BOSS!",
+      "start": 853.0,
+      "end": 879.7,
+      "fx": [
+        {
+          "type": "text",
+          "at": 853.0,
+          "dur": 2.0,
+          "text": "\"OH BOSS!\"",
+          "pos": "top",
+          "color": "punch"
+        },
+        {
+          "type": "counter",
+          "at": 853.0,
+          "dur": 2.5,
+          "text": "OH BOSS: 1",
+          "sfx": "pop_1"
+        },
+        {
+          "type": "counter",
+          "at": 863.2,
+          "dur": 2.5,
+          "text": "OH BOSS: 4",
+          "sfx": "pop_1"
+        },
+        {
+          "type": "counter",
+          "at": 874.8,
+          "dur": 2.5,
+          "text": "OH BOSS: 10",
+          "sfx": "pop_1"
+        },
+        {
+          "type": "sfx",
+          "at": 875.0,
+          "name": "bruh"
+        },
+        {
+          "type": "text",
+          "at": 876.2,
+          "dur": 2.6,
+          "text": "\"IT'S GOTTA BE A TOWN IN MEXICO\"",
+          "pos": "bottom"
+        }
+      ]
+    },
+    {
+      "label": "got us both killed",
+      "chapter": "You got us both killed",
+      "start": 963.0,
+      "end": 988.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 963.6,
+          "dur": 2.6,
+          "text": "\"DID YOU SEE THAT?\"",
+          "pos": "top"
+        },
+        {
+          "type": "look",
+          "at": 971.3,
+          "dur": 2.5,
+          "look": "red"
+        },
+        {
+          "type": "zoom",
+          "at": 971.3,
+          "dur": 2.4,
+          "scale": 2.4,
+          "target": "face",
+          "shake": true
+        },
+        {
+          "type": "sfx",
+          "at": 971.3,
+          "name": "mgs_alert"
+        },
+        {
+          "type": "text",
+          "at": 973.0,
+          "dur": 2.6,
+          "text": "\"YOU WERE TOO BUSY LAUGHING AT ME\"",
+          "pos": "bottom"
+        },
+        {
+          "type": "counter",
+          "at": 975.5,
+          "dur": 2.5,
+          "text": "DEATHS: 2",
+          "sfx": "pop_1"
+        }
+      ]
+    },
+    {
+      "label": "daniel's first word",
+      "chapter": "Daniel's first word",
+      "start": 1016.0,
+      "end": 1036.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 1021.9,
+          "dur": 2.6,
+          "text": "\"BRO, YOU HEAR DANIEL?\"",
+          "pos": "top"
+        },
+        {
+          "type": "text",
+          "at": 1025.5,
+          "dur": 3.0,
+          "text": "\"HE WANTS TO SAY WHAT THE F***\"",
+          "pos": "top",
+          "color": "punch"
+        },
+        {
+          "type": "sfx",
+          "at": 1029.0,
+          "name": "bruh"
+        },
+        {
+          "type": "counter",
+          "at": 1029.6,
+          "dur": 2.5,
+          "text": "DAD: 1  KIDS: 1",
+          "sfx": "pop_1"
+        }
+      ]
+    },
+    {
+      "label": "hey dad",
+      "chapter": "Hey dad? Hey dad?",
+      "start": 1345.0,
+      "end": 1394.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 1345.3,
+          "dur": 2.6,
+          "text": "\"THIS GUY IS SO MAD I'M SO GOOD\"",
+          "pos": "top"
+        },
+        {
+          "type": "text",
+          "at": 1359.6,
+          "dur": 3.0,
+          "text": "\"HEY DAD? HEY DAD? HEY DAD?\"",
+          "pos": "top",
+          "color": "punch"
+        },
+        {
+          "type": "counter",
+          "at": 1364.6,
+          "dur": 2.5,
+          "text": "DAD: 1  KIDS: 2",
+          "sfx": "pop_1"
+        },
+        {
+          "type": "text",
+          "at": 1384.9,
+          "dur": 2.6,
+          "text": "\"I GO ON THESE NICE LITTLE STREAKS...\"",
+          "pos": "top"
+        },
+        {
+          "type": "zoom",
+          "at": 1388.7,
+          "dur": 2.4,
+          "scale": 2.4,
+          "target": "face"
+        },
+        {
+          "type": "text",
+          "at": 1388.7,
+          "dur": 2.6,
+          "text": "\"...AND I JUST SH*T THE BED\"",
+          "pos": "bottom",
+          "color": "punch"
+        },
+        {
+          "type": "sfx",
+          "at": 1389.0,
+          "name": "spongebob_boo_womp"
+        }
+      ]
+    },
+    {
+      "label": "ending: separate video",
+      "chapter": "North Korea",
+      "start": 1798.0,
+      "end": 1812.8,
+      "fx": [
+        {
+          "type": "text",
+          "at": 1798.3,
+          "dur": 2.6,
+          "text": "\"NORTH KOREAN WILDERNESS?\"",
+          "pos": "top"
+        },
+        {
+          "type": "text",
+          "at": 1807.3,
+          "dur": 2.6,
+          "text": "\"HOLD ON, I GOT AN IDEA\"",
+          "pos": "top"
+        },
+        {
+          "type": "music",
+          "at": 1808.0,
+          "dur": 8,
+          "name": "music_curb_your_enthusiasm_meme_background_music",
+          "vol": 0.8
+        },
+        {
+          "type": "freeze",
+          "at": 1812.7,
+          "dur": 3.5,
+          "text": "IT'S GONNA BE A SEPARATE VIDEO.\nSUBSCRIBE.",
+          "sfx": "boom_meme",
+          "zoom": 1.0,
+          "target": "center",
+          "look": "",
+          "color": "punch"
+        }
+      ]
+    },
+    {
+      "label": "outro",
+      "clip": "../brand/outro.mp4",
+      "fx": [
+        {
+          "type": "music",
+          "at": 0,
+          "dur": 6,
+          "name": "music_cory_happy_music",
+          "vol": 0.8
+        }
+      ]
+    }
+  ],
+  "bleep_sound": "quack"
+}
