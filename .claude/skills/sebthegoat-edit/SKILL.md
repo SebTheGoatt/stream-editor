@@ -125,6 +125,26 @@ worked example.
 - **Not REA:** reverse-engineering Vizard or vidIQ breaks their terms and wouldn't work anyway
   (their models and data are server-side). The Shorts maker and the vidIQ calls above replace that.
 
+## Recording setup (OBS 32, Seb's profile)
+
+Advanced output, Recording format Hybrid MP4 (or MKV), Audio Tracks 1-4 ticked. In Edit →
+Advanced Audio Properties:
+
+| Source | Track 1 (mix) | 2 (mic) | 3 (game) | 4 (Discord) |
+|---|---|---|---|---|
+| MIC Audio | yes | yes | | |
+| Game Audio (application capture of Minecraft) | yes | | yes | |
+| Discord Audio (application capture of Discord) | yes | | | yes |
+| Audio Output Capture / Desktop Audio | no tracks (or muted): it would double the game and Discord |
+
+`tools/prep_stream.py` sees 4+ audio streams and assumes exactly this layout: it transcribes the mic
+and Discord tracks on their own (cleaner words, each tagged SEB or BOYS in the readable transcript)
+and writes `"audio_tracks": {"mic": 1, "game": 2, "friends": 3}` (stream numbers; 0 is the mix) into
+the starter plan. Pass `--tracks` if the routing differs. With `audio_tracks`, edit.py mixes the
+tracks itself: a bleep mutes only the voice that swore while the game keeps playing, and
+`"track_levels": {"friends": 0.8}` sets a voice's level. Plan bleeps can name a voice:
+`[start, end, "friends"]`. Recordings with one audio track work exactly as before.
+
 ## Pipeline on Seb's PC
 
 When Seb says "edit my timeline", run this in order. Every step was dry-run end to end on
@@ -156,12 +176,16 @@ When Seb says "edit my timeline", run this in order. Every step was dry-run end 
    (`Start-Process <file>`), apply his notes, then render the masters (`crf` 10: near-lossless,
    because Seb exports from DaVinci's Deliver page with his own settings). A master takes about
    2 s per second of output.
-6. **Import into Resolve** next to his original, which stays untouched. In his current project:
+6. **Import into Resolve** next to his original, which stays untouched. First re-wrap each master
+   with uncompressed audio, because Resolve on his PC drops AAC audio partway through playback:
+   `ffmpeg -i out/<slug>-part1.mp4 -map 0 -c:v copy -c:a pcm_s24le out/<slug>-part1.mov`
+   (video untouched, takes a minute). Import the `.mov`, then make sure the timeline's audio track
+   is enabled (`GetIsTrackEnabled("audio", 1)`; one came in switched off). In his current project:
    ```python
    mp = project.GetMediaPool()
    folder = mp.AddSubFolder(mp.GetRootFolder(), "Seb The Goat edits")
    mp.SetCurrentFolder(folder)
-   items = mp.ImportMedia([r"<full path to out/<slug>-part1.mp4>"])
+   items = mp.ImportMedia([r"<full path to out/<slug>-part1.mov>"])
    mp.CreateTimelineFromClips("<slug> part 1 - Seb The Goat edit", items)
    ```
    Then confirm the timeline's frame rate, resolution and duration match the master.

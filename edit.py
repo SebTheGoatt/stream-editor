@@ -301,12 +301,15 @@ def drawtext(text, la, lb, pos, W, H, tmp, color="white", size=None, box=None):
     )
 
 
-def bleep_words(transcript, a, b, patterns):
+def bleep_words(transcript, a, b, patterns, track=None):
+    """Swear spans in [a, b]. With track, only words from that voice (or untagged words) count."""
     hits = []
     for seg in transcript.get("segments", []):
         if seg["end"] < a or seg["start"] > b:
             continue
         for w in seg.get("words", []):
+            if track and w.get("track", seg.get("track")) not in (None, track):
+                continue
             word = re.sub(r"[^a-z]", "", w["w"].lower())
             # Whisper sometimes stamps a word with zero length; still bleep a whole word's worth.
             ws, we = w["s"], max(w["e"], w["s"] + 0.4)
@@ -485,26 +488,44 @@ def render_piece(i, piece, seg, ctx):
             for text, s, e in caption_chunks(ctx["transcript"], a0, b0, cfg.get("bleep_words", DEFAULT_BLEEP)):
                 texts.append((text, loc(s), min(length, loc(e)), "subs", paint("text", cfg), None, None))
         if slow and slow.get("deep", True):
-            audio = f"[0:a]asetpts=PTS-STARTPTS,asetrate=48000*{speed},aresample=48000"
+            retime = f"asetpts=PTS-STARTPTS,asetrate=48000*{speed},aresample=48000"
         elif speed != 1.0:
             tempo, chain = speed, []
             while tempo < 0.5:
                 chain.append("atempo=0.5")
                 tempo /= 0.5
             chain.append(f"atempo={tempo:.4f}")
-            audio = "[0:a]asetpts=PTS-STARTPTS,aresample=48000," + ",".join(chain)
+            retime = "asetpts=PTS-STARTPTS,aresample=48000," + ",".join(chain)
         else:
-            audio = "[0:a]asetpts=PTS-STARTPTS,aresample=48000"
-        audio += ",aformat=sample_rates=48000:channel_layouts=stereo"
-        if cfg.get("bleep", True) and ctx["transcript"]:
-            # Plus any extra bleeps the plan lists: swears a second transcription pass caught.
-            spans = bleep_words(ctx["transcript"], a0, b0, cfg.get("bleep_words", DEFAULT_BLEEP))
-            spans += [(max(a0, s), min(b0, e)) for s, e in cfg.get("bleeps", []) if e > a0 and s < b0]
-            hits = [((s - a0) / speed, (e - a0) / speed) for s, e in spans]
-            if hits:
-                gate = "+".join(f"between(t,{s:.3f},{e:.3f})" for s, e in hits)
-                audio += f",volume=0:enable='{gate}'"
-                af_extra.append(f"aevalsrc='0.25*sin(2*PI*1000*t)*gt({gate},0)':s=48000:d={length:.3f},aformat=channel_layouts=stereo")
+            retime = "asetpts=PTS-STARTPTS,aresample=48000"
+        # A recording with separate OBS tracks ("audio_tracks": {"mic": 1, "game": 2, "friends": 3})
+        # is mixed here, so a bleep mutes only the voice that swore and the game keeps playing.
+        tracks = cfg.get("audio_tracks")
+        voices = [n for n in ("mic", "friends", "game") if n in tracks] if tracks else [None]
+        chains, all_hits = [], []
+        for n in voices:
+            chain = f"[0:a:{tracks[n]}]" if n else "[0:a]"
+            chain += retime + ",aformat=sample_rates=48000:channel_layouts=stereo"
+            if cfg.get("bleep", True) and ctx["transcript"] and n != "game":
+                # Plus any extra bleeps the plan lists: swears a second transcription pass caught.
+                spans = bleep_words(ctx["transcript"], a0, b0, cfg.get("bleep_words", DEFAULT_BLEEP), n)
+                spans += [(max(a0, x[0]), min(b0, x[1])) for x in cfg.get("bleeps", [])
+                          if x[1] > a0 and x[0] < b0 and (len(x) < 3 or x[2] == n)]
+                hits = [((s - a0) / speed, (e - a0) / speed) for s, e in spans]
+                if hits:
+                    chain += ",volume=0:enable='" + "+".join(f"between(t,{s:.3f},{e:.3f})" for s, e in hits) + "'"
+                    all_hits += hits
+            if n:
+                chain += f",volume={cfg.get('track_levels', {}).get(n, 1.0)}"
+            chains.append(chain)
+        if len(chains) == 1:
+            audio = chains[0]
+        else:
+            audio = (";".join(f"{c}[v{k}]" for k, c in enumerate(chains)) + ";"
+                     + "".join(f"[v{k}]" for k in range(len(chains))) + f"amix=inputs={len(chains)}:normalize=0")
+        if all_hits:
+            gate = "+".join(f"between(t,{s:.3f},{e:.3f})" for s, e in all_hits)
+            af_extra.append(f"aevalsrc='0.25*sin(2*PI*1000*t)*gt({gate},0)':s=48000:d={length:.3f},aformat=channel_layouts=stereo")
 
     # Video chain: looks, then camera (zoom/shake), then captions.
     for look, la, lb in looks:
