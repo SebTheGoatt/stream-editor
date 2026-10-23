@@ -9,11 +9,16 @@ seconds in the ORIGINAL VOD, so moments can be copied straight from the
 transcript. See plans/crafting.json and README.md for every option.
 
 Per segment the pipeline:
-  1. trims long silences (dead air) unless an effect covers them,
+  1. trims long silences (dead air) unless an effect, a laugh or the
+     comedic pause before a punchline covers them,
   2. splits into pieces: normal playback, slow-mo, and freeze frames,
   3. renders each piece with zoom punch-ins, color looks, screen shake,
      meme captions, sound effects and bleeped curse words,
-then joins everything and levels the loudness for YouTube.
+then joins everything (with an optional TV-static transition between moments)
+and levels the loudness for YouTube.
+
+Caption colors can be palette names ("text", "punch", "win", "danger", "box"),
+set per channel with the plan's "palette".
 """
 import argparse
 import fnmatch
@@ -40,6 +45,30 @@ LOOKS = {
     "red": "colorchannelmixer=rr=1.2:gg=0.45:bb=0.45:enable='{e}'",
     "blue": "colorchannelmixer=rr=0.6:gg=0.75:bb=1.25:enable='{e}'",
 }
+# Named caption colors; a plan's "palette" overrides any of them.
+PALETTE = {"text": "white", "punch": "#FFD400", "win": "#7CFC00", "danger": "#FF4040", "box": "#E01B24"}
+
+
+def paint(color, cfg):
+    return {**PALETTE, **cfg.get("palette", {})}.get(color, color)
+
+
+def expand_goat(seg, cfg):
+    """A "goat" effect is the channel's signature beat: face punch-in, stamp and goat sound."""
+    out = []
+    for f in seg.get("fx", []):
+        if f["type"] != "goat":
+            out.append(f)
+            continue
+        dur = f.get("dur", 2.6)
+        out += [
+            {"type": "zoom", "at": f["at"], "dur": dur, "scale": f.get("scale", 2.4), "target": "face",
+             "shake": f.get("shake", False)},
+            {"type": "text", "at": f["at"], "dur": dur, "text": f.get("text", "GOAT MOMENT"), "pos": "bottom",
+             "color": "text", "box": "box"},
+            {"type": "sfx", "at": f["at"], "name": cfg.get("goat_sound", "goat"), "vol": f.get("vol", 1.0)},
+        ]
+    seg["fx"] = out
 
 
 def run(cmd):
@@ -82,8 +111,32 @@ def fx_window(fx):
     return fx["at"], fx["at"] + fx.get("dur", 1.0)
 
 
-def keep_ranges(seg, src, cfg):
-    """Source ranges of a segment left after cutting dead air."""
+# Whisper writes laughter as its own token: (laughs), [LAUGHTER], *Laughing*, Haha!
+# Bracketed only, so spoken words like "laugh" or "slaughter" don't count.
+LAUGH = re.compile(r"^[\[(*]\s*(laugh|chuckl|giggl)|^(ha){2,}\b", re.I)
+
+
+def laughs(transcript):
+    """Laughs the transcript marked, as (start, end) in source seconds."""
+    return [(w["s"], w["e"]) for s in transcript.get("segments", []) for w in s.get("words", [])
+            if LAUGH.search(w["w"])]
+
+
+def without_holes(ranges, holes):
+    """ranges minus holes, both lists of (start, end)."""
+    for hs, he in holes:
+        ranges = [piece for s, e in ranges
+                  for piece in ((s, min(e, hs)), (max(s, he), e)) if piece[1] - piece[0] > 0.05]
+    return ranges
+
+
+def keep_ranges(seg, src, cfg, laugh_marks=()):
+    """Source ranges of a segment left after cutting dead air and any lines the plan cuts out."""
+    holes = [tuple(c) for c in seg.get("cuts", [])]
+    return without_holes(tightened(seg, src, cfg, laugh_marks), holes)
+
+
+def tightened(seg, src, cfg, laugh_marks):
     a, b = seg["start"], seg["end"]
     tighten = seg.get("tighten", cfg.get("tighten", {}).get("enabled", True))
     if not tighten:
@@ -92,6 +145,12 @@ def keep_ranges(seg, src, cfg):
     pad = t.get("pad", 0.18)
     # Music beds run under the cut, so they don't stop dead air from being trimmed.
     protected = [fx_window(f) for f in seg.get("fx", []) if f["type"] != "music"]
+    # Comedic timing is not dead air: the beat before a punchline (zoom/freeze), and a laugh with
+    # the pause that sets it up and its tail.
+    pause = t.get("comic_pause", 0.8)
+    protected += [(f["at"] - pause, f["at"]) for f in seg.get("fx", []) if f["type"] in ("zoom", "freeze")]
+    if t.get("keep_laughs", True):
+        protected += [(s - pause, e + 0.6) for s, e in laugh_marks if s < b and e > a]
     cuts = []
     for s, e in silences(src, a, b, t.get("noise_db", -34), t.get("min_silence", 0.9)):
         s, e = s + pad, e - pad
@@ -116,14 +175,14 @@ def keep_ranges(seg, src, cfg):
     return [r for r in ranges if r[1] - r[0] > 0.05]
 
 
-def pieces_for(seg, src, cfg):
+def pieces_for(seg, src, cfg, laugh_marks=()):
     """Split a segment into normal / slow / freeze pieces."""
     if "clip" in seg:
         return [{"kind": "clip", "a": 0.0, "b": 0.0}]
     slows = sorted((f for f in seg.get("fx", []) if f["type"] == "slowmo"), key=lambda f: f["at"])
     freezes = sorted((f for f in seg.get("fx", []) if f["type"] == "freeze"), key=lambda f: f["at"])
     out = []
-    for ra, rb in keep_ranges(seg, src, cfg):
+    for ra, rb in keep_ranges(seg, src, cfg, laugh_marks):
         cuts = [ra]
         for f in slows:
             for x in (f["at"], f["at"] + f["dur"]):
@@ -148,6 +207,38 @@ def pieces_for(seg, src, cfg):
 
 
 # ---------------------------------------------------------------- rendering
+
+
+def layout_filter(cfg):
+    """Rebuild the picture from a raw OBS recording, per piece: game full-frame, webcam inset.
+
+    Plan option "layout" (all in source/output pixels), e.g. for a 3840x1080 webcam|game recording:
+      {"game": [1920, 0, 1920, 1080], "cam": [0, 0, 1920, 1080],
+       "cam_size": [568, 320], "cam_pos": [1324, 732], "border": 4}
+    or, for vertical Shorts, regions of the source stacked top to bottom:
+      {"stack": [{"crop": [127, 0, 1666, 1080], "size": [1080, 700]},
+                 {"crop": [2402, 0, 956, 1080], "size": [1080, 1220]}]}
+    Only the kept moments get rebuilt, so there is no full-length intermediate file to make.
+    """
+    lay = cfg.get("layout")
+    if not lay:
+        return ""
+    if "stack" in lay:
+        parts = lay["stack"]
+        ins = "".join(f"[ls{i}]" for i in range(len(parts)))
+        outs = "".join(f"[lo{i}]" for i in range(len(parts)))
+        crops = ";".join(f"[ls{i}]crop={p['crop'][2]}:{p['crop'][3]}:{p['crop'][0]}:{p['crop'][1]},"
+                         f"scale={p['size'][0]}:{p['size'][1]}:flags=lanczos,setsar=1[lo{i}]"
+                         for i, p in enumerate(parts))
+        return f"split={len(parts)}{ins};{crops};{outs}vstack=inputs={len(parts)},"
+    gx, gy, gw, gh = lay["game"]
+    cx, cy, cw, ch = lay["cam"]
+    w, h = lay["cam_size"]
+    x, y = lay["cam_pos"]
+    b = lay.get("border", 4)
+    return (f"split[lg][lc];[lg]crop={gw}:{gh}:{gx}:{gy}[lgame];"
+            f"[lc]crop={cw}:{ch}:{cx}:{cy},scale={w}:{h},pad={w + 2 * b}:{h + 2 * b}:{b}:{b}:"
+            f"{lay.get('border_color', 'white')}[lcam];[lgame][lcam]overlay={x - b}:{y - b},")
 
 
 def target_xy(fx, cfg):
@@ -187,22 +278,26 @@ def ff_path(p):
     return p.replace("\\", "/").replace(":", "\\:")
 
 
-def drawtext(text, la, lb, pos, W, H, tmp, color="white", size=None):
+def drawtext(text, la, lb, pos, W, H, tmp, color="white", size=None, box=None):
     path = tempfile.NamedTemporaryFile("w", suffix=".txt", dir=tmp, delete=False)
     path.write(text)
     path.close()
-    size = size or (0.13 if pos == "center" else 0.095)
+    size = size or {"center": 0.13, "corner": 0.06, "subs": 0.06}.get(pos, 0.095)
     fs = int(H * size)
     # Shrink long lines so they fit: Anton caps run about 0.5 em wide.
     longest = max((len(line) for line in text.split("\n")), default=1)
     fs = min(fs, int(W * 0.92 / (0.5 * max(1, longest))))
-    y = {"top": f"{int(H * 0.05)}", "center": "(h-text_h)/2", "bottom": f"h-text_h-{int(H * 0.08)}"}[pos]
+    y = {"top": f"{int(H * 0.05)}", "center": "(h-text_h)/2", "bottom": f"h-text_h-{int(H * 0.08)}",
+         "corner": f"{int(H * 0.05)}", "subs": f"{int(H * 0.62)}"}[pos]
+    # Counters sit in the top-left corner; everything else is centered.
+    x = f"{int(W * 0.03)}" if pos == "corner" else "(w-text_w)/2"
+    boxed = f"box=1:boxcolor={box}@0.9:boxborderw={max(6, fs // 4)}:" if box else ""
     # Pop in: text starts 30% bigger and settles over 0.12 s.
     return (
         f"drawtext=fontfile='{ff_path(FONT)}':textfile='{ff_path(path.name)}':fontcolor={color}:"
-        f"fontsize='{fs}*(1+0.3*max(0,1-(t-{la:.3f})/0.12))':"
+        f"fontsize='{fs}*(1+0.3*max(0,1-(t-{la:.3f})/0.12))':{boxed}"
         f"borderw={max(3, fs // 12)}:bordercolor=black:shadowx=4:shadowy=4:shadowcolor=black@0.6:"
-        f"line_spacing={fs // 8}:text_align=C:x=(w-text_w)/2:y={y}:enable='between(t,{la:.3f},{lb:.3f})'"
+        f"line_spacing={fs // 8}:text_align=C:x={x}:y={y}:enable='between(t,{la:.3f},{lb:.3f})'"
     )
 
 
@@ -213,9 +308,37 @@ def bleep_words(transcript, a, b, patterns):
             continue
         for w in seg.get("words", []):
             word = re.sub(r"[^a-z]", "", w["w"].lower())
-            if word and any(fnmatch.fnmatch(word, p) for p in patterns) and w["e"] > a and w["s"] < b:
-                hits.append((max(a, w["s"] - 0.03), min(b, w["e"] + 0.03)))
+            # Whisper sometimes stamps a word with zero length; still bleep a whole word's worth.
+            ws, we = w["s"], max(w["e"], w["s"] + 0.4)
+            if word and any(fnmatch.fnmatch(word, p) for p in patterns) and we > a and ws < b:
+                hits.append((max(a, ws - 0.08), min(b, we + 0.05)))
     return hits
+
+
+def caption_chunks(transcript, a, b, patterns, max_words=3):
+    """Word-by-word captions for Shorts: (TEXT, start, end) chunks of up to max_words in [a, b].
+
+    A chunk breaks early on a pause or at the end of a sentence. Bleeped words are starred out.
+    """
+    words = [w for seg in transcript.get("segments", []) for w in seg.get("words", [])
+             if a <= w["s"] < b and not LAUGH.search(w["w"]) and not w["w"].startswith(("[", "(", "*", "♪"))]
+    chunks, cur = [], []
+    for i, w in enumerate(words):
+        bare = re.sub(r"[^a-z]", "", w["w"].lower())
+        text = w["w"].upper()
+        if bare and any(fnmatch.fnmatch(bare, p) for p in patterns):
+            text = text[0] + "*" * (len(text) - 1)
+        cur.append((text, w["s"], w["e"]))
+        nxt = words[i + 1] if i + 1 < len(words) else None
+        if len(cur) == max_words or not nxt or nxt["s"] - w["e"] > 0.4 or w["w"][-1:] in ".?!":
+            chunks.append(cur)
+            cur = []
+    out = []
+    for i, c in enumerate(chunks):
+        # Hold each chunk until the next one starts (or a beat after its last word), never past b.
+        end = chunks[i + 1][0][1] if i + 1 < len(chunks) else c[-1][2] + 0.25
+        out.append((" ".join(t for t, _, _ in c), c[0][1], min(b, max(end, c[-1][2]))))
+    return out
 
 
 def find_sound(sfx_dir, name):
@@ -229,6 +352,8 @@ def find_sound(sfx_dir, name):
 def piece_length(piece, seg):
     if piece["kind"] == "clip":
         return seg["_clip_dur"]
+    if piece["kind"] == "static":
+        return seg["_dur"]
     if piece["kind"] == "freeze":
         return piece["fx"].get("dur", 1.5)
     speed = piece["slow"].get("factor", 0.5) if piece.get("slow") else 1.0
@@ -290,14 +415,29 @@ def render_piece(i, piece, seg, ctx):
              "-map", "[v]", "-map", "[a]", *ctx["enc"], "-t", f"{seg['_clip_dur']:.3f}", out])
         return out
 
+    if piece["kind"] == "static":
+        # TV-static transition between moments, tinted to match the channel intro.
+        dur = seg["_dur"]
+        run(["ffmpeg", "-v", "error", "-y",
+             "-f", "lavfi", "-i", f"color=c=0x707070:s={W}x{H}:r={fps}:d={dur:.3f}",
+             "-f", "lavfi", "-i", f"anoisesrc=d={dur:.3f}:c=pink:a=0.3",
+             "-filter_complex",
+             "[0:v]noise=alls=100:allf=t+u,hue=s=0,colorchannelmixer=rr=1.15:gg=0.22:bb=0.22,format=yuv420p[v];"
+             f"[1:a]highpass=f=300,afade=t=in:d=0.03,afade=t=out:st={max(0, dur - 0.08):.3f}:d=0.08,"
+             "aformat=sample_rates=48000:channel_layouts=stereo[a]",
+             "-map", "[v]", "-map", "[a]", *ctx["enc"], "-t", f"{dur:.3f}", out])
+        return out
+
     if piece["kind"] == "freeze":
         f = piece["fx"]
         dur = f.get("dur", 1.5)
         inputs = ["-ss", f"{piece['a'] - shift:.3f}", "-i", src]
-        v = f"[0:v]trim=end_frame=1,{base_v},loop=loop=-1:size=1:start=0,trim=duration={dur:.3f},setpts=N/{fps}/TB"
+        v = (f"[0:v]{layout_filter(cfg)}trim=end_frame=1,{base_v},loop=loop=-1:size=1:start=0,"
+             f"trim=duration={dur:.3f},setpts=N/{fps}/TB")
         zooms = [(0.0, dur + 1, f.get("zoom", 1.8), target_xy(f, cfg), f.get("shake", False))] if f.get("zoom", 1.8) > 1 else []
         looks = [(f.get("look", "bw"), 0.0, dur + 1)] if f.get("look", "bw") else []
-        texts = [(f["text"], 0.0, dur + 1, f.get("pos", "center"), f.get("color", "white"), f.get("size"))] if f.get("text") else []
+        texts = [(f["text"], 0.0, dur + 1, f.get("pos", "center"), paint(f.get("color", "white"), cfg), f.get("size"),
+                  paint(f["box"], cfg) if f.get("box") else None)] if f.get("text") else []
         sfx_list = [(f["sfx"], 0.0, f.get("vol", 1.0))] if f.get("sfx") else []
         length = dur
         audio = f"anullsrc=r=48000:cl=stereo,atrim=duration={dur:.3f}"
@@ -309,7 +449,7 @@ def render_piece(i, piece, seg, ctx):
         speed = slow.get("factor", 0.5) if slow else 1.0
         length = (b0 - a0) / speed
         inputs = ["-ss", f"{a0 - shift:.3f}", "-t", f"{b0 - a0:.3f}", "-i", src]
-        v = f"[0:v]setpts=(PTS-STARTPTS)/{speed},{base_v}"
+        v = f"[0:v]{layout_filter(cfg)}setpts=(PTS-STARTPTS)/{speed},{base_v}"
 
         def loc(t):
             return (t - a0) / speed
@@ -327,13 +467,23 @@ def render_piece(i, piece, seg, ctx):
             elif f["type"] == "look":
                 looks.append((f["look"], la, lb))
             elif f["type"] == "text":
-                texts.append((f["text"], la, lb, f.get("pos", "top"), f.get("color", "white"), f.get("size")))
+                texts.append((f["text"], la, lb, f.get("pos", "top"), paint(f.get("color", "white"), cfg), f.get("size"),
+                              paint(f["box"], cfg) if f.get("box") else None))
             elif f["type"] == "slowmo" and f.get("text"):
-                texts.append((f["text"], la, lb, f.get("pos", "bottom"), f.get("color", "white"), f.get("size")))
-            if f["type"] in ("sfx", "slowmo") and f.get("sfx" if f["type"] == "slowmo" else "name"):
+                texts.append((f["text"], la, lb, f.get("pos", "bottom"), paint(f.get("color", "white"), cfg),
+                              f.get("size"), None))
+            elif f["type"] == "counter":
+                # Running tally (DEATHS: 3) that pops up in the corner whenever it changes.
+                texts.append((f["text"], la, lb, "corner", paint(f.get("color", "text"), cfg), f.get("size"),
+                              paint(f.get("box", "box"), cfg)))
+            sound = f.get("name") if f["type"] == "sfx" else f.get("sfx") if f["type"] in ("slowmo", "counter") else None
+            if sound and a0 <= fa < b0:
                 # A sound fires once, in the piece that contains its start time.
-                if a0 <= fa < b0:
-                    sfx_list.append((f.get("name") or f.get("sfx"), loc(fa), f.get("vol", 1.0)))
+                sfx_list.append((sound, loc(fa), f.get("vol", 1.0)))
+        if cfg.get("subtitles") and ctx["transcript"]:
+            # Shorts-style captions: every word on screen, a few at a time.
+            for text, s, e in caption_chunks(ctx["transcript"], a0, b0, cfg.get("bleep_words", DEFAULT_BLEEP)):
+                texts.append((text, loc(s), min(length, loc(e)), "subs", paint("text", cfg), None, None))
         if slow and slow.get("deep", True):
             audio = f"[0:a]asetpts=PTS-STARTPTS,asetrate=48000*{speed},aresample=48000"
         elif speed != 1.0:
@@ -347,8 +497,10 @@ def render_piece(i, piece, seg, ctx):
             audio = "[0:a]asetpts=PTS-STARTPTS,aresample=48000"
         audio += ",aformat=sample_rates=48000:channel_layouts=stereo"
         if cfg.get("bleep", True) and ctx["transcript"]:
-            hits = [((s - a0) / speed, (e - a0) / speed)
-                    for s, e in bleep_words(ctx["transcript"], a0, b0, cfg.get("bleep_words", DEFAULT_BLEEP))]
+            # Plus any extra bleeps the plan lists: swears a second transcription pass caught.
+            spans = bleep_words(ctx["transcript"], a0, b0, cfg.get("bleep_words", DEFAULT_BLEEP))
+            spans += [(max(a0, s), min(b0, e)) for s, e in cfg.get("bleeps", []) if e > a0 and s < b0]
+            hits = [((s - a0) / speed, (e - a0) / speed) for s, e in spans]
             if hits:
                 gate = "+".join(f"between(t,{s:.3f},{e:.3f})" for s, e in hits)
                 audio += f",volume=0:enable='{gate}'"
@@ -361,8 +513,8 @@ def render_piece(i, piece, seg, ctx):
     if ze:
         zw, zh, x, y = ze
         vf.append(f"scale=w='{zw}':h='{zh}':eval=frame:flags=bicubic,crop={W}:{H}:x='{x}':y='{y}'")
-    for text, la, lb, pos, color, size in texts:
-        vf.append(drawtext(text, la, lb, pos, W, H, tmp, color, size))
+    for text, la, lb, pos, color, size, box in texts:
+        vf.append(drawtext(text, la, lb, pos, W, H, tmp, color, size, box))
     vchain = v + ("," + ",".join(vf) if vf else "") + f",trim=duration={length:.3f},format=yuv420p[v]"
 
     graph = [vchain]
@@ -397,6 +549,8 @@ def render_piece(i, piece, seg, ctx):
 
 
 def main():
+    # Progress lines reach a log file as they happen, so a render can be tracked live.
+    sys.stdout.reconfigure(line_buffering=True)
     ap = argparse.ArgumentParser()
     ap.add_argument("plan")
     ap.add_argument("--preview", action="store_true", help="fast 960x540 render for checking timing")
@@ -423,7 +577,9 @@ def main():
     elif cfg.get("bleep", True):
         print("! no transcript found: curse words will NOT be bleeped (run transcribe.py)", file=sys.stderr)
 
-    W, H = (960, 540) if args.preview else (cfg.get("width", 1920), cfg.get("height", 1080))
+    W, H = cfg.get("width", 1920), cfg.get("height", 1080)
+    if args.preview:
+        W, H = W // 2, H // 2
     fps = cfg.get("fps", 30)
     enc = (["-c:v", "libx264", "-preset", "ultrafast", "-crf", "28"] if args.preview
            else ["-c:v", "libx264", "-preset", cfg.get("x264_preset", "medium"), "-crf", str(cfg.get("crf", 18))])
@@ -445,6 +601,9 @@ def main():
            "sfx_dir": rel(cfg.get("sfx_dir", "../sfx")), "transcript": transcript, "enc": enc,
            "upscale": args.upscale, "cache_dir": os.path.join(os.path.dirname(src), "upscaled")}
     jobs = []
+    laugh_marks = laughs(transcript)
+    transition = cfg.get("transition")
+    after_moment = False
     for n, seg in enumerate(segs, 1):
         if "clip" in seg:
             seg["_clip_path"] = rel(seg["clip"])
@@ -454,10 +613,17 @@ def main():
                                           "-of", "csv=p=0", seg["_clip_path"]]).stdout)
             print(f"segment {n}: {seg.get('label', 'clip')!s:28} inserted clip {seg['clip']}")
             jobs.append((len(jobs), pieces_for(seg, src, cfg)[0], seg))
+            after_moment = False
             continue
+        expand_goat(seg, cfg)
+        # Static only goes between two moments: never next to the intro or outro clips.
+        if transition and after_moment and seg.get("transition", True):
+            jobs.append((len(jobs), {"kind": "static", "a": 0.0, "b": 0.0},
+                         {"label": "transition", "fx": [], "_dur": transition.get("dur", 0.35)}))
+        after_moment = True
         if args.upscale:
             seg["_upscaled"] = upscaled_source(seg, ctx)
-        ps = pieces_for(seg, src, cfg)
+        ps = pieces_for(seg, src, cfg, laugh_marks)
         kept = sum((p["b"] - p["a"]) for p in ps if p["kind"] != "freeze")
         print(f"segment {n}: {seg.get('label', '')!s:28} {seg['end'] - seg['start']:5.1f}s -> {kept:5.1f}s kept, {len(ps)} pieces")
         for p in ps:
@@ -498,6 +664,32 @@ def main():
         shutil.rmtree(tmp, ignore_errors=True)
     dur = float(run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", out]).stdout)
     print(f"wrote {out} ({dur / 60:.1f} min)")
+    write_chapters(jobs, out, dur)
+
+
+def write_chapters(jobs, out, dur):
+    """YouTube chapters for the description: where each moment starts in the finished video.
+
+    A segment's "chapter" names it (default: its label). YouTube needs the first at 0:00, at least
+    three, and each 10 s or longer, so moments that start within 10 s of the last one are folded in.
+    """
+    marks, t, last = [], 0.0, None
+    for _, piece, seg in jobs:
+        if seg is not last and "clip" not in seg and seg.get("label") != "transition":
+            name = seg.get("chapter", seg.get("label", ""))
+            if not marks or (t - marks[-1][0] >= 10 and dur - t >= 10):
+                marks.append((t, name[:1].upper() + name[1:]))
+        last = seg
+        t += piece_length(piece, seg)
+    if len(marks) < 3:
+        return
+    marks[0] = (0.0, marks[0][1])
+    stamp = lambda s: (f"{int(s // 3600)}:{int(s % 3600 // 60):02d}:{int(s % 60):02d}" if dur >= 3600  # noqa: E731
+                       else f"{int(s // 60)}:{int(s % 60):02d}")
+    path = re.sub(r"\.mp4$", "", out) + "_chapters.txt"
+    with open(path, "w", encoding="utf-8") as f:
+        f.writelines(f"{stamp(s)} {name}\n" for s, name in marks)
+    print(f"chapters -> {path}")
 
 
 if __name__ == "__main__":

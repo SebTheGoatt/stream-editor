@@ -166,8 +166,10 @@ def main():
         print(r.get("aiSocialContent", ""))
     elif args.cmd == "accounts":
         r = check(call("GET", "/project/social-accounts"))
-        for a in r.get("accounts", []):
-            print(f"{a['id']}  {a['platform']:<10} {a.get('username', ''):<24} {a.get('status', '')}")
+        # The API returns "publishAccounts"; Instagram/Facebook name the page instead of a username.
+        for a in r.get("publishAccounts") or r.get("accounts", []):
+            name = a.get("username") or a.get("page", "")
+            print(f"{a['id']}  {a['platform']:<10} {name:<24} {a.get('status', '')}")
     elif args.cmd == "publish":
         if not args.yes:
             sys.exit("Publishing posts the clip publicly. Re-run with --yes once the owner has approved it.")

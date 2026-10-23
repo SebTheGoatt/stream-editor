@@ -6,6 +6,7 @@
 |---|---|---|---|
 | [FFmpeg](https://ffmpeg.org) | All cutting, zooms, freeze frames, slow-mo, color looks, captions, mixing, bleeps, loudness | `edit.py` | LGPL/GPL |
 | [faster-whisper](https://github.com/SYSTRAN/faster-whisper) | Word-by-word transcript: finds moments, times captions, finds curse words to bleep | `transcribe.py` | MIT |
+| [openai-whisper](https://github.com/openai/whisper) on AMD [ROCm PyTorch](https://rocm.docs.amd.com/projects/radeon-ryzen/en/latest/) | Same transcript on an AMD GPU (faster-whisper is NVIDIA-only); about 4x faster than CPU | `transcribe_gpu.py`, `.venv-gpu/` | MIT / BSD-3 |
 | [auto-editor](https://github.com/WyattBlue/auto-editor) | Optional rough cut of silence across a whole VOD (`edit.py` trims dead air itself per segment) | README | Unlicense |
 | [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) compact models + [PyTorch](https://pytorch.org) | AI 4x upscaling when only a low-res copy exists | `upscale.py`, `models/` | BSD-3 |
 | [EffectCraft](https://github.com/storytold/effectcraft) | Scripted motion graphics; built the alternate animated intro, rendered headless | `intro/intro.jsx` | MIT / Apache-2.0 |
@@ -17,6 +18,8 @@
 
 | Tool | Use |
 |---|---|
+| `tools/make_shorts.py` | Ranks a plan's moments and renders the best as 1080x1920 Shorts with word-by-word captions |
+| `tools/prep_stream.py` | One command for a new recording: GPU transcript, readable transcript, loudest moments, overview grid, starter plan |
 | `tools/find_moments.py` | Read/search the transcript, exact word times, loudest moments |
 | `tools/contact_sheet.py` | Timestamped frame grid to find deaths/kills and to review a finished edit |
 | `tools/import_pack.py` | Convert any sound pack into `sfx/pack/` with even loudness and short names |
@@ -36,6 +39,7 @@
 
 | Skill | When |
 |---|---|
+| `.claude/skills/sebthegoat-edit` | The channel's own style: dad gamer chaos, counters, GOAT MOMENT, two-part videos |
 | `.claude/skills/coryxkenshin-edit` | Edit a stream into a CoryxKenshin-style video, start to finish |
 | `.claude/skills/stream-editor-setup` | Install everything on a new computer; OBS recording settings |
 | `.claude/skills/using-vizard-api` | Shorts, captions and publishing through Vizard.ai |
