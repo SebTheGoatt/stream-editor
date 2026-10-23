@@ -83,13 +83,16 @@ def short_plan(cfg, seg, base_dir, name, max_len):
             f["zoom"] = min(f.get("zoom", 1.8), 1.6)
     fx.append({"type": "text", "at": a + 0.05, "dur": 2.6, "text": hook(seg), "pos": "center", "color": "punch"})
     rel = lambda p: os.path.normpath(os.path.join(base_dir, p))  # noqa: E731
-    keys = ("palette", "goat_sound", "tighten", "bleep", "bleep_words", "bleeps", "audio_tracks", "track_levels")
+    keys = ("palette", "goat_sound", "tighten", "bleep", "bleep_words", "bleeps", "bleep_sound", "bleep_volume",
+            "audio_tracks", "track_levels")
     return {"title": hook(seg), "source": rel(cfg["source"]), "transcript": rel(cfg["transcript"]),
             "sfx_dir": rel(cfg.get("sfx_dir", "../sfx")), "output": os.path.join(HERE, "out", "shorts", name + ".mp4"),
             "width": W, "height": CAM_H + GAME_H, "fps": 30, "crf": 18, "x264_preset": "fast",
             "facecam": [0.5, CAM_H / 2 / (CAM_H + GAME_H)], "layout": stack_layout(cfg), "subtitles": True,
             **{k: cfg[k] for k in keys if k in cfg},
-            "segments": [{"label": seg["label"], "start": round(a, 2), "end": round(b, 2), "fx": fx}]}
+            # The long edit's cut lines (slurs, anything pulled) stay cut in the Short.
+            "segments": [{"label": seg["label"], "start": round(a, 2), "end": round(b, 2), "fx": fx,
+                          "cuts": [c for c in seg.get("cuts", []) if c[1] > a and c[0] < b]}]}
 
 
 def main():

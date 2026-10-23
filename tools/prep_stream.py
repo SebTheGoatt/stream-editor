@@ -30,6 +30,7 @@ HEADER = {
     "tighten": {"min_silence": 0.7, "pad": 0.15, "noise_db": -30},
     "palette": {"text": "white", "punch": "#FF2B2B", "danger": "#FF2B2B", "win": "#7CFC00", "box": "#E01B24"},
     "goat_sound": "goat",
+    "bleep_sound": "quack",
     "layout": {"game": [1920, 0, 1920, 1080], "cam": [0, 0, 1920, 1080], "cam_size": [568, 320],
                "cam_pos": [1324, 732], "border": 4},
 }

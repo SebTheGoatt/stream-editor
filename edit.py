@@ -323,8 +323,10 @@ def caption_chunks(transcript, a, b, patterns, max_words=3):
 
     A chunk breaks early on a pause or at the end of a sentence. Bleeped words are starred out.
     """
-    words = [w for seg in transcript.get("segments", []) for w in seg.get("words", [])
-             if a <= w["s"] < b and not LAUGH.search(w["w"]) and not w["w"].startswith(("[", "(", "*", "♪"))]
+    # In time order: with separate voice tracks, two people's words interleave.
+    words = sorted((w for seg in transcript.get("segments", []) for w in seg.get("words", [])
+                    if a <= w["s"] < b and not LAUGH.search(w["w"]) and not w["w"].startswith(("[", "(", "*", "♪"))),
+                   key=lambda w: w["s"])
     chunks, cur = [], []
     for i, w in enumerate(words):
         bare = re.sub(r"[^a-z]", "", w["w"].lower())
@@ -523,7 +525,10 @@ def render_piece(i, piece, seg, ctx):
         else:
             audio = (";".join(f"{c}[v{k}]" for k, c in enumerate(chains)) + ";"
                      + "".join(f"[v{k}]" for k in range(len(chains))) + f"amix=inputs={len(chains)}:normalize=0")
-        if all_hits:
+        if all_hits and cfg.get("bleep_sound"):
+            # A sound effect over each muted swear instead of the beep (Seb's: a duck quack).
+            sfx_list += [(cfg["bleep_sound"], s, cfg.get("bleep_volume", 1.0)) for s, _ in all_hits]
+        elif all_hits:
             gate = "+".join(f"between(t,{s:.3f},{e:.3f})" for s, e in all_hits)
             af_extra.append(f"aevalsrc='0.25*sin(2*PI*1000*t)*gt({gate},0)':s=48000:d={length:.3f},aformat=channel_layouts=stereo")
 
@@ -564,7 +569,11 @@ def render_piece(i, piece, seg, ctx):
         graph.append("[a0]anull[a]")
 
     enc = ctx["enc"]
-    run(["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", ";".join(graph),
+    # The graph goes in a file: word-by-word captions can outgrow Windows' 32K command-line limit.
+    script = os.path.join(tmp, f"p{i:04d}_graph.txt")
+    with open(script, "w", encoding="utf-8") as f:
+        f.write(";".join(graph))
+    run(["ffmpeg", "-v", "error", "-y", *inputs, "-/filter_complex", script,
          "-map", "[v]", "-map", "[a]", *enc, "-t", f"{length:.3f}", out])
     return out
 
