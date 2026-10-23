@@ -83,7 +83,7 @@ def short_plan(cfg, seg, base_dir, name, max_len):
             f["zoom"] = min(f.get("zoom", 1.8), 1.6)
     fx.append({"type": "text", "at": a + 0.05, "dur": 2.6, "text": hook(seg), "pos": "center", "color": "punch"})
     rel = lambda p: os.path.normpath(os.path.join(base_dir, p))  # noqa: E731
-    keys = ("palette", "goat_sound", "tighten", "bleep", "bleep_words")
+    keys = ("palette", "goat_sound", "tighten", "bleep", "bleep_words", "bleeps", "audio_tracks", "track_levels")
     return {"title": hook(seg), "source": rel(cfg["source"]), "transcript": rel(cfg["transcript"]),
             "sfx_dir": rel(cfg.get("sfx_dir", "../sfx")), "output": os.path.join(HERE, "out", "shorts", name + ".mp4"),
             "width": W, "height": CAM_H + GAME_H, "fps": 30, "crf": 18, "x264_preset": "fast",

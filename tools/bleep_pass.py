@@ -46,25 +46,35 @@ def main():
         src = os.path.normpath(os.path.join(base, cfg["source"]))
         transcript = json.load(open(os.path.join(base, cfg["transcript"]), encoding="utf-8"))
         patterns = cfg.get("bleep_words", DEFAULT_BLEEP)
-        known = bleep_words(transcript, 0, 1e9, patterns) + [tuple(x) for x in cfg.get("bleeps", [])]
+        # Separate OBS tracks: check each voice on its own track, and tag its bleeps with that voice.
+        tracks = cfg.get("audio_tracks") or {}
+        voices = [(n, tracks[n]) for n in ("mic", "friends") if n in tracks] or [(None, None)]
         new = []
-        for seg in cfg["segments"]:
-            if "clip" in seg:
-                continue
-            a, b = seg["start"], seg["end"]
-            with tempfile.TemporaryDirectory() as tmp:
-                wav = os.path.join(tmp, "seg.wav")
-                subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(a), "-t", str(b - a), "-i", src, "-vn",
-                                "-ac", "1", "-ar", "16000", wav], check=True)
-                res = model.transcribe(wav, fp16=torch.cuda.is_available(), suppress_tokens="", word_timestamps=True,
-                                       condition_on_previous_text=False, verbose=None)
-            for w in (w for s in res["segments"] for w in s.get("words", [])):
-                s, e = a + w["start"], a + w["end"]
-                if matches(w["word"], SLURS):
-                    print(f"  ! SLUR heard at {s:.2f}s in '{seg['label']}': {w['word'].strip()} -> add it to that segment's \"cuts\"")
-                if matches(w["word"], patterns) and not any(ks - 0.4 < s < ke + 0.4 for ks, ke in known + new):
-                    new.append((round(s - 0.05, 2), round(e + 0.05, 2)))
-                    print(f"  + bleep {s:8.2f}s {w['word'].strip():<12} ({seg['label']})")
+        for voice, stream in voices:
+            known = bleep_words(transcript, 0, 1e9, patterns, voice) + [
+                tuple(x[:2]) for x in cfg.get("bleeps", []) if len(x) < 3 or x[2] == voice]
+            mine = []
+            for seg in cfg["segments"]:
+                if "clip" in seg:
+                    continue
+                a, b = seg["start"], seg["end"]
+                with tempfile.TemporaryDirectory() as tmp:
+                    wav = os.path.join(tmp, "seg.wav")
+                    pick = ["-map", f"0:a:{stream}"] if stream is not None else ["-vn"]
+                    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(a), "-t", str(b - a), "-i", src, *pick,
+                                    "-ac", "1", "-ar", "16000", wav], check=True)
+                    res = model.transcribe(wav, fp16=torch.cuda.is_available(), suppress_tokens="",
+                                           word_timestamps=True, condition_on_previous_text=False, verbose=None)
+                for w in (w for s in res["segments"] for w in s.get("words", [])):
+                    s, e = a + w["start"], a + w["end"]
+                    who = f" [{voice}]" if voice else ""
+                    if matches(w["word"], SLURS):
+                        print(f"  ! SLUR heard at {s:.2f}s{who} in '{seg['label']}': {w['word'].strip()} "
+                              "-> add it to that segment's \"cuts\"")
+                    if matches(w["word"], patterns) and not any(ks - 0.4 < s < ke + 0.4 for ks, ke in known + mine):
+                        mine.append((round(s - 0.05, 2), round(max(e, s + 0.4) + 0.05, 2)))
+                        new.append(mine[-1] + ((voice,) if voice else ()))
+                        print(f"  + bleep {s:8.2f}s{who} {w['word'].strip():<12} ({seg['label']})")
         if new:
             bleeps = sorted([list(x) for x in cfg.get("bleeps", [])] + [list(x) for x in new])
             line = f'  "bleeps": {json.dumps(bleeps)},\n'
