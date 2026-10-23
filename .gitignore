@@ -1,4 +1,5 @@
 .venv/
+.venv-gpu/
 work/
 out/
 __pycache__/

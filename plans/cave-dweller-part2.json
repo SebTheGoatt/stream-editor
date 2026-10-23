@@ -1,0 +1,190 @@
+{
+  "title": "Minecraft, but Zeus is pissed at us (Part 2)",
+  "source": "../work/stream.mp4",
+  "transcript": "../work/stream_transcript.json",
+  "sfx_dir": "../sfx",
+  "output": "../out/cave-dweller-part2.mp4",
+  "fps": 60,
+  "crf": 10,
+  "x264_preset": "fast",
+  "facecam": [0.84, 0.83],
+  "tighten": {"min_silence": 0.7, "pad": 0.15, "noise_db": -30},
+  "palette": {"text": "white", "punch": "#FF2B2B", "danger": "#FF2B2B", "win": "#7CFC00", "box": "#E01B24"},
+  "goat_sound": "goat",
+  "bleeps": [[5212.51, 5212.77], [5285.97, 5286.13], [6224.05, 6224.31], [6227.09, 6227.63]],
+  "segments": [
+    {"label": "cold open: zeus is pissed", "chapter": "Intro", "start": 4893.5, "end": 4904.6, "tighten": false, "fx": [
+      {"type": "sfx", "at": 4893.6, "name": "cinematic_boom_2"},
+      {"type": "shake", "at": 4893.6, "dur": 1.6},
+      {"type": "text", "at": 4895.9, "dur": 2.2, "text": "\"IT'S ZEUS.\"", "pos": "bottom", "color": "punch"},
+      {"type": "text", "at": 4900.2, "dur": 3.0, "text": "\"HE'S PISSED BECAUSE NONE OF US ARE SLEEPING\"", "pos": "top"},
+      {"type": "freeze", "at": 4904.5, "dur": 2.2, "text": "ANYWAY. LET'S BACK UP.", "sfx": "flashback", "zoom": 1.15, "target": "center"}
+    ]},
+
+    {"label": "channel intro", "clip": "../brand/intro.mp4", "fx": [
+      {"type": "music", "at": 0, "dur": 1.2, "name": "glitch", "vol": 1.0},
+      {"type": "music", "at": 0.3, "dur": 9.7, "name": "music_cory_dance_music", "vol": 0.8}
+    ]},
+
+    {"label": "you're too slow", "chapter": "You're too slow", "start": 3456.0, "end": 3491.0, "fx": [
+      {"type": "music", "at": 3456.0, "dur": 26, "name": "music_cory_run_music", "vol": 0.4},
+      {"type": "text", "at": 3456.1, "dur": 3.0, "text": "PART 2: ZEUS IS PISSED", "pos": "center", "color": "punch"},
+      {"type": "text", "at": 3460.3, "dur": 2.4, "text": "\"DON'T GO IN THE CAVE\"", "pos": "top", "color": "danger"},
+      {"type": "zoom", "at": 3469.4, "dur": 2.4, "scale": 2.4, "target": "face"},
+      {"type": "sfx", "at": 3469.8, "name": "boom_meme"}
+    ]},
+
+    {"label": "how do I make a bed", "chapter": "How do I make a bed?", "start": 3521.5, "end": 3537.6, "fx": [
+      {"type": "text", "at": 3526.4, "dur": 3.4, "text": "WOOD + WOOL. NOT JUST WOOD.", "pos": "bottom", "color": "punch"},
+      {"type": "text", "at": 3533.0, "dur": 2.4, "text": "\"I GOT ZOMBIES ON ME\"", "pos": "top", "color": "danger"}
+    ]},
+
+    {"label": "can't sleep", "chapter": "Can't sleep", "start": 3561.0, "end": 3580.0, "fx": [
+      {"type": "text", "at": 3561.4, "dur": 3.0, "text": "\"MONSTERS ARE NEAR, CAN'T SLEEP\"", "pos": "top"},
+      {"type": "zoom", "at": 3577.9, "dur": 2.1, "scale": 2.4, "target": "face"},
+      {"type": "text", "at": 3578.1, "dur": 1.9, "text": "\"THIS THING IS STUPID.\"", "pos": "bottom", "color": "punch"},
+      {"type": "freeze", "at": 3579.9, "dur": 1.8, "text": "MINECRAFT: 1  US: 0", "sfx": "spongebob_boo_womp", "zoom": 1.15, "target": "center"}
+    ]},
+
+    {"label": "get down / not the baby", "chapter": "Get down, not the baby", "start": 3619.0, "end": 3638.0, "fx": [
+      {"type": "text", "at": 3619.1, "dur": 2.4, "text": "PARENTING, LIVE", "pos": "top", "color": "punch"},
+      {"type": "text", "at": 3621.8, "dur": 1.8, "text": "\"NOT THE BABY\"", "pos": "center", "color": "danger"},
+      {"type": "sfx", "at": 3621.8, "name": "mgs_alert"},
+      {"type": "zoom", "at": 3627.0, "dur": 3.0, "scale": 2.4, "target": "face"},
+      {"type": "counter", "at": 3630.0, "dur": 2.5, "text": "DAD: 1  KIDS: 1", "sfx": "minecraft_pop"},
+      {"type": "freeze", "at": 3637.9, "dur": 1.8, "text": "DAD MODE: OVERRIDDEN", "sfx": "fail_1", "zoom": 2.4, "target": "face", "look": ""}
+    ]},
+
+    {"label": "torches = cheating", "chapter": "Torches = cheating", "start": 4110.0, "end": 4157.5, "fx": [
+      {"type": "text", "at": 4113.4, "dur": 2.2, "text": "\"I'M LEAVING.\"", "pos": "bottom", "color": "danger"},
+      {"type": "zoom", "at": 4113.4, "dur": 2.2, "scale": 2.4, "target": "face"},
+      {"type": "sfx", "at": 4114.2, "name": "boom_meme"},
+      {"type": "text", "at": 4125.8, "dur": 2.6, "text": "\"IT'S CHEATING\"", "pos": "top", "color": "punch"},
+      {"type": "music", "at": 4143.0, "dur": 15, "name": "music_cory_scary_music", "vol": 0.4}
+    ]},
+
+    {"label": "villagers scattered", "chapter": "Villagers scattered", "start": 4246.0, "end": 4276.0, "fx": [
+      {"type": "text", "at": 4246.1, "dur": 3.0, "text": "\"I'M GONNA HAVE TO KILL THIS VILLAGER\"", "pos": "top"},
+      {"type": "text", "at": 4252.5, "dur": 2.6, "text": "\"SCATTERED LIKE COCKROACHES\"", "pos": "bottom", "color": "punch"},
+      {"type": "sfx", "at": 4254.4, "name": "bruh"},
+      {"type": "freeze", "at": 4268.7, "dur": 2.0, "text": "RIP VILLAGER", "sfx": "dun_dun_dun", "zoom": 1.15, "target": "center", "look": "bw"}
+    ]},
+
+    {"label": "the multitool", "chapter": "The multitool", "start": 4485.0, "end": 4498.0, "fx": [
+      {"type": "text", "at": 4485.0, "dur": 2.2, "text": "\"MY SON GOT MY MULTI-TOOL\"", "pos": "top"},
+      {"type": "text", "at": 4487.6, "dur": 3.0, "text": "\"...GOT HIS FINGER STUCK IN THE MIDDLE OF IT\"", "pos": "bottom", "color": "punch"},
+      {"type": "zoom", "at": 4488.0, "dur": 2.6, "scale": 2.4, "target": "face"},
+      {"type": "sfx", "at": 4488.2, "name": "bonk"},
+      {"type": "counter", "at": 4488.2, "dur": 2.5, "text": "DAD: 1  KIDS: 2", "sfx": "minecraft_pop"},
+      {"type": "freeze", "at": 4497.9, "dur": 1.6, "text": "AND THEN A CREEPER.", "sfx": "boom_meme", "zoom": 1.15, "target": "center"}
+    ]},
+
+    {"label": "cream corn sandwich", "chapter": "Cream corn sandwich", "start": 4672.5, "end": 4697.2, "fx": [
+      {"type": "text", "at": 4672.7, "dur": 3.0, "text": "\"A CREAM CORN SANDWICH\"", "pos": "top"},
+      {"type": "text", "at": 4693.3, "dur": 2.6, "text": "\"A CREAM CORN SANDWICH IS INSANE\"", "pos": "top", "color": "punch"},
+      {"type": "zoom", "at": 4693.3, "dur": 2.4, "scale": 2.4, "target": "face"},
+      {"type": "sfx", "at": 4694.3, "name": "boom_meme"}
+    ]},
+
+    {"label": "zeus is pissed", "chapter": "Zeus is pissed", "start": 4799.5, "end": 4830.5, "fx": [
+      {"type": "text", "at": 4800.5, "dur": 3.0, "text": "\"ZEUS IS UP THERE PISSED\"", "pos": "top", "color": "punch"},
+      {"type": "counter", "at": 4801.0, "dur": 2.5, "text": "ZEUS: 1", "sfx": "minecraft_pop"},
+      {"type": "text", "at": 4809.0, "dur": 2.4, "text": "\"GET AWAY FROM ME!\"", "pos": "bottom", "color": "danger"},
+      {"type": "zoom", "at": 4821.2, "dur": 2.6, "scale": 2.4, "target": "face"},
+      {"type": "sfx", "at": 4821.8, "name": "what"},
+      {"type": "freeze", "at": 4830.4, "dur": 1.8, "text": "IT WAS SEPTEMBER 27TH.", "sfx": "bruh", "zoom": 2.4, "target": "face"}
+    ]},
+
+    {"label": "zeus is shooting lightning", "chapter": "Zeus strikes again", "start": 4889.5, "end": 4923.7, "fx": [
+      {"type": "counter", "at": 4893.6, "dur": 2.5, "text": "ZEUS: 2", "sfx": "minecraft_pop"},
+      {"type": "text", "at": 4893.8, "dur": 2.2, "text": "\"WHO'S BLOWING STUFF UP NEAR ME?\"", "pos": "top"},
+      {"type": "text", "at": 4895.9, "dur": 2.2, "text": "\"IT'S ZEUS.\"", "pos": "bottom", "color": "punch"},
+      {"type": "goat", "at": 4900.4, "dur": 2.6},
+      {"type": "freeze", "at": 4923.6, "dur": 2.0, "text": "SLEEP SCHEDULE: ENFORCED BY ZEUS", "sfx": "dun_dun_dun", "zoom": 1.15, "target": "center", "look": ""}
+    ]},
+
+    {"label": "that's a baby!", "chapter": "That's a baby!", "start": 5195.5, "end": 5220.0, "fx": [
+      {"type": "text", "at": 5203.6, "dur": 3.0, "text": "\"COME ON BROTHER, THAT'S A BABY!\"", "pos": "top", "color": "punch"},
+      {"type": "sfx", "at": 5204.8, "name": "mgs_alert"},
+      {"type": "zoom", "at": 5206.0, "dur": 2.6, "scale": 2.4, "target": "face"},
+      {"type": "text", "at": 5209.6, "dur": 2.0, "text": "\"DON'T DIE!\"", "pos": "bottom", "color": "danger"},
+      {"type": "freeze", "at": 5219.9, "dur": 1.8, "text": "BABY ZOMBIE: UNDEFEATED", "sfx": "spongebob_boo_womp", "zoom": 1.15, "target": "center"}
+    ]},
+
+    {"label": "what difficulty is this", "chapter": "What difficulty is this?", "start": 5582.5, "end": 5629.6, "fx": [
+      {"type": "text", "at": 5590.4, "dur": 3.0, "text": "YOU HAVE TO PLACE THE BED.", "pos": "bottom", "color": "punch"},
+      {"type": "text", "at": 5608.3, "dur": 2.4, "text": "\"THIS IS NORMAL.\"", "pos": "bottom", "color": "win"},
+      {"type": "zoom", "at": 5613.4, "dur": 2.4, "scale": 2.4, "target": "face"},
+      {"type": "sfx", "at": 5613.6, "name": "boom_meme"},
+      {"type": "freeze", "at": 5629.5, "dur": 1.8, "text": "DIFFICULTY: NORMAL", "sfx": "fail_1", "zoom": 2.4, "target": "face"}
+    ]},
+
+    {"label": "daniel get over here", "chapter": "Daniel, get over here", "start": 5671.5, "end": 5692.0, "fx": [
+      {"type": "text", "at": 5672.3, "dur": 2.6, "text": "\"DANIEL! GET OVER HERE!\"", "pos": "top", "color": "punch"},
+      {"type": "zoom", "at": 5686.1, "dur": 2.6, "scale": 2.4, "target": "face"},
+      {"type": "sfx", "at": 5686.1, "name": "mgs_alert"},
+      {"type": "text", "at": 5689.1, "dur": 2.6, "text": "\"I'M GONNA PINCH YOU!\"", "pos": "bottom"}
+    ]},
+
+    {"label": "meanwhile: skeleton", "chapter": "Meanwhile... a skeleton", "start": 5733.5, "end": 5737.2, "tighten": false, "fx": [
+      {"type": "text", "at": 5733.6, "dur": 3.6, "text": "MEANWHILE, IN MINECRAFT...", "pos": "top", "color": "punch"},
+      {"type": "sfx", "at": 5733.6, "name": "dun_dun_dun"},
+      {"type": "counter", "at": 5735.6, "dur": 2.5, "text": "DEATHS: 6  KIDS: 3", "sfx": "minecraft_pop"},
+      {"type": "freeze", "at": 5737.1, "dur": 2.6, "text": "PARENTING HAS CONSEQUENCES", "sfx": "spongebob_boo_womp", "zoom": 1.0, "look": ""}
+    ]},
+
+    {"label": "house hunters", "chapter": "House Hunters", "start": 5997.5, "end": 6010.8, "fx": [
+      {"type": "text", "at": 6002.9, "dur": 2.4, "text": "\"YOU TURNED OFF THE TV\"", "pos": "top"},
+      {"type": "text", "at": 6007.1, "dur": 3.0, "text": "\"YOU'RE GONNA WATCH HOUSE HUNTERS\"", "pos": "top", "color": "punch"},
+      {"type": "zoom", "at": 6007.5, "dur": 2.6, "scale": 2.4, "target": "face"},
+      {"type": "sfx", "at": 6008.2, "name": "boom_meme"},
+      {"type": "counter", "at": 6008.2, "dur": 2.5, "text": "DAD: 2  KIDS: 3", "sfx": "minecraft_pop"}
+    ]},
+
+    {"label": "player 2", "chapter": "Player 2", "start": 6036.0, "end": 6055.0, "fx": [
+      {"type": "text", "at": 6041.9, "dur": 2.2, "text": "\"GET YOUR HANDS OFF ME\"", "pos": "top"},
+      {"type": "text", "at": 6051.9, "dur": 2.6, "text": "\"YOU'RE PRESSING ALL THEM BUTTONS AT THE SAME TIME\"", "pos": "top"},
+      {"type": "zoom", "at": 6051.9, "dur": 2.6, "scale": 2.4, "target": "face"},
+      {"type": "sfx", "at": 6052.8, "name": "bruh"},
+      {"type": "counter", "at": 6052.8, "dur": 2.5, "text": "DAD: 2  KIDS: 4", "sfx": "minecraft_pop"},
+      {"type": "freeze", "at": 6054.9, "dur": 1.8, "text": "PLAYER 2 HAS ENTERED THE GAME", "sfx": "correct_ding", "zoom": 1.15, "target": "center", "look": ""}
+    ]},
+
+    {"label": "nothing left but spider-man", "chapter": "Nothing left but Spider-Man", "start": 6122.5, "end": 6150.0, "fx": [
+      {"type": "music", "at": 6122.5, "dur": 8, "name": "music_sad_violin", "vol": 0.6},
+      {"type": "counter", "at": 6122.7, "dur": 2.5, "text": "DEATHS: 7", "sfx": "minecraft_pop"},
+      {"type": "text", "at": 6125.7, "dur": 3.0, "text": "\"I HAVE NOTHING LEFT BUT SPIDER-MAN\"", "pos": "bottom", "color": "punch"},
+      {"type": "zoom", "at": 6126.4, "dur": 2.6, "scale": 2.4, "target": "face"},
+      {"type": "sfx", "at": 6129.6, "name": "boom_meme"},
+      {"type": "text", "at": 6146.0, "dur": 2.4, "text": "\"LEAVE ME ALONE!\"", "pos": "center", "color": "danger"}
+    ]},
+
+    {"label": "village robbery", "cuts": [[6231.5, 6234.3]], "chapter": "Village robbery", "start": 6220.5, "end": 6247.7, "fx": [
+      {"type": "text", "at": 6220.6, "dur": 3.0, "text": "VILLAGE ROBBERY IN PROGRESS", "pos": "top", "color": "danger"},
+      {"type": "text", "at": 6239.3, "dur": 3.0, "text": "\"AND I TOOK HIS RELIGIOUS...\"", "pos": "bottom", "color": "punch"},
+      {"type": "zoom", "at": 6240.4, "dur": 2.6, "scale": 2.4, "target": "face"},
+      {"type": "sfx", "at": 6240.8, "name": "bruh"},
+      {"type": "freeze", "at": 6247.6, "dur": 2.2, "text": "THE VILLAGERS WOULD LIKE A WORD", "sfx": "fbi_open_up", "zoom": 1.15, "target": "center", "look": ""}
+    ]},
+
+    {"label": "big green attractor", "chapter": "Big green attractor", "start": 6301.5, "end": 6311.0, "fx": [
+      {"type": "text", "at": 6301.6, "dur": 2.6, "text": "\"HOW BIG THE ATTRACTORS ARE\"", "pos": "top"},
+      {"type": "text", "at": 6306.4, "dur": 2.6, "text": "\"I'M A BIG GREEN ATTRACTOR\"", "pos": "bottom", "color": "win"},
+      {"type": "zoom", "at": 6306.4, "dur": 2.6, "scale": 2.4, "target": "face"},
+      {"type": "freeze", "at": 6310.9, "dur": 1.6, "text": "...TRACTOR?", "sfx": "scratch", "zoom": 2.4, "target": "face"}
+    ]},
+
+    {"label": "ending: can't you see I'm playing", "chapter": "Can't you see I'm playing?", "start": 7203.0, "end": 7218.4, "fx": [
+      {"type": "text", "at": 7203.3, "dur": 2.4, "text": "\"SPIDER-MAN, HELLO\"", "pos": "top"},
+      {"type": "text", "at": 7213.3, "dur": 3.0, "text": "\"CAN'T YOU SEE I'M PLAYING MINECRAFT?\"", "pos": "top", "color": "punch"},
+      {"type": "zoom", "at": 7213.3, "dur": 2.8, "scale": 2.4, "target": "face"},
+      {"type": "sfx", "at": 7213.9, "name": "boom_meme"},
+      {"type": "music", "at": 7215.5, "dur": 9, "name": "music_curb_your_enthusiasm_meme_background_music", "vol": 0.9},
+      {"type": "freeze", "at": 7218.3, "dur": 3.6, "text": "SUBSCRIBE\nOR ZEUS\nTAKES YOUR BED", "sfx": "boom_meme", "zoom": 1.0, "look": "", "color": "punch"}
+    ]},
+
+    {"label": "outro", "clip": "../brand/outro.mp4", "fx": [
+      {"type": "music", "at": 0, "dur": 6, "name": "music_cory_happy_music", "vol": 0.8}
+    ]}
+  ]
+}
