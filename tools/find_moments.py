@@ -12,6 +12,10 @@ import argparse
 import json
 import re
 import subprocess
+import sys
+
+# Whisper writes symbols like "♪" that the Windows console codepage can't print.
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 
 def loud_spots(video, top=25):
