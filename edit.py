@@ -293,7 +293,9 @@ def render_piece(i, piece, seg, ctx):
     if piece["kind"] == "freeze":
         f = piece["fx"]
         dur = f.get("dur", 1.5)
-        inputs = ["-ss", f"{piece['a'] - shift:.3f}", "-i", src]
+        # A freeze at the very end of the recording would seek past the last frame.
+        at = min(piece["a"], ctx["src_dur"] - 0.2)
+        inputs = ["-ss", f"{at - shift:.3f}", "-i", src]
         v = f"[0:v]trim=end_frame=1,{base_v},loop=loop=-1:size=1:start=0,trim=duration={dur:.3f},setpts=N/{fps}/TB"
         zooms = [(0.0, dur + 1, f.get("zoom", 1.8), target_xy(f, cfg), f.get("shake", False))] if f.get("zoom", 1.8) > 1 else []
         looks = [(f.get("look", "bw"), 0.0, dur + 1)] if f.get("look", "bw") else []
@@ -443,7 +445,9 @@ def main():
     tmp = tempfile.mkdtemp(prefix="edit_", dir=os.path.dirname(out))
     ctx = {"cfg": cfg, "W": W, "H": H, "fps": fps, "tmp": tmp, "src": src,
            "sfx_dir": rel(cfg.get("sfx_dir", "../sfx")), "transcript": transcript, "enc": enc,
-           "upscale": args.upscale, "cache_dir": os.path.join(os.path.dirname(src), "upscaled")}
+           "upscale": args.upscale, "cache_dir": os.path.join(os.path.dirname(src), "upscaled"),
+           "src_dur": float(run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                                 "-of", "csv=p=0", src]).stdout)}
     jobs = []
     for n, seg in enumerate(segs, 1):
         if "clip" in seg:
