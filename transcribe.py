@@ -1,6 +1,6 @@
 """Transcribe a stream VOD with word-level timestamps.
 
-Usage: python transcribe.py work/vod.mp4 work/transcript.json [--model small.en]
+Usage: python transcribe.py work/vod.mp4 work/transcript.json [--model small.en] [--track 1 --label mic]
 
 The JSON holds every word with start/end seconds. edit.py reads it to bleep
 curse words, and it doubles as a searchable log for picking moments.
@@ -21,6 +21,8 @@ def main():
     ap.add_argument("out")
     ap.add_argument("--model", default="small.en")
     ap.add_argument("--threads", type=int, default=4)
+    ap.add_argument("--track", type=int, help="audio stream to transcribe (0 = OBS track 1); default: the first")
+    ap.add_argument("--label", help="tag every word with this voice name, e.g. mic or friends")
     args = ap.parse_args()
 
     model = WhisperModel(args.model, device="cpu", compute_type="int8", cpu_threads=args.threads)
@@ -28,7 +30,8 @@ def main():
     # Decode with the ffmpeg CLI: auto-editor pins its own PyAV build, which
     # faster-whisper's decoder can't use.
     pcm = subprocess.run(
-        ["ffmpeg", "-v", "error", "-i", args.video, "-vn", "-ac", "1", "-ar", "16000", "-f", "s16le", "-"],
+        ["ffmpeg", "-v", "error", "-i", args.video, "-vn", *(["-map", f"0:a:{args.track}"] if args.track is not None else []),
+         "-ac", "1", "-ar", "16000", "-f", "s16le", "-"],
         check=True, capture_output=True,
     ).stdout
     audio = np.frombuffer(pcm, np.int16).astype(np.float32) / 32768.0
@@ -45,7 +48,8 @@ def main():
             "start": round(seg.start, 2),
             "end": round(seg.end, 2),
             "text": seg.text.strip(),
-            "words": [{"w": w.word.strip(), "s": round(w.start, 2), "e": round(w.end, 2)} for w in (seg.words or [])],
+            "words": [{"w": w.word.strip(), "s": round(w.start, 2), "e": round(w.end, 2),
+                       **({"track": args.label} if args.label else {})} for w in (seg.words or [])],
         })
         print(f"[{seg.start:7.1f}] {seg.text.strip()}", flush=True)
         # Save as we go so a long run can be inspected early.

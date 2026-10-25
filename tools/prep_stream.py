@@ -76,15 +76,19 @@ def main():
     if not os.path.exists(transcript):
         gpu = os.path.join(HERE, ".venv-gpu", "Scripts", "python.exe")
         print("transcribing (about 15 min per hour of stream on the GPU)...", flush=True)
-        if tracks and os.path.exists(gpu):
+        if tracks:
             # Each voice on its own track transcribes cleaner, and the editor can bleep only that voice.
+            # GPU (AMD ROCm) when .venv-gpu exists, else the CPU transcriber, which takes the same flags.
+            engine = ([gpu, os.path.join(HERE, "transcribe_gpu.py")] if os.path.exists(gpu)
+                      else [sys.executable, os.path.join(HERE, "transcribe.py")])
             merged = {"duration": dur, "segments": []}
             for voice in ("mic", "friends"):
                 if voice not in tracks:
                     continue
                 part = f"{base}_{voice}_transcript.json"
-                subprocess.run([gpu, os.path.join(HERE, "transcribe_gpu.py"), args.video, part,
-                                "--track", str(tracks[voice]), "--label", voice], check=True)
+                if not os.path.exists(part):
+                    subprocess.run([*engine, args.video, part, "--track", str(tracks[voice]), "--label", voice],
+                                   check=True)
                 merged["segments"] += [{**s, "track": voice} for s in json.load(open(part))["segments"]]
             merged["segments"].sort(key=lambda s: s["start"])
             with open(transcript, "w") as f:
