@@ -56,19 +56,22 @@
           "look": "bw"
         },
         {
-          "type": "text",
+          "type": "overlay",
           "at": 59.0,
-          "dur": 3,
-          "text": "LIKE + SUBSCRIBE",
-          "pos": "bottom",
-          "color": "#FFD400",
-          "size": 0.07
+          "dur": 3.5,
+          "file": "../brand/subscribe.mov"
         },
         {
           "type": "sfx",
-          "at": 59.0,
+          "at": 59.2,
           "name": "pop_1",
           "vol": 0.8
+        },
+        {
+          "type": "sfx",
+          "at": 60.6,
+          "name": "mouse_click",
+          "vol": 1.0
         }
       ]
     },

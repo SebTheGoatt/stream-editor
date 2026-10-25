@@ -9,7 +9,8 @@
 | [openai-whisper](https://github.com/openai/whisper) on AMD [ROCm PyTorch](https://rocm.docs.amd.com/projects/radeon-ryzen/en/latest/) | Same transcript on an AMD GPU (faster-whisper is NVIDIA-only); about 4x faster than CPU | `transcribe_gpu.py`, `.venv-gpu/` | MIT / BSD-3 |
 | [auto-editor](https://github.com/WyattBlue/auto-editor) | Optional rough cut of silence across a whole VOD (`edit.py` trims dead air itself per segment) | README | Unlicense |
 | [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) compact models + [PyTorch](https://pytorch.org) | AI 4x upscaling when only a low-res copy exists | `upscale.py`, `models/` | BSD-3 |
-| [EffectCraft](https://github.com/storytold/effectcraft) | Scripted motion graphics; built the alternate animated intro, rendered headless | `intro/intro.jsx` | MIT / Apache-2.0 |
+| [EffectCraft](https://github.com/storytold/effectcraft) | Scripted motion graphics, rendered headless: the alternate intro and the animated LIKE + SUBSCRIBE pop-up (transparent ProRes 4444) | `intro/intro.jsx`, `intro/subscribe.jsx` → `brand/subscribe.mov` | MIT / Apache-2.0 |
+| [FilmCraft](https://github.com/storytold/filmcraft) | Builds each edit as a real timeline headless and exports it for Resolve (FCP 7 XML), FCPXML, OTIO, EDL and a FilmCraft project | `tools/export_timeline.py` | MIT / Apache-2.0 |
 | [Anton](https://github.com/googlefonts/AntonFont) font | Meme captions | `fonts/` | SIL OFL |
 | Homemade sound effects | Boom, ding, scratch, fall, thud, bonk, crickets, sting, whoosh, fail, synthesized with FFmpeg | `make_sfx.py`, `sfx/` | original |
 | CoryxKenshin 8-BitRyan FX pack | Real meme sounds and music beds (bought by the channel owner) | `pack/` → `tools/import_pack.py` | purchased pack |
@@ -20,6 +21,7 @@
 |---|---|
 | `tools/make_shorts.py` | Ranks a plan's moments and renders the best as 1080x1920 Shorts with word-by-word captions |
 | `tools/prep_stream.py` | One command for a new recording: GPU transcript, readable transcript, loudest moments, overview grid, starter plan |
+| `tools/export_timeline.py` | Plan → editable timeline for DaVinci Resolve/Premiere/FilmCraft: same cuts as the render, every effect and bleep as a colored marker, pointed at the HD original with `--source` |
 | `tools/jev_merk_plan.py` | Turns any plan into a FaZe Jev / M3RKMUS1C-style edit: long continuous clips, hard cuts, a few face zooms and B&W freezes, one subscribe card |
 | `tools/clean_plan.py` | Turns any plan into a clean edit: facecam + gameplay, cuts and bleeps only |
 | `tools/find_moments.py` | Read/search the transcript, exact word times, loudest moments |
@@ -34,7 +36,6 @@
 | vidIQ (Claude connector) | Pulled the stream info, a scene-by-scene breakdown to shortlist moments, and short clips. Its downloads were only 144p, which is why originals matter |
 | yt-dlp | Tried for HD downloads; YouTube blocks cloud servers, so download originals from YouTube Studio instead |
 | gdown | Downloaded the sound pack from Google Drive |
-| [FilmCraft](https://github.com/storytold/filmcraft) | Looked at as a free editor; not needed for the automated pipeline |
 | DaVinci Resolve Studio | Final polish on the owner's PC (Voice Isolation, color, Super Scale, export) |
 
 ## Claude skills in this repo

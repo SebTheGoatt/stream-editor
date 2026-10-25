@@ -407,7 +407,7 @@ def render_piece(i, piece, seg, ctx):
         src, shift = seg["_upscaled"]
     out = os.path.join(tmp, f"p{i:04d}.mp4")
     fxs = seg.get("fx", [])
-    inputs, vf, af_extra, sfx_list = [], [], [], []
+    inputs, vf, af_extra, sfx_list, overlays = [], [], [], [], []
 
     base_v = f"scale={W}:{H}:flags=lanczos:force_original_aspect_ratio=decrease,pad={W}:{H}:(ow-iw)/2:(oh-ih)/2,setsar=1,fps={fps}"
 
@@ -467,6 +467,11 @@ def render_piece(i, piece, seg, ctx):
             if f["type"] == "freeze" or fb <= a0 or fa >= b0:
                 continue
             la, lb = max(0.0, loc(fa)), min(length, loc(fb))
+            if f["type"] == "overlay":
+                # A transparent clip (e.g. the EffectCraft subscribe pop-up), picked up where this piece starts.
+                inputs += ["-ss", f"{max(0.0, a0 - fa):.3f}", "-i", f["_path"]]
+                overlays.append((len(overlays) + 1, la, lb, f))
+                continue
             if f["type"] == "zoom":
                 zooms.append((la, lb, f.get("scale", 2.2), target_xy(f, cfg), f.get("shake", False)))
             elif f["type"] == "shake":
@@ -543,15 +548,25 @@ def render_piece(i, piece, seg, ctx):
         vf.append(f"scale=w='{zw}':h='{zh}':eval=frame:flags=bicubic,crop={W}:{H}:x='{x}':y='{y}'")
     for text, la, lb, pos, color, size, box in texts:
         vf.append(drawtext(text, la, lb, pos, W, H, tmp, color, size, box))
-    vchain = v + ("," + ",".join(vf) if vf else "") + f",trim=duration={length:.3f},format=yuv420p[v]"
+    vchain = v + ("," + ",".join(vf) if vf else "") + f",trim=duration={length:.3f}"
 
-    graph = [vchain]
+    if not overlays:
+        graph = [vchain + ",format=yuv420p[v]"]
+    else:
+        graph = [vchain + "[vb0]"]
+        for j, (idx, la, lb, f) in enumerate(overlays):
+            w = int(W * f.get("width", 1.0)) // 2 * 2
+            x, y = f.get("x", 0.5), f.get("y", 0.5)
+            graph.append(f"[{idx}:v]format=rgba,scale={w}:-2,setpts=PTS-STARTPTS+{la:.3f}/TB[ov{j}]")
+            graph.append(f"[vb{j}][ov{j}]overlay=x='{x}*W-w/2':y='{y}*H-h/2':eof_action=pass:"
+                         f"enable='between(t,{la:.3f},{lb:.3f})'[vb{j + 1}]")
+        graph.append(f"[vb{len(overlays)}]format=yuv420p[v]")
     if piece["kind"] == "freeze":
         graph.append(f"{audio}[a0]")
     else:
         graph.append(f"{audio},apad,atrim=duration={length:.3f}[a0]")
     mix = ["[a0]"]
-    n_in = 1
+    n_in = 1 + len(overlays)
     for k, chain in enumerate(af_extra):
         graph.append(f"{chain}[x{k}]")
         mix.append(f"[x{k}]")
@@ -663,6 +678,9 @@ def main():
             after_moment = False
             continue
         expand_goat(seg, cfg)
+        for f in seg.get("fx", []):
+            if f["type"] == "overlay":
+                f["_path"] = rel(f["file"])
         # Static only goes between two moments: never next to the intro or outro clips.
         if transition and after_moment and seg.get("transition", True):
             jobs.append((len(jobs), {"kind": "static", "a": 0.0, "b": 0.0},

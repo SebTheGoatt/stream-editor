@@ -87,9 +87,17 @@ def main():
     if merged and not args.no_cta:
         first = merged[0]
         at = min(first["start"] + 20, first["end"] - 4)
-        first["fx"].append({"type": "text", "at": at, "dur": 3, "text": "LIKE + SUBSCRIBE", "pos": "bottom",
-                            "color": "#FFD400", "size": 0.07})
-        first["fx"].append({"type": "sfx", "at": at, "name": "pop_1", "vol": 0.8})
+        card = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "brand", "subscribe.mov")
+        if os.path.exists(card):
+            # The animated EffectCraft pop-up (intro/subscribe.jsx): slides in, gets "clicked", slides out.
+            card_rel = os.path.relpath(card, base).replace(os.sep, "/")
+            first["fx"].append({"type": "overlay", "at": at, "dur": 3.5, "file": card_rel})
+            first["fx"].append({"type": "sfx", "at": at + 0.2, "name": "pop_1", "vol": 0.8})
+            first["fx"].append({"type": "sfx", "at": at + 1.6, "name": "mouse_click", "vol": 1.0})
+        else:
+            first["fx"].append({"type": "text", "at": at, "dur": 3, "text": "LIKE + SUBSCRIBE", "pos": "bottom",
+                                "color": "#FFD400", "size": 0.07})
+            first["fx"].append({"type": "sfx", "at": at, "name": "pop_1", "vol": 0.8})
 
     segments = []
     for m in merged:

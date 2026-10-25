@@ -123,3 +123,15 @@ variable, then turn the uploaded long video into Shorts:
 ```bash
 python tools/vizard.py clip "https://www.youtube.com/watch?v=XXXX" --length 1
 ```
+
+## Open an edit in DaVinci Resolve (or FilmCraft / Premiere)
+
+Install [FilmCraft](https://github.com/storytold/filmcraft/releases) (free), then:
+
+```bash
+python tools/export_timeline.py plans/cod-mw4-jevmerk.json --source work/cod.mp4
+```
+
+In Resolve: File > Import > Timeline > `out/timelines/cod-mw4-jevmerk.xml`. Every cut is on the timeline over your
+original recording, and each effect is a colored marker (yellow zoom, blue freeze, green text/overlay, purple sound,
+rose bleep). Polish at full quality and export from there.

@@ -1,0 +1,5065 @@
+{
+  "savedBy": "0.14.0",
+  "activeComp": 1,
+  "openComps": [
+    1
+  ],
+  "schema": 2,
+  "settings": {
+    "bit_depth": "Bpc8",
+    "linearize": false,
+    "working_space": null,
+    "blend_linear": false,
+    "time_display": "Timecode",
+    "frame_start": 0,
+    "audio_sample_rate": 48000,
+    "gpu_acceleration": true,
+    "color_engine": "Adobe",
+    "hdr": "Clip",
+    "output_space": null,
+    "working_gamma": 2.2
+  },
+  "items": {
+    "1": {
+      "id": 1,
+      "name": "Subscribe",
+      "label": "Sandstone",
+      "comment": "",
+      "parent": null,
+      "kind": {
+        "type": "Comp",
+        "width": 1920,
+        "height": 1080,
+        "pixel_aspect": 1.0,
+        "frame_rate": {
+          "num": 30,
+          "den": 1
+        },
+        "duration": 889056000000,
+        "display_start": 0,
+        "background": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "work_area": [
+          0,
+          889056000000
+        ],
+        "layers": [
+          {
+            "id": 129,
+            "name": "LIKE +",
+            "source": {
+              "type": "Text"
+            },
+            "label": "Red",
+            "comment": "",
+            "start_time": 0,
+            "in_point": 0,
+            "out_point": 889056000000,
+            "stretch": 100.0,
+            "switches": {
+              "video": true,
+              "audio": true,
+              "solo": false,
+              "locked": false,
+              "shy": false,
+              "collapse": false,
+              "quality": "Best",
+              "sampling": "Bilinear",
+              "effects": true,
+              "frame_blend": "Off",
+              "motion_blur": false,
+              "adjustment": false,
+              "three_d": false,
+              "guide": false
+            },
+            "blend_mode": "Normal",
+            "preserve_transparency": false,
+            "track_matte": null,
+            "parent": null,
+            "markers": [],
+            "auto_orient": "Off",
+            "props": {
+              "uid": 130,
+              "match": "layer",
+              "name": "LIKE +",
+              "kind": {
+                "kind": "Plain"
+              },
+              "enabled": true,
+              "children": [
+                {
+                  "node": "Group",
+                  "uid": 145,
+                  "match": "text",
+                  "name": "Text",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": [
+                    {
+                      "node": "Prop",
+                      "uid": 131,
+                      "match": "sourceText",
+                      "name": "Source Text",
+                      "value": {
+                        "t": "Text",
+                        "v": {
+                          "text": "LIKE +",
+                          "font": "Anton-Regular",
+                          "style": "Regular",
+                          "size": 64.0,
+                          "fill": [
+                            1.0,
+                            0.83,
+                            0.0,
+                            1.0
+                          ],
+                          "stroke": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                          ],
+                          "stroke_width": 5.333333333333333,
+                          "apply_fill": true,
+                          "apply_stroke": true,
+                          "stroke_over_fill": true,
+                          "tracking": 0.0,
+                          "leading": null,
+                          "justify": "Center",
+                          "baseline_shift": 0.0,
+                          "h_scale": 100.0,
+                          "v_scale": 100.0,
+                          "faux_bold": false,
+                          "faux_italic": false,
+                          "all_caps": false,
+                          "small_caps": false,
+                          "box_size": null,
+                          "box_pos": [
+                            0.0,
+                            0.0
+                          ],
+                          "tsume": 0.0,
+                          "baseline": "Normal",
+                          "kerning": "Metrics",
+                          "ligatures": true,
+                          "tate_chu_yoko": false,
+                          "vertical_roman_upright": false,
+                          "indent_left": 0.0,
+                          "indent_right": 0.0,
+                          "indent_first": 0.0,
+                          "space_before": 0.0,
+                          "space_after": 0.0,
+                          "direction": "Ltr",
+                          "composer": "EveryLine",
+                          "hanging_punctuation": false,
+                          "vertical": false
+                        }
+                      },
+                      "ui": {
+                        "kind": "Text"
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 132,
+                      "match": "perChar3d",
+                      "name": "Per-character 3D",
+                      "value": {
+                        "t": "Bool",
+                        "v": false
+                      },
+                      "ui": {
+                        "kind": "Hidden"
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": true
+                    },
+                    {
+                      "node": "Group",
+                      "uid": 134,
+                      "match": "pathOptions",
+                      "name": "Path Options",
+                      "kind": {
+                        "kind": "Plain"
+                      },
+                      "enabled": true,
+                      "children": [
+                        {
+                          "node": "Prop",
+                          "uid": 133,
+                          "match": "path",
+                          "name": "Path",
+                          "value": {
+                            "t": "Enum",
+                            "v": 0
+                          },
+                          "ui": {
+                            "kind": "Popup",
+                            "options": [
+                              "None"
+                            ]
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": true
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 135,
+                          "match": "reversePath",
+                          "name": "Reverse Path",
+                          "value": {
+                            "t": "Bool",
+                            "v": false
+                          },
+                          "ui": {
+                            "kind": "Checkbox"
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 136,
+                          "match": "perpendicular",
+                          "name": "Perpendicular To Path",
+                          "value": {
+                            "t": "Bool",
+                            "v": true
+                          },
+                          "ui": {
+                            "kind": "Checkbox"
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 137,
+                          "match": "forceAlignment",
+                          "name": "Force Alignment",
+                          "value": {
+                            "t": "Bool",
+                            "v": false
+                          },
+                          "ui": {
+                            "kind": "Checkbox"
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 138,
+                          "match": "firstMargin",
+                          "name": "First Margin",
+                          "value": {
+                            "t": "Scalar",
+                            "v": 0.0
+                          },
+                          "ui": {
+                            "kind": "Pixels"
+                          },
+                          "spatial": false,
+                          "hold_only": false,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 139,
+                          "match": "lastMargin",
+                          "name": "Last Margin",
+                          "value": {
+                            "t": "Scalar",
+                            "v": 0.0
+                          },
+                          "ui": {
+                            "kind": "Pixels"
+                          },
+                          "spatial": false,
+                          "hold_only": false,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        }
+                      ]
+                    },
+                    {
+                      "node": "Group",
+                      "uid": 140,
+                      "match": "moreOptions",
+                      "name": "More Options",
+                      "kind": {
+                        "kind": "Plain"
+                      },
+                      "enabled": true,
+                      "children": [
+                        {
+                          "node": "Prop",
+                          "uid": 141,
+                          "match": "anchorGrouping",
+                          "name": "Anchor Point Grouping",
+                          "value": {
+                            "t": "Enum",
+                            "v": 0
+                          },
+                          "ui": {
+                            "kind": "Popup",
+                            "options": [
+                              "Character",
+                              "Word",
+                              "Line",
+                              "All"
+                            ]
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": true
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 142,
+                          "match": "groupingAlignment",
+                          "name": "Grouping Alignment",
+                          "value": {
+                            "t": "Vec2",
+                            "v": [
+                              0.0,
+                              0.0
+                            ]
+                          },
+                          "ui": {
+                            "kind": "Percent"
+                          },
+                          "spatial": false,
+                          "hold_only": false,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 143,
+                          "match": "fillStroke",
+                          "name": "Fill & Stroke",
+                          "value": {
+                            "t": "Enum",
+                            "v": 0
+                          },
+                          "ui": {
+                            "kind": "Popup",
+                            "options": [
+                              "Per Character Palette",
+                              "All Fills Over All Strokes",
+                              "All Strokes Over All Fills"
+                            ]
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": true
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 144,
+                          "match": "interCharBlend",
+                          "name": "Inter-Character Blending",
+                          "value": {
+                            "t": "Enum",
+                            "v": 0
+                          },
+                          "ui": {
+                            "kind": "Popup",
+                            "options": [
+                              "Normal",
+                              "Darken",
+                              "Multiply",
+                              "Color Burn",
+                              "Linear Burn",
+                              "Darker Color",
+                              "Add",
+                              "Lighten",
+                              "Screen",
+                              "Color Dodge",
+                              "Lighter Color",
+                              "Overlay",
+                              "Soft Light",
+                              "Hard Light",
+                              "Linear Light",
+                              "Vivid Light",
+                              "Pin Light",
+                              "Hard Mix",
+                              "Difference",
+                              "Exclusion",
+                              "Subtract",
+                              "Divide",
+                              "Hue",
+                              "Saturation",
+                              "Color",
+                              "Luminosity"
+                            ]
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": true
+                        }
+                      ]
+                    },
+                    {
+                      "node": "Group",
+                      "uid": 146,
+                      "match": "animators",
+                      "name": "Animators",
+                      "kind": {
+                        "kind": "Plain"
+                      },
+                      "enabled": true,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "node": "Group",
+                  "uid": 147,
+                  "match": "masks",
+                  "name": "Masks",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": []
+                },
+                {
+                  "node": "Group",
+                  "uid": 148,
+                  "match": "effects",
+                  "name": "Effects",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": []
+                },
+                {
+                  "node": "Group",
+                  "uid": 157,
+                  "match": "transform",
+                  "name": "Transform",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": [
+                    {
+                      "node": "Prop",
+                      "uid": 149,
+                      "match": "anchor",
+                      "name": "Anchor Point",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      },
+                      "ui": {
+                        "kind": "Point"
+                      },
+                      "spatial": true,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 150,
+                      "match": "position",
+                      "name": "Position",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          565.0,
+                          954.0,
+                          0.0
+                        ]
+                      },
+                      "ui": {
+                        "kind": "Point"
+                      },
+                      "spatial": true,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 151,
+                      "match": "scale",
+                      "name": "Scale",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          100.0,
+                          100.0,
+                          100.0
+                        ]
+                      },
+                      "keys": [
+                        {
+                          "time": 76204800000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              0.0,
+                              0.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 110073600000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              125.0,
+                              125.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 135475200000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              100.0,
+                              100.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 762048000000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              100.0,
+                              100.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 812851200000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              0.0,
+                              0.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        }
+                      ],
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 152,
+                      "match": "orientation",
+                      "name": "Orientation",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 153,
+                      "match": "rotationX",
+                      "name": "X Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 154,
+                      "match": "rotationY",
+                      "name": "Y Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 155,
+                      "match": "rotation",
+                      "name": "Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 156,
+                      "match": "opacity",
+                      "name": "Opacity",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "ui": {
+                        "kind": "Slider",
+                        "min": 0.0,
+                        "max": 100.0,
+                        "slider_min": 0.0,
+                        "slider_max": 100.0,
+                        "decimals": 0
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    }
+                  ]
+                },
+                {
+                  "node": "Group",
+                  "uid": 158,
+                  "match": "materialOptions",
+                  "name": "Material Options",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": [
+                    {
+                      "node": "Prop",
+                      "uid": 159,
+                      "match": "castsShadows",
+                      "name": "Casts Shadows",
+                      "value": {
+                        "t": "Enum",
+                        "v": 0
+                      },
+                      "ui": {
+                        "kind": "Popup",
+                        "options": [
+                          "Off",
+                          "On",
+                          "Only"
+                        ]
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 160,
+                      "match": "lightTransmission",
+                      "name": "Light Transmission",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 161,
+                      "match": "acceptsShadows",
+                      "name": "Accepts Shadows",
+                      "value": {
+                        "t": "Enum",
+                        "v": 1
+                      },
+                      "ui": {
+                        "kind": "Popup",
+                        "options": [
+                          "Off",
+                          "On",
+                          "Only"
+                        ]
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 162,
+                      "match": "acceptsLights",
+                      "name": "Accepts Lights",
+                      "value": {
+                        "t": "Bool",
+                        "v": true
+                      },
+                      "ui": {
+                        "kind": "Checkbox"
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 163,
+                      "match": "ambient",
+                      "name": "Ambient",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 164,
+                      "match": "diffuse",
+                      "name": "Diffuse",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 50.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 165,
+                      "match": "specularIntensity",
+                      "name": "Specular Intensity",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 50.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 166,
+                      "match": "specularShininess",
+                      "name": "Specular Shininess",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 5.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 167,
+                      "match": "metal",
+                      "name": "Metal",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": 90,
+            "name": "SUBSCRIBED",
+            "source": {
+              "type": "Text"
+            },
+            "label": "Red",
+            "comment": "",
+            "start_time": 0,
+            "in_point": 0,
+            "out_point": 889056000000,
+            "stretch": 100.0,
+            "switches": {
+              "video": true,
+              "audio": true,
+              "solo": false,
+              "locked": false,
+              "shy": false,
+              "collapse": false,
+              "quality": "Best",
+              "sampling": "Bilinear",
+              "effects": true,
+              "frame_blend": "Off",
+              "motion_blur": false,
+              "adjustment": false,
+              "three_d": false,
+              "guide": false
+            },
+            "blend_mode": "Normal",
+            "preserve_transparency": false,
+            "track_matte": null,
+            "parent": null,
+            "markers": [],
+            "auto_orient": "Off",
+            "props": {
+              "uid": 91,
+              "match": "layer",
+              "name": "SUBSCRIBED",
+              "kind": {
+                "kind": "Plain"
+              },
+              "enabled": true,
+              "children": [
+                {
+                  "node": "Group",
+                  "uid": 106,
+                  "match": "text",
+                  "name": "Text",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": [
+                    {
+                      "node": "Prop",
+                      "uid": 92,
+                      "match": "sourceText",
+                      "name": "Source Text",
+                      "value": {
+                        "t": "Text",
+                        "v": {
+                          "text": "SUBSCRIBED",
+                          "font": "Anton-Regular",
+                          "style": "Regular",
+                          "size": 86.0,
+                          "fill": [
+                            0.85,
+                            0.85,
+                            0.85,
+                            1.0
+                          ],
+                          "stroke": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                          ],
+                          "stroke_width": 0.0,
+                          "apply_fill": true,
+                          "apply_stroke": false,
+                          "stroke_over_fill": true,
+                          "tracking": 0.0,
+                          "leading": null,
+                          "justify": "Center",
+                          "baseline_shift": 0.0,
+                          "h_scale": 100.0,
+                          "v_scale": 100.0,
+                          "faux_bold": false,
+                          "faux_italic": false,
+                          "all_caps": false,
+                          "small_caps": false,
+                          "box_size": null,
+                          "box_pos": [
+                            0.0,
+                            0.0
+                          ],
+                          "tsume": 0.0,
+                          "baseline": "Normal",
+                          "kerning": "Metrics",
+                          "ligatures": true,
+                          "tate_chu_yoko": false,
+                          "vertical_roman_upright": false,
+                          "indent_left": 0.0,
+                          "indent_right": 0.0,
+                          "indent_first": 0.0,
+                          "space_before": 0.0,
+                          "space_after": 0.0,
+                          "direction": "Ltr",
+                          "composer": "EveryLine",
+                          "hanging_punctuation": false,
+                          "vertical": false
+                        }
+                      },
+                      "ui": {
+                        "kind": "Text"
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 93,
+                      "match": "perChar3d",
+                      "name": "Per-character 3D",
+                      "value": {
+                        "t": "Bool",
+                        "v": false
+                      },
+                      "ui": {
+                        "kind": "Hidden"
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": true
+                    },
+                    {
+                      "node": "Group",
+                      "uid": 95,
+                      "match": "pathOptions",
+                      "name": "Path Options",
+                      "kind": {
+                        "kind": "Plain"
+                      },
+                      "enabled": true,
+                      "children": [
+                        {
+                          "node": "Prop",
+                          "uid": 94,
+                          "match": "path",
+                          "name": "Path",
+                          "value": {
+                            "t": "Enum",
+                            "v": 0
+                          },
+                          "ui": {
+                            "kind": "Popup",
+                            "options": [
+                              "None"
+                            ]
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": true
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 96,
+                          "match": "reversePath",
+                          "name": "Reverse Path",
+                          "value": {
+                            "t": "Bool",
+                            "v": false
+                          },
+                          "ui": {
+                            "kind": "Checkbox"
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 97,
+                          "match": "perpendicular",
+                          "name": "Perpendicular To Path",
+                          "value": {
+                            "t": "Bool",
+                            "v": true
+                          },
+                          "ui": {
+                            "kind": "Checkbox"
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 98,
+                          "match": "forceAlignment",
+                          "name": "Force Alignment",
+                          "value": {
+                            "t": "Bool",
+                            "v": false
+                          },
+                          "ui": {
+                            "kind": "Checkbox"
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 99,
+                          "match": "firstMargin",
+                          "name": "First Margin",
+                          "value": {
+                            "t": "Scalar",
+                            "v": 0.0
+                          },
+                          "ui": {
+                            "kind": "Pixels"
+                          },
+                          "spatial": false,
+                          "hold_only": false,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 100,
+                          "match": "lastMargin",
+                          "name": "Last Margin",
+                          "value": {
+                            "t": "Scalar",
+                            "v": 0.0
+                          },
+                          "ui": {
+                            "kind": "Pixels"
+                          },
+                          "spatial": false,
+                          "hold_only": false,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        }
+                      ]
+                    },
+                    {
+                      "node": "Group",
+                      "uid": 101,
+                      "match": "moreOptions",
+                      "name": "More Options",
+                      "kind": {
+                        "kind": "Plain"
+                      },
+                      "enabled": true,
+                      "children": [
+                        {
+                          "node": "Prop",
+                          "uid": 102,
+                          "match": "anchorGrouping",
+                          "name": "Anchor Point Grouping",
+                          "value": {
+                            "t": "Enum",
+                            "v": 0
+                          },
+                          "ui": {
+                            "kind": "Popup",
+                            "options": [
+                              "Character",
+                              "Word",
+                              "Line",
+                              "All"
+                            ]
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": true
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 103,
+                          "match": "groupingAlignment",
+                          "name": "Grouping Alignment",
+                          "value": {
+                            "t": "Vec2",
+                            "v": [
+                              0.0,
+                              0.0
+                            ]
+                          },
+                          "ui": {
+                            "kind": "Percent"
+                          },
+                          "spatial": false,
+                          "hold_only": false,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 104,
+                          "match": "fillStroke",
+                          "name": "Fill & Stroke",
+                          "value": {
+                            "t": "Enum",
+                            "v": 0
+                          },
+                          "ui": {
+                            "kind": "Popup",
+                            "options": [
+                              "Per Character Palette",
+                              "All Fills Over All Strokes",
+                              "All Strokes Over All Fills"
+                            ]
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": true
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 105,
+                          "match": "interCharBlend",
+                          "name": "Inter-Character Blending",
+                          "value": {
+                            "t": "Enum",
+                            "v": 0
+                          },
+                          "ui": {
+                            "kind": "Popup",
+                            "options": [
+                              "Normal",
+                              "Darken",
+                              "Multiply",
+                              "Color Burn",
+                              "Linear Burn",
+                              "Darker Color",
+                              "Add",
+                              "Lighten",
+                              "Screen",
+                              "Color Dodge",
+                              "Lighter Color",
+                              "Overlay",
+                              "Soft Light",
+                              "Hard Light",
+                              "Linear Light",
+                              "Vivid Light",
+                              "Pin Light",
+                              "Hard Mix",
+                              "Difference",
+                              "Exclusion",
+                              "Subtract",
+                              "Divide",
+                              "Hue",
+                              "Saturation",
+                              "Color",
+                              "Luminosity"
+                            ]
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": true
+                        }
+                      ]
+                    },
+                    {
+                      "node": "Group",
+                      "uid": 107,
+                      "match": "animators",
+                      "name": "Animators",
+                      "kind": {
+                        "kind": "Plain"
+                      },
+                      "enabled": true,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "node": "Group",
+                  "uid": 108,
+                  "match": "masks",
+                  "name": "Masks",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": []
+                },
+                {
+                  "node": "Group",
+                  "uid": 109,
+                  "match": "effects",
+                  "name": "Effects",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": []
+                },
+                {
+                  "node": "Group",
+                  "uid": 118,
+                  "match": "transform",
+                  "name": "Transform",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": [
+                    {
+                      "node": "Prop",
+                      "uid": 110,
+                      "match": "anchor",
+                      "name": "Anchor Point",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      },
+                      "ui": {
+                        "kind": "Point"
+                      },
+                      "spatial": true,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 111,
+                      "match": "position",
+                      "name": "Position",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          960.0,
+                          540.0,
+                          0.0
+                        ]
+                      },
+                      "keys": [
+                        {
+                          "time": 0,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              1282.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 59270400000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              944.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 84672000000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              962.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 762048000000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              962.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 846720000000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              1332.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        }
+                      ],
+                      "ui": {
+                        "kind": "Point"
+                      },
+                      "spatial": true,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 112,
+                      "match": "scale",
+                      "name": "Scale",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          100.0,
+                          100.0,
+                          100.0
+                        ]
+                      },
+                      "keys": [
+                        {
+                          "time": 389491200000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              100.0,
+                              100.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 406425600000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              90.0,
+                              90.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 431827200000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              104.0,
+                              104.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 448761600000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              100.0,
+                              100.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        }
+                      ],
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 113,
+                      "match": "orientation",
+                      "name": "Orientation",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 114,
+                      "match": "rotationX",
+                      "name": "X Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 115,
+                      "match": "rotationY",
+                      "name": "Y Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 116,
+                      "match": "rotation",
+                      "name": "Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 117,
+                      "match": "opacity",
+                      "name": "Opacity",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "keys": [
+                        {
+                          "time": 0,
+                          "value": {
+                            "t": "Scalar",
+                            "v": 0.0
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 397958400000,
+                          "value": {
+                            "t": "Scalar",
+                            "v": 0.0
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 406425600000,
+                          "value": {
+                            "t": "Scalar",
+                            "v": 100.0
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        }
+                      ],
+                      "ui": {
+                        "kind": "Slider",
+                        "min": 0.0,
+                        "max": 100.0,
+                        "slider_min": 0.0,
+                        "slider_max": 100.0,
+                        "decimals": 0
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    }
+                  ]
+                },
+                {
+                  "node": "Group",
+                  "uid": 119,
+                  "match": "materialOptions",
+                  "name": "Material Options",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": [
+                    {
+                      "node": "Prop",
+                      "uid": 120,
+                      "match": "castsShadows",
+                      "name": "Casts Shadows",
+                      "value": {
+                        "t": "Enum",
+                        "v": 0
+                      },
+                      "ui": {
+                        "kind": "Popup",
+                        "options": [
+                          "Off",
+                          "On",
+                          "Only"
+                        ]
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 121,
+                      "match": "lightTransmission",
+                      "name": "Light Transmission",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 122,
+                      "match": "acceptsShadows",
+                      "name": "Accepts Shadows",
+                      "value": {
+                        "t": "Enum",
+                        "v": 1
+                      },
+                      "ui": {
+                        "kind": "Popup",
+                        "options": [
+                          "Off",
+                          "On",
+                          "Only"
+                        ]
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 123,
+                      "match": "acceptsLights",
+                      "name": "Accepts Lights",
+                      "value": {
+                        "t": "Bool",
+                        "v": true
+                      },
+                      "ui": {
+                        "kind": "Checkbox"
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 124,
+                      "match": "ambient",
+                      "name": "Ambient",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 125,
+                      "match": "diffuse",
+                      "name": "Diffuse",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 50.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 126,
+                      "match": "specularIntensity",
+                      "name": "Specular Intensity",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 50.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 127,
+                      "match": "specularShininess",
+                      "name": "Specular Shininess",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 5.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 128,
+                      "match": "metal",
+                      "name": "Metal",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": 51,
+            "name": "SUBSCRIBE",
+            "source": {
+              "type": "Text"
+            },
+            "label": "Red",
+            "comment": "",
+            "start_time": 0,
+            "in_point": 0,
+            "out_point": 889056000000,
+            "stretch": 100.0,
+            "switches": {
+              "video": true,
+              "audio": true,
+              "solo": false,
+              "locked": false,
+              "shy": false,
+              "collapse": false,
+              "quality": "Best",
+              "sampling": "Bilinear",
+              "effects": true,
+              "frame_blend": "Off",
+              "motion_blur": false,
+              "adjustment": false,
+              "three_d": false,
+              "guide": false
+            },
+            "blend_mode": "Normal",
+            "preserve_transparency": false,
+            "track_matte": null,
+            "parent": null,
+            "markers": [],
+            "auto_orient": "Off",
+            "props": {
+              "uid": 52,
+              "match": "layer",
+              "name": "SUBSCRIBE",
+              "kind": {
+                "kind": "Plain"
+              },
+              "enabled": true,
+              "children": [
+                {
+                  "node": "Group",
+                  "uid": 67,
+                  "match": "text",
+                  "name": "Text",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": [
+                    {
+                      "node": "Prop",
+                      "uid": 53,
+                      "match": "sourceText",
+                      "name": "Source Text",
+                      "value": {
+                        "t": "Text",
+                        "v": {
+                          "text": "SUBSCRIBE",
+                          "font": "Anton-Regular",
+                          "style": "Regular",
+                          "size": 86.0,
+                          "fill": [
+                            1.0,
+                            1.0,
+                            1.0,
+                            1.0
+                          ],
+                          "stroke": [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                          ],
+                          "stroke_width": 0.0,
+                          "apply_fill": true,
+                          "apply_stroke": false,
+                          "stroke_over_fill": true,
+                          "tracking": 0.0,
+                          "leading": null,
+                          "justify": "Center",
+                          "baseline_shift": 0.0,
+                          "h_scale": 100.0,
+                          "v_scale": 100.0,
+                          "faux_bold": false,
+                          "faux_italic": false,
+                          "all_caps": false,
+                          "small_caps": false,
+                          "box_size": null,
+                          "box_pos": [
+                            0.0,
+                            0.0
+                          ],
+                          "tsume": 0.0,
+                          "baseline": "Normal",
+                          "kerning": "Metrics",
+                          "ligatures": true,
+                          "tate_chu_yoko": false,
+                          "vertical_roman_upright": false,
+                          "indent_left": 0.0,
+                          "indent_right": 0.0,
+                          "indent_first": 0.0,
+                          "space_before": 0.0,
+                          "space_after": 0.0,
+                          "direction": "Ltr",
+                          "composer": "EveryLine",
+                          "hanging_punctuation": false,
+                          "vertical": false
+                        }
+                      },
+                      "ui": {
+                        "kind": "Text"
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 54,
+                      "match": "perChar3d",
+                      "name": "Per-character 3D",
+                      "value": {
+                        "t": "Bool",
+                        "v": false
+                      },
+                      "ui": {
+                        "kind": "Hidden"
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": true
+                    },
+                    {
+                      "node": "Group",
+                      "uid": 56,
+                      "match": "pathOptions",
+                      "name": "Path Options",
+                      "kind": {
+                        "kind": "Plain"
+                      },
+                      "enabled": true,
+                      "children": [
+                        {
+                          "node": "Prop",
+                          "uid": 55,
+                          "match": "path",
+                          "name": "Path",
+                          "value": {
+                            "t": "Enum",
+                            "v": 0
+                          },
+                          "ui": {
+                            "kind": "Popup",
+                            "options": [
+                              "None"
+                            ]
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": true
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 57,
+                          "match": "reversePath",
+                          "name": "Reverse Path",
+                          "value": {
+                            "t": "Bool",
+                            "v": false
+                          },
+                          "ui": {
+                            "kind": "Checkbox"
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 58,
+                          "match": "perpendicular",
+                          "name": "Perpendicular To Path",
+                          "value": {
+                            "t": "Bool",
+                            "v": true
+                          },
+                          "ui": {
+                            "kind": "Checkbox"
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 59,
+                          "match": "forceAlignment",
+                          "name": "Force Alignment",
+                          "value": {
+                            "t": "Bool",
+                            "v": false
+                          },
+                          "ui": {
+                            "kind": "Checkbox"
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 60,
+                          "match": "firstMargin",
+                          "name": "First Margin",
+                          "value": {
+                            "t": "Scalar",
+                            "v": 0.0
+                          },
+                          "ui": {
+                            "kind": "Pixels"
+                          },
+                          "spatial": false,
+                          "hold_only": false,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 61,
+                          "match": "lastMargin",
+                          "name": "Last Margin",
+                          "value": {
+                            "t": "Scalar",
+                            "v": 0.0
+                          },
+                          "ui": {
+                            "kind": "Pixels"
+                          },
+                          "spatial": false,
+                          "hold_only": false,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        }
+                      ]
+                    },
+                    {
+                      "node": "Group",
+                      "uid": 62,
+                      "match": "moreOptions",
+                      "name": "More Options",
+                      "kind": {
+                        "kind": "Plain"
+                      },
+                      "enabled": true,
+                      "children": [
+                        {
+                          "node": "Prop",
+                          "uid": 63,
+                          "match": "anchorGrouping",
+                          "name": "Anchor Point Grouping",
+                          "value": {
+                            "t": "Enum",
+                            "v": 0
+                          },
+                          "ui": {
+                            "kind": "Popup",
+                            "options": [
+                              "Character",
+                              "Word",
+                              "Line",
+                              "All"
+                            ]
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": true
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 64,
+                          "match": "groupingAlignment",
+                          "name": "Grouping Alignment",
+                          "value": {
+                            "t": "Vec2",
+                            "v": [
+                              0.0,
+                              0.0
+                            ]
+                          },
+                          "ui": {
+                            "kind": "Percent"
+                          },
+                          "spatial": false,
+                          "hold_only": false,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": false
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 65,
+                          "match": "fillStroke",
+                          "name": "Fill & Stroke",
+                          "value": {
+                            "t": "Enum",
+                            "v": 0
+                          },
+                          "ui": {
+                            "kind": "Popup",
+                            "options": [
+                              "Per Character Palette",
+                              "All Fills Over All Strokes",
+                              "All Strokes Over All Fills"
+                            ]
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": true
+                        },
+                        {
+                          "node": "Prop",
+                          "uid": 66,
+                          "match": "interCharBlend",
+                          "name": "Inter-Character Blending",
+                          "value": {
+                            "t": "Enum",
+                            "v": 0
+                          },
+                          "ui": {
+                            "kind": "Popup",
+                            "options": [
+                              "Normal",
+                              "Darken",
+                              "Multiply",
+                              "Color Burn",
+                              "Linear Burn",
+                              "Darker Color",
+                              "Add",
+                              "Lighten",
+                              "Screen",
+                              "Color Dodge",
+                              "Lighter Color",
+                              "Overlay",
+                              "Soft Light",
+                              "Hard Light",
+                              "Linear Light",
+                              "Vivid Light",
+                              "Pin Light",
+                              "Hard Mix",
+                              "Difference",
+                              "Exclusion",
+                              "Subtract",
+                              "Divide",
+                              "Hue",
+                              "Saturation",
+                              "Color",
+                              "Luminosity"
+                            ]
+                          },
+                          "spatial": false,
+                          "hold_only": true,
+                          "three_d_only": false,
+                          "two_d_only": false,
+                          "shown_dims": 0,
+                          "static_only": true
+                        }
+                      ]
+                    },
+                    {
+                      "node": "Group",
+                      "uid": 68,
+                      "match": "animators",
+                      "name": "Animators",
+                      "kind": {
+                        "kind": "Plain"
+                      },
+                      "enabled": true,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "node": "Group",
+                  "uid": 69,
+                  "match": "masks",
+                  "name": "Masks",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": []
+                },
+                {
+                  "node": "Group",
+                  "uid": 70,
+                  "match": "effects",
+                  "name": "Effects",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": []
+                },
+                {
+                  "node": "Group",
+                  "uid": 79,
+                  "match": "transform",
+                  "name": "Transform",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": [
+                    {
+                      "node": "Prop",
+                      "uid": 71,
+                      "match": "anchor",
+                      "name": "Anchor Point",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      },
+                      "ui": {
+                        "kind": "Point"
+                      },
+                      "spatial": true,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 72,
+                      "match": "position",
+                      "name": "Position",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          960.0,
+                          540.0,
+                          0.0
+                        ]
+                      },
+                      "keys": [
+                        {
+                          "time": 0,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              1282.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 59270400000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              944.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 84672000000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              962.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 762048000000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              962.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 846720000000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              1332.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        }
+                      ],
+                      "ui": {
+                        "kind": "Point"
+                      },
+                      "spatial": true,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 73,
+                      "match": "scale",
+                      "name": "Scale",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          100.0,
+                          100.0,
+                          100.0
+                        ]
+                      },
+                      "keys": [
+                        {
+                          "time": 389491200000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              100.0,
+                              100.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 406425600000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              90.0,
+                              90.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 431827200000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              104.0,
+                              104.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 448761600000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              100.0,
+                              100.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        }
+                      ],
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 74,
+                      "match": "orientation",
+                      "name": "Orientation",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 75,
+                      "match": "rotationX",
+                      "name": "X Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 76,
+                      "match": "rotationY",
+                      "name": "Y Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 77,
+                      "match": "rotation",
+                      "name": "Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 78,
+                      "match": "opacity",
+                      "name": "Opacity",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "keys": [
+                        {
+                          "time": 0,
+                          "value": {
+                            "t": "Scalar",
+                            "v": 100.0
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 397958400000,
+                          "value": {
+                            "t": "Scalar",
+                            "v": 100.0
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 406425600000,
+                          "value": {
+                            "t": "Scalar",
+                            "v": 0.0
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        }
+                      ],
+                      "ui": {
+                        "kind": "Slider",
+                        "min": 0.0,
+                        "max": 100.0,
+                        "slider_min": 0.0,
+                        "slider_max": 100.0,
+                        "decimals": 0
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    }
+                  ]
+                },
+                {
+                  "node": "Group",
+                  "uid": 80,
+                  "match": "materialOptions",
+                  "name": "Material Options",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": [
+                    {
+                      "node": "Prop",
+                      "uid": 81,
+                      "match": "castsShadows",
+                      "name": "Casts Shadows",
+                      "value": {
+                        "t": "Enum",
+                        "v": 0
+                      },
+                      "ui": {
+                        "kind": "Popup",
+                        "options": [
+                          "Off",
+                          "On",
+                          "Only"
+                        ]
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 82,
+                      "match": "lightTransmission",
+                      "name": "Light Transmission",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 83,
+                      "match": "acceptsShadows",
+                      "name": "Accepts Shadows",
+                      "value": {
+                        "t": "Enum",
+                        "v": 1
+                      },
+                      "ui": {
+                        "kind": "Popup",
+                        "options": [
+                          "Off",
+                          "On",
+                          "Only"
+                        ]
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 84,
+                      "match": "acceptsLights",
+                      "name": "Accepts Lights",
+                      "value": {
+                        "t": "Bool",
+                        "v": true
+                      },
+                      "ui": {
+                        "kind": "Checkbox"
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 85,
+                      "match": "ambient",
+                      "name": "Ambient",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 86,
+                      "match": "diffuse",
+                      "name": "Diffuse",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 50.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 87,
+                      "match": "specularIntensity",
+                      "name": "Specular Intensity",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 50.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 88,
+                      "match": "specularShininess",
+                      "name": "Specular Shininess",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 5.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 89,
+                      "match": "metal",
+                      "name": "Metal",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": 28,
+            "name": "Subscribe",
+            "source": {
+              "type": "Solid",
+              "item": 27
+            },
+            "label": "Red",
+            "comment": "",
+            "start_time": 0,
+            "in_point": 0,
+            "out_point": 889056000000,
+            "stretch": 100.0,
+            "switches": {
+              "video": true,
+              "audio": true,
+              "solo": false,
+              "locked": false,
+              "shy": false,
+              "collapse": false,
+              "quality": "Best",
+              "sampling": "Bilinear",
+              "effects": true,
+              "frame_blend": "Off",
+              "motion_blur": false,
+              "adjustment": false,
+              "three_d": false,
+              "guide": false
+            },
+            "blend_mode": "Normal",
+            "preserve_transparency": false,
+            "track_matte": null,
+            "parent": null,
+            "markers": [],
+            "auto_orient": "Off",
+            "props": {
+              "uid": 29,
+              "match": "layer",
+              "name": "Subscribe",
+              "kind": {
+                "kind": "Plain"
+              },
+              "enabled": true,
+              "children": [
+                {
+                  "node": "Group",
+                  "uid": 30,
+                  "match": "masks",
+                  "name": "Masks",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": []
+                },
+                {
+                  "node": "Group",
+                  "uid": 31,
+                  "match": "effects",
+                  "name": "Effects",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": []
+                },
+                {
+                  "node": "Group",
+                  "uid": 40,
+                  "match": "transform",
+                  "name": "Transform",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": [
+                    {
+                      "node": "Prop",
+                      "uid": 32,
+                      "match": "anchor",
+                      "name": "Anchor Point",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          280.0,
+                          60.0,
+                          0.0
+                        ]
+                      },
+                      "ui": {
+                        "kind": "Point"
+                      },
+                      "spatial": true,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 33,
+                      "match": "position",
+                      "name": "Position",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          960.0,
+                          540.0,
+                          0.0
+                        ]
+                      },
+                      "keys": [
+                        {
+                          "time": 0,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              1250.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 59270400000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              912.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 84672000000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              930.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 762048000000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              930.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 846720000000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              1300.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        }
+                      ],
+                      "ui": {
+                        "kind": "Point"
+                      },
+                      "spatial": true,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 34,
+                      "match": "scale",
+                      "name": "Scale",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          100.0,
+                          100.0,
+                          100.0
+                        ]
+                      },
+                      "keys": [
+                        {
+                          "time": 389491200000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              100.0,
+                              100.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 406425600000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              90.0,
+                              90.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 431827200000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              104.0,
+                              104.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 448761600000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              100.0,
+                              100.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        }
+                      ],
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 35,
+                      "match": "orientation",
+                      "name": "Orientation",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 36,
+                      "match": "rotationX",
+                      "name": "X Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 37,
+                      "match": "rotationY",
+                      "name": "Y Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 38,
+                      "match": "rotation",
+                      "name": "Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 39,
+                      "match": "opacity",
+                      "name": "Opacity",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "keys": [
+                        {
+                          "time": 0,
+                          "value": {
+                            "t": "Scalar",
+                            "v": 100.0
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 397958400000,
+                          "value": {
+                            "t": "Scalar",
+                            "v": 100.0
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 406425600000,
+                          "value": {
+                            "t": "Scalar",
+                            "v": 0.0
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        }
+                      ],
+                      "ui": {
+                        "kind": "Slider",
+                        "min": 0.0,
+                        "max": 100.0,
+                        "slider_min": 0.0,
+                        "slider_max": 100.0,
+                        "decimals": 0
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    }
+                  ]
+                },
+                {
+                  "node": "Group",
+                  "uid": 41,
+                  "match": "materialOptions",
+                  "name": "Material Options",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": [
+                    {
+                      "node": "Prop",
+                      "uid": 42,
+                      "match": "castsShadows",
+                      "name": "Casts Shadows",
+                      "value": {
+                        "t": "Enum",
+                        "v": 0
+                      },
+                      "ui": {
+                        "kind": "Popup",
+                        "options": [
+                          "Off",
+                          "On",
+                          "Only"
+                        ]
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 43,
+                      "match": "lightTransmission",
+                      "name": "Light Transmission",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 44,
+                      "match": "acceptsShadows",
+                      "name": "Accepts Shadows",
+                      "value": {
+                        "t": "Enum",
+                        "v": 1
+                      },
+                      "ui": {
+                        "kind": "Popup",
+                        "options": [
+                          "Off",
+                          "On",
+                          "Only"
+                        ]
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 45,
+                      "match": "acceptsLights",
+                      "name": "Accepts Lights",
+                      "value": {
+                        "t": "Bool",
+                        "v": true
+                      },
+                      "ui": {
+                        "kind": "Checkbox"
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 46,
+                      "match": "ambient",
+                      "name": "Ambient",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 47,
+                      "match": "diffuse",
+                      "name": "Diffuse",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 50.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 48,
+                      "match": "specularIntensity",
+                      "name": "Specular Intensity",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 50.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 49,
+                      "match": "specularShininess",
+                      "name": "Specular Shininess",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 5.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 50,
+                      "match": "metal",
+                      "name": "Metal",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "id": 4,
+            "name": "Subscribed",
+            "source": {
+              "type": "Solid",
+              "item": 3
+            },
+            "label": "Red",
+            "comment": "",
+            "start_time": 0,
+            "in_point": 0,
+            "out_point": 889056000000,
+            "stretch": 100.0,
+            "switches": {
+              "video": true,
+              "audio": true,
+              "solo": false,
+              "locked": false,
+              "shy": false,
+              "collapse": false,
+              "quality": "Best",
+              "sampling": "Bilinear",
+              "effects": true,
+              "frame_blend": "Off",
+              "motion_blur": false,
+              "adjustment": false,
+              "three_d": false,
+              "guide": false
+            },
+            "blend_mode": "Normal",
+            "preserve_transparency": false,
+            "track_matte": null,
+            "parent": null,
+            "markers": [],
+            "auto_orient": "Off",
+            "props": {
+              "uid": 5,
+              "match": "layer",
+              "name": "Subscribed",
+              "kind": {
+                "kind": "Plain"
+              },
+              "enabled": true,
+              "children": [
+                {
+                  "node": "Group",
+                  "uid": 6,
+                  "match": "masks",
+                  "name": "Masks",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": []
+                },
+                {
+                  "node": "Group",
+                  "uid": 7,
+                  "match": "effects",
+                  "name": "Effects",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": []
+                },
+                {
+                  "node": "Group",
+                  "uid": 16,
+                  "match": "transform",
+                  "name": "Transform",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": [
+                    {
+                      "node": "Prop",
+                      "uid": 8,
+                      "match": "anchor",
+                      "name": "Anchor Point",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          280.0,
+                          60.0,
+                          0.0
+                        ]
+                      },
+                      "ui": {
+                        "kind": "Point"
+                      },
+                      "spatial": true,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 9,
+                      "match": "position",
+                      "name": "Position",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          960.0,
+                          540.0,
+                          0.0
+                        ]
+                      },
+                      "keys": [
+                        {
+                          "time": 0,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              1250.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 59270400000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              912.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 84672000000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              930.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 762048000000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              930.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 846720000000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              960.0,
+                              1300.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        }
+                      ],
+                      "ui": {
+                        "kind": "Point"
+                      },
+                      "spatial": true,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 10,
+                      "match": "scale",
+                      "name": "Scale",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          100.0,
+                          100.0,
+                          100.0
+                        ]
+                      },
+                      "keys": [
+                        {
+                          "time": 389491200000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              100.0,
+                              100.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 406425600000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              90.0,
+                              90.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 431827200000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              104.0,
+                              104.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 448761600000,
+                          "value": {
+                            "t": "Vec3",
+                            "v": [
+                              100.0,
+                              100.0,
+                              0.0
+                            ]
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        }
+                      ],
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 2,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 11,
+                      "match": "orientation",
+                      "name": "Orientation",
+                      "value": {
+                        "t": "Vec3",
+                        "v": [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 12,
+                      "match": "rotationX",
+                      "name": "X Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 13,
+                      "match": "rotationY",
+                      "name": "Y Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": true,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 14,
+                      "match": "rotation",
+                      "name": "Rotation",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Angle"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 15,
+                      "match": "opacity",
+                      "name": "Opacity",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "keys": [
+                        {
+                          "time": 0,
+                          "value": {
+                            "t": "Scalar",
+                            "v": 0.0
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 397958400000,
+                          "value": {
+                            "t": "Scalar",
+                            "v": 0.0
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        },
+                        {
+                          "time": 406425600000,
+                          "value": {
+                            "t": "Scalar",
+                            "v": 100.0
+                          },
+                          "in_interp": "Linear",
+                          "out_interp": "Linear",
+                          "in_ease": [],
+                          "out_ease": [],
+                          "continuous": false,
+                          "auto_bezier": false,
+                          "spatial_in": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_out": [
+                            0.0,
+                            0.0,
+                            0.0
+                          ],
+                          "spatial_auto": true,
+                          "spatial_continuous": false,
+                          "roving": false
+                        }
+                      ],
+                      "ui": {
+                        "kind": "Slider",
+                        "min": 0.0,
+                        "max": 100.0,
+                        "slider_min": 0.0,
+                        "slider_max": 100.0,
+                        "decimals": 0
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    }
+                  ]
+                },
+                {
+                  "node": "Group",
+                  "uid": 17,
+                  "match": "materialOptions",
+                  "name": "Material Options",
+                  "kind": {
+                    "kind": "Plain"
+                  },
+                  "enabled": true,
+                  "children": [
+                    {
+                      "node": "Prop",
+                      "uid": 18,
+                      "match": "castsShadows",
+                      "name": "Casts Shadows",
+                      "value": {
+                        "t": "Enum",
+                        "v": 0
+                      },
+                      "ui": {
+                        "kind": "Popup",
+                        "options": [
+                          "Off",
+                          "On",
+                          "Only"
+                        ]
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 19,
+                      "match": "lightTransmission",
+                      "name": "Light Transmission",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 0.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 20,
+                      "match": "acceptsShadows",
+                      "name": "Accepts Shadows",
+                      "value": {
+                        "t": "Enum",
+                        "v": 1
+                      },
+                      "ui": {
+                        "kind": "Popup",
+                        "options": [
+                          "Off",
+                          "On",
+                          "Only"
+                        ]
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 21,
+                      "match": "acceptsLights",
+                      "name": "Accepts Lights",
+                      "value": {
+                        "t": "Bool",
+                        "v": true
+                      },
+                      "ui": {
+                        "kind": "Checkbox"
+                      },
+                      "spatial": false,
+                      "hold_only": true,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 22,
+                      "match": "ambient",
+                      "name": "Ambient",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 23,
+                      "match": "diffuse",
+                      "name": "Diffuse",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 50.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 24,
+                      "match": "specularIntensity",
+                      "name": "Specular Intensity",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 50.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 25,
+                      "match": "specularShininess",
+                      "name": "Specular Shininess",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 5.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    },
+                    {
+                      "node": "Prop",
+                      "uid": 26,
+                      "match": "metal",
+                      "name": "Metal",
+                      "value": {
+                        "t": "Scalar",
+                        "v": 100.0
+                      },
+                      "ui": {
+                        "kind": "Percent"
+                      },
+                      "spatial": false,
+                      "hold_only": false,
+                      "three_d_only": false,
+                      "two_d_only": false,
+                      "shown_dims": 0,
+                      "static_only": false
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "markers": [],
+        "shutter_angle": 180.0,
+        "shutter_phase": -90.0,
+        "motion_blur_samples": 16,
+        "motion_blur_adaptive_limit": 128,
+        "renderer": "Classic3D",
+        "hide_shy": false,
+        "enable_motion_blur": true,
+        "enable_frame_blending": true,
+        "draft_3d": false,
+        "preserve_frame_rate": false,
+        "preserve_resolution": false,
+        "poster_time": 0,
+        "global_light": {
+          "angle": {
+            "uid": 0,
+            "match": "globalLightAngle",
+            "name": "Global Light Angle",
+            "value": {
+              "t": "Scalar",
+              "v": 120.0
+            },
+            "ui": {
+              "kind": "Angle"
+            },
+            "spatial": false,
+            "hold_only": false,
+            "three_d_only": false,
+            "two_d_only": false,
+            "shown_dims": 0,
+            "static_only": false
+          },
+          "altitude": {
+            "uid": 0,
+            "match": "globalLightAltitude",
+            "name": "Global Light Altitude",
+            "value": {
+              "t": "Scalar",
+              "v": 30.0
+            },
+            "ui": {
+              "kind": "Angle"
+            },
+            "spatial": false,
+            "hold_only": false,
+            "three_d_only": false,
+            "two_d_only": false,
+            "shown_dims": 0,
+            "static_only": false
+          }
+        }
+      }
+    },
+    "2": {
+      "id": 2,
+      "name": "Solids",
+      "label": "Yellow",
+      "comment": "",
+      "parent": null,
+      "kind": {
+        "type": "Folder"
+      }
+    },
+    "3": {
+      "id": 3,
+      "name": "Subscribed",
+      "label": "Red",
+      "comment": "",
+      "parent": 2,
+      "kind": {
+        "type": "Solid",
+        "color": [
+          0.33,
+          0.33,
+          0.35
+        ],
+        "width": 560,
+        "height": 120,
+        "pixel_aspect": 1.0
+      }
+    },
+    "27": {
+      "id": 27,
+      "name": "Subscribe",
+      "label": "Red",
+      "comment": "",
+      "parent": 2,
+      "kind": {
+        "type": "Solid",
+        "color": [
+          0.9,
+          0.13,
+          0.09
+        ],
+        "width": 560,
+        "height": 120,
+        "pixel_aspect": 1.0
+      }
+    }
+  },
+  "next_id": 168
+}

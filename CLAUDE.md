@@ -10,7 +10,11 @@ Seb The Goat's tool for turning gaming streams into CoryxKenshin-style YouTube e
 - **Owner's chosen style (Oct 25, 2026): FaZe Jev / M3RKMUS1C.** Long continuous clips, hard cuts, voice up front,
   no captions/meme sounds/music under gameplay, 3-4 face snap-zooms and 1-2 B&W freezes per video, one
   LIKE + SUBSCRIBE card. Make the full plan, then `python tools/jev_merk_plan.py plans/<name>.json` and render
-  the `-jevmerk` plan. Not CoryxKenshin-style overkill.
+  the `-jevmerk` plan. Not CoryxKenshin-style overkill. The subscribe card is `brand/subscribe.mov` (EffectCraft,
+  `intro/subscribe.jsx`), used as an `overlay` effect.
+- **Polish in Resolve:** `python tools/export_timeline.py plans/<name>.json --source <HD original>` writes an FCP 7 XML
+  timeline (File > Import > Timeline in Resolve) plus FCPXML/OTIO/EDL/FilmCraft project, built with FilmCraft's CLI
+  (`FILMCRAFT_CLI` or on PATH). Effects and bleeps come in as colored markers.
 - **Earlier preference: no over-editing.** Default to a clean edit: facecam + gameplay, the best
   moments with dead air cut, bleeps, intro/outro, and nothing else. Make a full plan, then
   `python tools/clean_plan.py plans/<name>.json` and render the `-clean` plan. Only add captions, zooms,

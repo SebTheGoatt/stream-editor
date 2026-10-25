@@ -12,3 +12,4 @@ sfx/pack/
 !pack/**/*.mp4
 !brand/*.mp4
 .env
+!brand/subscribe.mov
