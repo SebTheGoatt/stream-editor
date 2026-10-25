@@ -1,0 +1,123 @@
+{
+  "title": "*NEW* COD MW4 (clean)",
+  "source": "../work/cod.mp4",
+  "transcript": "../work/cod_transcript.json",
+  "sfx_dir": "../sfx",
+  "output": "../out/cod-mw4-clean.mp4",
+  "facecam": [
+    0.83,
+    0.78
+  ],
+  "tighten": {
+    "min_silence": 0.8,
+    "pad": 0.15,
+    "noise_db": -34
+  },
+  "segments": [
+    {
+      "label": "channel intro",
+      "clip": "../brand/intro.mp4",
+      "fx": [
+        {
+          "type": "music",
+          "at": 0,
+          "dur": 1.2,
+          "name": "glitch",
+          "vol": 1.0
+        },
+        {
+          "type": "music",
+          "at": 0.3,
+          "dur": 9.7,
+          "name": "music_cory_dance_music",
+          "vol": 0.8
+        }
+      ]
+    },
+    {
+      "label": "number one hater + bedtime",
+      "start": 41.0,
+      "end": 76.0,
+      "fx": []
+    },
+    {
+      "label": "filter roast",
+      "start": 84.0,
+      "end": 108.0,
+      "fx": []
+    },
+    {
+      "label": "countdown + soundboard",
+      "start": 171.0,
+      "end": 200.5,
+      "fx": []
+    },
+    {
+      "label": "not funny / friends",
+      "start": 214.5,
+      "end": 259.0,
+      "fx": []
+    },
+    {
+      "label": "finally a gamer",
+      "start": 590.0,
+      "end": 637.0,
+      "fx": []
+    },
+    {
+      "label": "sorry for having responsibilities",
+      "start": 807.5,
+      "end": 821.0,
+      "fx": []
+    },
+    {
+      "label": "numb nuts / flying dude / shotty",
+      "start": 912.5,
+      "end": 960.0,
+      "fx": []
+    },
+    {
+      "label": "gotcha / slide",
+      "start": 1138.5,
+      "end": 1152.5,
+      "fx": []
+    },
+    {
+      "label": "that's how you sound",
+      "start": 1210.5,
+      "end": 1258.0,
+      "fx": []
+    },
+    {
+      "label": "the IRS is watching",
+      "start": 1386.0,
+      "end": 1464.0,
+      "fx": []
+    },
+    {
+      "label": "mega run",
+      "start": 1513.0,
+      "end": 1556.0,
+      "fx": []
+    },
+    {
+      "label": "making cars finale",
+      "start": 1910.5,
+      "end": 1948.0,
+      "fx": []
+    },
+    {
+      "label": "outro",
+      "clip": "../brand/outro.mp4",
+      "fx": [
+        {
+          "type": "music",
+          "at": 0,
+          "dur": 6,
+          "name": "music_cory_happy_music",
+          "vol": 0.8
+        }
+      ]
+    }
+  ]
+}

@@ -7,6 +7,12 @@ Seb The Goat's tool for turning gaming streams into CoryxKenshin-style YouTube e
   tools: `stream-editor-setup`.
   Shorts, captions, publishing: `using-vizard-api` (`tools/vizard.py`; key in `VIZARDAI_API_KEY`, never in chat
   or git; publishing needs the owner's explicit yes).
+- **Owner preference (Oct 2026): no over-editing.** Default to a clean edit: facecam + gameplay, the best
+  moments with dead air cut, bleeps, intro/outro, and nothing else. Make a full plan, then
+  `python tools/clean_plan.py plans/<name>.json` and render the `-clean` plan. Only add captions, zooms,
+  freezes, sounds or music when the owner asks for them.
+- **Recordings may play fast or have game audio out of sync.** Don't try to fix it, don't add slow-mo or
+  speed changes, and time cuts and anything else to the voice, not to game sounds.
 - Pipeline: `transcribe.py` (word timings) → plan in `plans/*.json` → `edit.py` (render) → listen-through.
 - Helpers: `tools/find_moments.py`, `tools/contact_sheet.py`, `tools/import_pack.py`. Every tool used and
   why is in `docs/TOOLS.md`.
