@@ -1,0 +1,190 @@
+{
+  "title": "MW4 with the boys: making videos like FaZe Jev",
+  "source": "../work/rec1/rec.mp4",
+  "transcript": "../work/mw4-1080-1_transcript.json",
+  "sfx_dir": "../sfx",
+  "output": "../out/mw4-1080-1.mp4",
+  "fps": 60,
+  "crf": 20,
+  "x264_preset": "fast",
+  "facecam": [
+    0.84,
+    0.83
+  ],
+  "tighten": {
+    "min_silence": 0.7,
+    "pad": 0.15,
+    "noise_db": -30
+  },
+  "palette": {
+    "text": "white",
+    "punch": "#FF2B2B",
+    "danger": "#FF2B2B",
+    "win": "#7CFC00",
+    "box": "#E01B24"
+  },
+  "goat_sound": "goat",
+  "bleep_sound": "quack",
+  "layout": {
+    "game": [
+      1920,
+      0,
+      1920,
+      1080
+    ],
+    "cam": [
+      0,
+      0,
+      1920,
+      1080
+    ],
+    "cam_size": [
+      568,
+      320
+    ],
+    "cam_pos": [
+      1324,
+      732
+    ],
+    "border": 4
+  },
+  "audio_tracks": {
+    "mic": 1,
+    "game": 2,
+    "friends": 3
+  },
+  "segments": [
+    {
+      "label": "alignment",
+      "start": 2403.8,
+      "end": 2437.6,
+      "fx": [
+        {
+          "type": "text",
+          "at": 2403.9,
+          "dur": 2.6,
+          "text": "HOW ARE YOU ALWAYS IN THE RIGHT PLACE?",
+          "pos": "center",
+          "color": "punch"
+        },
+        {
+          "type": "zoom",
+          "at": 2429.8,
+          "dur": 2.0,
+          "scale": 1.6,
+          "target": "face"
+        },
+        {
+          "type": "freeze",
+          "at": 2433.6,
+          "dur": 1.2,
+          "text": "IT'S CALLED ALIGNMENT",
+          "target": "face",
+          "zoom": 1.4
+        }
+      ]
+    },
+    {
+      "label": "what is that noise",
+      "start": 405.0,
+      "end": 440.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 405.1,
+          "dur": 2.6,
+          "text": "WHAT IS THAT NOISE?",
+          "pos": "center",
+          "color": "punch"
+        },
+        {
+          "type": "zoom",
+          "at": 411.2,
+          "dur": 2.0,
+          "scale": 1.6,
+          "target": "face"
+        },
+        {
+          "type": "freeze",
+          "at": 426.6,
+          "dur": 1.2,
+          "text": "GREEN BEANS & PANDA",
+          "target": "face",
+          "zoom": 1.4
+        }
+      ]
+    },
+    {
+      "label": "next faze jev",
+      "start": 915.0,
+      "end": 958.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 915.1,
+          "dur": 2.6,
+          "text": "I'M THE NEXT FAZE JEV",
+          "pos": "center",
+          "color": "punch"
+        },
+        {
+          "type": "zoom",
+          "at": 920.2,
+          "dur": 2.5,
+          "scale": 1.6,
+          "target": "face"
+        }
+      ]
+    },
+    {
+      "label": "baseball in the dirt",
+      "start": 1280.0,
+      "end": 1322.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 1280.1,
+          "dur": 2.6,
+          "text": "USA ALL DAY",
+          "pos": "center",
+          "color": "punch"
+        },
+        {
+          "type": "zoom",
+          "at": 1294.2,
+          "dur": 2.5,
+          "scale": 1.6,
+          "target": "face"
+        }
+      ]
+    },
+    {
+      "label": "shot the wall",
+      "start": 2077.0,
+      "end": 2118.5,
+      "cuts": [
+        [
+          2093.9,
+          2096.6
+        ]
+      ],
+      "fx": [
+        {
+          "type": "text",
+          "at": 2077.1,
+          "dur": 2.6,
+          "text": "HE SHOT THE WALL",
+          "pos": "center",
+          "color": "punch"
+        },
+        {
+          "type": "zoom",
+          "at": 2102.7,
+          "dur": 2.0,
+          "scale": 1.6,
+          "target": "face"
+        }
+      ]
+    }
+  ]
+}
