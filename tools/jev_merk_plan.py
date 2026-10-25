@@ -67,8 +67,11 @@ def main():
             m["end"] = max(m["end"], b)
             m["label"] += " + " + s.get("label", "")
             m["_fx"] += s.get("fx", [])
+            m["cuts"] += s.get("cuts", [])
         else:
-            merged.append({"label": s.get("label", ""), "start": a, "end": b, "_fx": list(s.get("fx", []))})
+            # "cuts" (lines removed, e.g. a slur) and "chapter" names must survive the merge.
+            merged.append({"label": s.get("label", ""), "start": a, "end": b, "_fx": list(s.get("fx", [])),
+                           "cuts": list(s.get("cuts", [])), **({"chapter": s["chapter"]} if s.get("chapter") else {})})
 
     # Accents: a few face zooms and freezes, spread across the video.
     zooms = spread([(i, f) for i, m in enumerate(merged) for f in m["_fx"]
@@ -102,6 +105,8 @@ def main():
     segments = []
     for m in merged:
         m.pop("_fx")
+        if not m["cuts"]:
+            m.pop("cuts")
         segments.append(m)
     intro = [c for c in clips if "intro" in c.get("label", "").lower()]
     outro = [c for c in clips if "outro" in c.get("label", "").lower()]
