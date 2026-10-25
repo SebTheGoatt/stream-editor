@@ -20,6 +20,7 @@
 |---|---|
 | `tools/make_shorts.py` | Ranks a plan's moments and renders the best as 1080x1920 Shorts with word-by-word captions |
 | `tools/prep_stream.py` | One command for a new recording: GPU transcript, readable transcript, loudest moments, overview grid, starter plan |
+| `tools/jev_merk_plan.py` | Turns any plan into a FaZe Jev / M3RKMUS1C-style edit: long continuous clips, hard cuts, a few face zooms and B&W freezes, one subscribe card |
 | `tools/clean_plan.py` | Turns any plan into a clean edit: facecam + gameplay, cuts and bleeps only |
 | `tools/find_moments.py` | Read/search the transcript, exact word times, loudest moments |
 | `tools/contact_sheet.py` | Timestamped frame grid to find deaths/kills and to review a finished edit |

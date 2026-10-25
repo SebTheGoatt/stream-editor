@@ -3,7 +3,9 @@ name: sebthegoat-edit
 description: Edit a stream into a Seb The Goat video, the channel's own style ("dad gamer chaos", medium-density edits, running counters, GOAT MOMENT, two ~10 min parts). Use by default for any request to edit, cut or make videos from Seb's streams or DaVinci timeline; use coryxkenshin-edit only when Cory-heavy editing is asked for.
 ---
 
-> **Current default (owner, Oct 2026): clean edits.** Pick and cut the moments as below, then run
+> **Current default (owner, Oct 25 2026): FaZe Jev / M3RKMUS1C style.** Pick the moments as below, then run
+> `python tools/jev_merk_plan.py plans/<name>.json` and render the `-jevmerk` plan (long clips, hard cuts,
+> a few face zooms and B&W freezes, no captions/sounds/music under gameplay). For a bare cut use
 > `python tools/clean_plan.py plans/<name>.json` and render the `-clean` plan: facecam + gameplay,
 > dead air cut, bleeps, intro/outro, no captions, zooms, sounds or music. Use the full treatment
 > below only when Seb asks for it. Recordings can play fast or have game audio out of sync: never add

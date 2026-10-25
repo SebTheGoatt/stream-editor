@@ -7,7 +7,11 @@ Seb The Goat's tool for turning gaming streams into CoryxKenshin-style YouTube e
   tools: `stream-editor-setup`.
   Shorts, captions, publishing: `using-vizard-api` (`tools/vizard.py`; key in `VIZARDAI_API_KEY`, never in chat
   or git; publishing needs the owner's explicit yes).
-- **Owner preference (Oct 2026): no over-editing.** Default to a clean edit: facecam + gameplay, the best
+- **Owner's chosen style (Oct 25, 2026): FaZe Jev / M3RKMUS1C.** Long continuous clips, hard cuts, voice up front,
+  no captions/meme sounds/music under gameplay, 3-4 face snap-zooms and 1-2 B&W freezes per video, one
+  LIKE + SUBSCRIBE card. Make the full plan, then `python tools/jev_merk_plan.py plans/<name>.json` and render
+  the `-jevmerk` plan. Not CoryxKenshin-style overkill.
+- **Earlier preference: no over-editing.** Default to a clean edit: facecam + gameplay, the best
   moments with dead air cut, bleeps, intro/outro, and nothing else. Make a full plan, then
   `python tools/clean_plan.py plans/<name>.json` and render the `-clean` plan. Only add captions, zooms,
   freezes, sounds or music when the owner asks for them.
