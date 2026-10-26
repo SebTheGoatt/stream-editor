@@ -38,6 +38,43 @@ def spread(items, n):
     return [items[round(i * step)] for i in range(n)]
 
 
+def build_montage(moments, budget, game):
+    """Fast highlight hits around each moment's punchlines (zooms, freezes, captions), in stream order."""
+    beats = sorted((f["at"], f, m) for m in moments for f in m.get("fx", [])
+                   if f["type"] in ("zoom", "freeze", "goat", "text"))
+    hits = []
+    for at, f, m in beats:
+        a, b = max(m["start"], at - 2.0), min(m["end"], at + 3.0)
+        if any(c[0] < b and c[1] > a for c in m.get("cuts", [])) or b - a < 2.5:
+            continue  # never let a cut line (a slur) back in through the montage
+        if hits and a < hits[-1]["end"]:
+            hits[-1]["end"] = max(hits[-1]["end"], b)
+            continue
+        hits.append({"label": "montage", "start": round(a, 2), "end": round(b, 2), "tighten": False,
+                     "transition": False, "fx": []})
+        if f["type"] in ("zoom", "goat"):
+            hits[-1]["fx"].append({"type": "zoom", "at": at, "dur": min(2.0, b - at), "scale": 1.5, "target": "face"})
+    picked, total = [], 0.0
+    for h in hits:  # spread across the stream, not just the start
+        picked.append(h)
+        total += h["end"] - h["start"]
+    while total > budget and len(picked) > 1:
+        drop = len(picked) // 2 if len(picked) > 2 else 1
+        total -= picked[drop]["end"] - picked[drop]["start"]
+        picked.pop(drop)
+    if picked and game:
+        t = 0.0
+        for h in picked:  # the like-ask sits under the first ~12 s
+            if t >= 12:
+                break
+            h["fx"].append({"type": "text", "at": h["start"], "dur": h["end"] - h["start"],
+                            "text": f"LEAVE A LIKE FOR MORE {game.upper()} :)", "pos": "bottom", "size": 0.055})
+            t += h["end"] - h["start"]
+    if picked:
+        picked[0]["chapter"] = "Highlights"
+    return picked
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("plan")
@@ -47,6 +84,9 @@ def main():
     ap.add_argument("--zooms", type=int, default=4, help="face punch-ins to keep")
     ap.add_argument("--freezes", type=int, default=2, help="black-and-white freezes to keep")
     ap.add_argument("--no-cta", action="store_true", help="skip the LIKE + SUBSCRIBE card")
+    ap.add_argument("--montage", type=float, default=75.0,
+                    help="seconds of fast highlight montage before the intro, like FaZe Jev's openers (0 = none)")
+    ap.add_argument("--game", help='game name for the montage caption, e.g. "MODERN WARFARE 4" (default: plan "game")')
     args = ap.parse_args()
 
     plan = json.load(open(args.plan))
@@ -109,6 +149,10 @@ def main():
             m.pop("cuts")
         segments.append(m)
     intro = [c for c in clips if "intro" in c.get("label", "").lower()]
+    if args.montage > 0:
+        # Jev's opener: the best beats, 4-5 s each, hard cut, then the TV-static intro as the transition.
+        montage = build_montage(moments, args.montage, args.game or plan.get("game"))
+        intro = montage + intro
     outro = [c for c in clips if "outro" in c.get("label", "").lower()]
     plan["segments"] = intro + segments + outro
     plan["tighten"] = {"min_silence": 2.0, "pad": 0.35, "noise_db": plan.get("tighten", {}).get("noise_db", -34)}

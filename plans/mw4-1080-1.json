@@ -294,5 +294,6 @@
   "track_filters": {
     "mic": "acompressor=threshold=0.1:ratio=3:attack=5:release=150,alimiter=limit=0.89",
     "friends": "acompressor=threshold=0.1:ratio=3:attack=5:release=150,alimiter=limit=0.89"
-  }
+  },
+  "game": "Modern Warfare 4"
 }

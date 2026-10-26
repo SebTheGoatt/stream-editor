@@ -55,6 +55,191 @@
   },
   "segments": [
     {
+      "label": "montage",
+      "start": 2427.8,
+      "end": 2436.6,
+      "tighten": false,
+      "transition": false,
+      "fx": [
+        {
+          "type": "zoom",
+          "at": 2429.8,
+          "dur": 2.0,
+          "scale": 1.5,
+          "target": "face"
+        },
+        {
+          "type": "text",
+          "at": 2427.8,
+          "dur": 8.799999999999727,
+          "text": "LEAVE A LIKE FOR MORE MODERN WARFARE 4 :)",
+          "pos": "bottom",
+          "size": 0.055
+        }
+      ],
+      "chapter": "Highlights"
+    },
+    {
+      "label": "montage",
+      "start": 409.2,
+      "end": 414.2,
+      "tighten": false,
+      "transition": false,
+      "fx": [
+        {
+          "type": "zoom",
+          "at": 411.2,
+          "dur": 2.0,
+          "scale": 1.5,
+          "target": "face"
+        },
+        {
+          "type": "text",
+          "at": 409.2,
+          "dur": 5.0,
+          "text": "LEAVE A LIKE FOR MORE MODERN WARFARE 4 :)",
+          "pos": "bottom",
+          "size": 0.055
+        }
+      ]
+    },
+    {
+      "label": "montage",
+      "start": 424.6,
+      "end": 429.6,
+      "tighten": false,
+      "transition": false,
+      "fx": []
+    },
+    {
+      "label": "montage",
+      "start": 828.3,
+      "end": 833.3,
+      "tighten": false,
+      "transition": false,
+      "fx": [
+        {
+          "type": "zoom",
+          "at": 830.3,
+          "dur": 2.0,
+          "scale": 1.5,
+          "target": "face"
+        }
+      ]
+    },
+    {
+      "label": "montage",
+      "start": 918.2,
+      "end": 926.6,
+      "tighten": false,
+      "transition": false,
+      "fx": [
+        {
+          "type": "zoom",
+          "at": 920.2,
+          "dur": 2.0,
+          "scale": 1.5,
+          "target": "face"
+        }
+      ]
+    },
+    {
+      "label": "montage",
+      "start": 1292.2,
+      "end": 1297.2,
+      "tighten": false,
+      "transition": false,
+      "fx": [
+        {
+          "type": "zoom",
+          "at": 1294.2,
+          "dur": 2.0,
+          "scale": 1.5,
+          "target": "face"
+        }
+      ]
+    },
+    {
+      "label": "montage",
+      "start": 1347.1,
+      "end": 1352.1,
+      "tighten": false,
+      "transition": false,
+      "fx": [
+        {
+          "type": "zoom",
+          "at": 1349.1,
+          "dur": 2.0,
+          "scale": 1.5,
+          "target": "face"
+        }
+      ]
+    },
+    {
+      "label": "montage",
+      "start": 1438.2,
+      "end": 1443.2,
+      "tighten": false,
+      "transition": false,
+      "fx": [
+        {
+          "type": "zoom",
+          "at": 1440.2,
+          "dur": 2.0,
+          "scale": 1.5,
+          "target": "face"
+        }
+      ]
+    },
+    {
+      "label": "montage",
+      "start": 1566.1,
+      "end": 1571.1,
+      "tighten": false,
+      "transition": false,
+      "fx": [
+        {
+          "type": "zoom",
+          "at": 1568.1,
+          "dur": 2.0,
+          "scale": 1.5,
+          "target": "face"
+        }
+      ]
+    },
+    {
+      "label": "montage",
+      "start": 1811.9,
+      "end": 1816.9,
+      "tighten": false,
+      "transition": false,
+      "fx": [
+        {
+          "type": "zoom",
+          "at": 1813.9,
+          "dur": 2.0,
+          "scale": 1.5,
+          "target": "face"
+        }
+      ]
+    },
+    {
+      "label": "montage",
+      "start": 2100.7,
+      "end": 2105.7,
+      "tighten": false,
+      "transition": false,
+      "fx": [
+        {
+          "type": "zoom",
+          "at": 2102.7,
+          "dur": 2.0,
+          "scale": 1.5,
+          "target": "face"
+        }
+      ]
+    },
+    {
       "label": "channel intro",
       "clip": "../brand/intro.mp4",
       "fx": [
@@ -255,5 +440,6 @@
   "track_filters": {
     "mic": "acompressor=threshold=0.1:ratio=3:attack=5:release=150,alimiter=limit=0.89",
     "friends": "acompressor=threshold=0.1:ratio=3:attack=5:release=150,alimiter=limit=0.89"
-  }
+  },
+  "game": "Modern Warfare 4"
 }

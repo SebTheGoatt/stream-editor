@@ -12,6 +12,11 @@ Seb The Goat's tool for turning gaming streams into CoryxKenshin-style YouTube e
   LIKE + SUBSCRIBE card. Make the full plan, then `python tools/jev_merk_plan.py plans/<name>.json` and render
   the `-jevmerk` plan. Not CoryxKenshin-style overkill. The subscribe card is `brand/subscribe.mov` (EffectCraft,
   `intro/subscribe.jsx`), used as an `overlay` effect.
+  From the owner's reference videos (Jev "IfwS8Wl3_rI", Merk "ZJ2O5PYuBYw", Oct 2026): open with a ~60-75 s fast
+  highlight montage (4-5 s hits, punch zooms, "LEAVE A LIKE FOR MORE <GAME> :)" along the bottom for ~12 s), then
+  the TV-static brand intro as the glitch transition, then long commentary clips. `jev_merk_plan.py --montage`
+  builds it (default 75 s; plan `"game"` names the game). Lead the montage with the strongest action/punchline,
+  not a menu.
 - **Polish in Resolve:** `python tools/export_timeline.py plans/<name>.json --source <HD original>` writes an FCP 7 XML
   timeline (File > Import > Timeline in Resolve) plus FCPXML/OTIO/EDL/FilmCraft project, built with FilmCraft's CLI
   (`FILMCRAFT_CLI` or on PATH). Effects and bleeps come in as colored markers.
