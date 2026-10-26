@@ -50,7 +50,7 @@ def build_montage(moments, budget, game):
         if hits and a < hits[-1]["end"]:
             hits[-1]["end"] = max(hits[-1]["end"], b)
             continue
-        hits.append({"label": "montage", "start": round(a, 2), "end": round(b, 2), "tighten": False,
+        hits.append({"label": "montage", "chapter": "", "start": round(a, 2), "end": round(b, 2), "tighten": False,
                      "transition": False, "fx": []})
         if f["type"] in ("zoom", "goat"):
             hits[-1]["fx"].append({"type": "zoom", "at": at, "dur": min(2.0, b - at), "scale": 1.5, "target": "face"})

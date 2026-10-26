@@ -758,7 +758,8 @@ def write_chapters(jobs, out, dur):
     for _, piece, seg in jobs:
         if seg is not last and "clip" not in seg and seg.get("label") != "transition":
             name = seg.get("chapter", seg.get("label", ""))
-            if not marks or (t - marks[-1][0] >= 10 and dur - t >= 10):
+            # "chapter": "" continues the previous chapter (e.g. every hit of an opening montage).
+            if name and (not marks or (t - marks[-1][0] >= 10 and dur - t >= 10)):
                 marks.append((t, name[:1].upper() + name[1:]))
         last = seg
         t += piece_length(piece, seg)
