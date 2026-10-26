@@ -1,0 +1,170 @@
+{
+  "title": "MW4 with the boys: making videos like FaZe Jev",
+  "source": "../work/rec1/rec.mp4",
+  "transcript": "../work/mw4-1080-1_transcript.json",
+  "sfx_dir": "../sfx",
+  "output": "../out/mw4-1080-1.mp4",
+  "fps": 60,
+  "crf": 20,
+  "x264_preset": "fast",
+  "facecam": [
+    0.84,
+    0.83
+  ],
+  "tighten": {
+    "min_silence": 0.7,
+    "pad": 0.15,
+    "noise_db": -35
+  },
+  "palette": {
+    "text": "white",
+    "punch": "#FF2B2B",
+    "danger": "#FF2B2B",
+    "win": "#7CFC00",
+    "box": "#E01B24"
+  },
+  "goat_sound": "goat",
+  "bleep_sound": "quack",
+  "layout": {
+    "game": [
+      1920,
+      0,
+      1920,
+      1080
+    ],
+    "cam": [
+      0,
+      0,
+      1920,
+      1080
+    ],
+    "cam_size": [
+      568,
+      320
+    ],
+    "cam_pos": [
+      1324,
+      732
+    ],
+    "border": 4
+  },
+  "audio_tracks": {
+    "mic": 1,
+    "game": 2,
+    "friends": 3
+  },
+  "segments": [
+    {
+      "label": "co-host",
+      "start": 7.0,
+      "end": 52.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 7.1,
+          "dur": 2.6,
+          "text": "MY CO-HOST TODAY",
+          "pos": "center",
+          "color": "punch"
+        }
+      ]
+    },
+    {
+      "label": "turf on concrete",
+      "start": 1339.0,
+      "end": 1386.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 1339.1,
+          "dur": 2.6,
+          "text": "THEY PUT TURF ON CONCRETE?!",
+          "pos": "center",
+          "color": "punch"
+        },
+        {
+          "type": "zoom",
+          "at": 1351.1,
+          "dur": 2.0,
+          "scale": 1.6,
+          "target": "face"
+        }
+      ]
+    },
+    {
+      "label": "screen too big",
+      "start": 1430.0,
+      "end": 1458.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 1430.1,
+          "dur": 2.6,
+          "text": "MY SCREEN IS TOO BIG",
+          "pos": "center",
+          "color": "punch"
+        },
+        {
+          "type": "zoom",
+          "at": 1440.2,
+          "dur": 2.5,
+          "scale": 1.6,
+          "target": "face"
+        }
+      ]
+    },
+    {
+      "label": "decoy",
+      "start": 1553.0,
+      "end": 1583.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 1553.1,
+          "dur": 2.6,
+          "text": "I FELL FOR THE DECOY",
+          "pos": "center",
+          "color": "punch"
+        },
+        {
+          "type": "zoom",
+          "at": 1568.1,
+          "dur": 2.0,
+          "scale": 1.6,
+          "target": "face"
+        }
+      ]
+    },
+    {
+      "label": "never mind",
+      "start": 1789.0,
+      "end": 1829.0,
+      "fx": [
+        {
+          "type": "text",
+          "at": 1789.1,
+          "dur": 2.6,
+          "text": "SICK GAMEPLAY... NEVER MIND",
+          "pos": "center",
+          "color": "punch"
+        },
+        {
+          "type": "zoom",
+          "at": 1813.9,
+          "dur": 2.0,
+          "scale": 1.6,
+          "target": "face"
+        }
+      ]
+    }
+  ],
+  "track_levels": {
+    "mic": 7.0,
+    "friends": 5.6,
+    "game": 0.8
+  },
+  "track_filters": {
+    "mic": "acompressor=threshold=0.1:ratio=3:attack=5:release=150,alimiter=limit=0.89",
+    "friends": "acompressor=threshold=0.1:ratio=3:attack=5:release=150,alimiter=limit=0.89"
+  }
+}

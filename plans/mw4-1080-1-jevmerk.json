@@ -14,7 +14,7 @@
   "tighten": {
     "min_silence": 2.0,
     "pad": 0.35,
-    "noise_db": -30
+    "noise_db": -35
   },
   "palette": {
     "text": "white",
@@ -246,5 +246,14 @@
         }
       ]
     }
-  ]
+  ],
+  "track_levels": {
+    "mic": 7.0,
+    "friends": 5.6,
+    "game": 0.8
+  },
+  "track_filters": {
+    "mic": "acompressor=threshold=0.1:ratio=3:attack=5:release=150,alimiter=limit=0.89",
+    "friends": "acompressor=threshold=0.1:ratio=3:attack=5:release=150,alimiter=limit=0.89"
+  }
 }

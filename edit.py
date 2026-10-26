@@ -82,11 +82,24 @@ def run(cmd):
 # ---------------------------------------------------------------- planning
 
 
-def silences(src, a, b, noise_db, min_len):
-    """Silent stretches inside [a, b] of the source, in source seconds."""
+def silences(src, a, b, noise_db, min_len, cfg=None):
+    """Silent stretches inside [a, b] of the source, in source seconds.
+
+    With separate OBS tracks, "silence" means nobody is talking: only the voice tracks (at their
+    track_levels) are listened to, so game noise can't hide a pause and quiet talk isn't cut.
+    """
+    tracks = (cfg or {}).get("audio_tracks") or {}
+    voices = [n for n in ("mic", "friends") if n in tracks]
+    detect = f"silencedetect=n={noise_db}dB:d={min_len}"
+    if voices:
+        levels = (cfg or {}).get("track_levels", {})
+        parts = ";".join(f"[0:a:{tracks[n]}]volume={levels.get(n, 1.0)}[v{k}]" for k, n in enumerate(voices))
+        mixed = "".join(f"[v{k}]" for k in range(len(voices)))
+        audio = ["-filter_complex", f"{parts};{mixed}amix=inputs={len(voices)}:normalize=0,{detect}[o]", "-map", "[o]"]
+    else:
+        audio = ["-vn", "-af", detect]
     p = subprocess.run(
-        ["ffmpeg", "-hide_banner", "-ss", str(a), "-t", str(b - a), "-i", src, "-vn",
-         "-af", f"silencedetect=n={noise_db}dB:d={min_len}", "-f", "null", "-"],
+        ["ffmpeg", "-hide_banner", "-ss", str(a), "-t", str(b - a), "-i", src, *audio, "-f", "null", "-"],
         capture_output=True, text=True,
     )
     out, start = [], None
@@ -152,7 +165,7 @@ def tightened(seg, src, cfg, laugh_marks):
     if t.get("keep_laughs", True):
         protected += [(s - pause, e + 0.6) for s, e in laugh_marks if s < b and e > a]
     cuts = []
-    for s, e in silences(src, a, b, t.get("noise_db", -34), t.get("min_silence", 0.9)):
+    for s, e in silences(src, a, b, t.get("noise_db", -34), t.get("min_silence", 0.9), cfg):
         s, e = s + pad, e - pad
         if e - s < 0.3:
             continue
@@ -193,7 +206,7 @@ def pieces_for(seg, src, cfg, laugh_marks=()):
                 cuts.append(f["at"])
         cuts = sorted(set(cuts)) + [rb]
         for x, y in zip(cuts, cuts[1:]):
-            if y - x < 0.04:
+            if y - x < 0.25:  # slivers between cuts are invisible and can stall ffmpeg
                 continue
             slow = next((f for f in slows if f["at"] <= x + 1e-6 and y <= f["at"] + f["dur"] + 1e-6), None)
             for f in freezes:
@@ -526,6 +539,9 @@ def render_piece(i, piece, seg, ctx):
                     all_hits += hits
             if n:
                 chain += f",volume={cfg.get('track_levels', {}).get(n, 1.0)}"
+                # Optional per-voice processing, e.g. compress and limit a quiet mic after boosting it.
+                if cfg.get("track_filters", {}).get(n):
+                    chain += "," + cfg["track_filters"][n]
             chains.append(chain)
         if len(chains) == 1:
             audio = chains[0]

@@ -19,6 +19,12 @@ Seb The Goat's tool for turning gaming streams into CoryxKenshin-style YouTube e
   moments with dead air cut, bleeps, intro/outro, and nothing else. Make a full plan, then
   `python tools/clean_plan.py plans/<name>.json` and render the `-clean` plan. Only add captions, zooms,
   freezes, sounds or music when the owner asks for them.
+- **Voices over the game (owner, Oct 26 2026):** mic and Discord must sit ~10 dB above the game. Seb's OBS
+  tracks record very quiet (mic peaks around -24 dBFS), so for 4-track recordings use
+  `"track_levels": {"mic": 7.0, "friends": 5.6, "game": 0.8}` and
+  `"track_filters"` with `acompressor=threshold=0.1:ratio=3:attack=5:release=150,alimiter=limit=0.89` on mic and
+  friends; measure with ebur128 per track and adjust if a new recording is louder. Silence trimming listens to
+  the voice tracks only (`tighten.noise_db` -35).
 - **Recordings may play fast or have game audio out of sync.** Don't try to fix it, don't add slow-mo or
   speed changes, and time cuts and anything else to the voice, not to game sounds.
 - Pipeline: `transcribe.py` (word timings) → plan in `plans/*.json` → `edit.py` (render) → listen-through.
