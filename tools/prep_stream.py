@@ -34,6 +34,12 @@ HEADER = {
     "layout": {"game": [1920, 0, 1920, 1080], "cam": [0, 0, 1920, 1080], "cam_size": [568, 320],
                "cam_pos": [1324, 732], "border": 4},
 }
+# Voices about 10 dB over the game. Seb's OBS tracks record very quiet (mic peaks near -24 dBFS):
+# measure a louder recording with ebur128 and lower these.
+VOICE = "acompressor=threshold=0.1:ratio=3:attack=5:release=150,alimiter=limit=0.89"
+VOICES_UP = {"track_levels": {"mic": 7.0, "friends": 5.6, "game": 0.8},
+             "track_filters": {"mic": VOICE, "friends": VOICE},
+             "tighten": {"min_silence": 0.7, "pad": 0.15, "noise_db": -35}}
 
 
 def probe(video):
@@ -134,7 +140,7 @@ def main():
         starter = {"title": args.name, "source": args.video.replace("\\", "/"),
                    "transcript": f"../work/{args.name}_transcript.json", "sfx_dir": "../sfx",
                    "output": f"../out/{args.name}.mp4", **HEADER,
-                   **({"audio_tracks": tracks} if tracks else {}), "segments": []}
+                   **({"audio_tracks": tracks, **VOICES_UP} if tracks else {}), "segments": []}
         with open(plan, "w", encoding="utf-8") as f:
             json.dump(starter, f, indent=2)
         print(f"starter plan -> {plan}")

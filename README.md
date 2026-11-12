@@ -16,7 +16,7 @@ Built on open-source tools:
 | `edit.py` | The editor: renders a plan into a finished video |
 | `transcribe.py` | Word-by-word transcript of a stream |
 | `upscale.py` | AI upscaling for low-res sources (only if the original is gone) |
-| `tools/` | `find_moments.py`, `contact_sheet.py`, `import_pack.py`, `vizard.py` (Shorts via Vizard.ai) |
+| `tools/` | `resolve.py` (DaVinci Resolve from the command line), `prep_stream.py`, `jev_merk_plan.py`, `find_moments.py`, `contact_sheet.py`, `import_pack.py`, `vizard.py` (Shorts via Vizard.ai) |
 | `plans/` | Edit plans; `crafting.json` and `cod-mw4.json` are finished examples |
 | `pack/` | The CoryxKenshin 8-BitRyan FX sound and music pack (MP3) |
 | `sfx/` | Homemade sounds; `sfx/pack/` is built from `pack/` |
