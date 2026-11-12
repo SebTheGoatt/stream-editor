@@ -1,15 +1,60 @@
 ---
 name: sebthegoat-edit
-description: Edit a stream into a Seb The Goat video, the channel's own style ("dad gamer chaos", medium-density edits, running counters, GOAT MOMENT, two ~10 min parts). Use by default for any request to edit, cut or make videos from Seb's streams or DaVinci timeline; use coryxkenshin-edit only when Cory-heavy editing is asked for.
+description: Edit a stream or "edit my timeline" into a Seb The Goat video, start to finish, with the DaVinci Resolve steps (find the recording, import the result, slur check). Default style is FaZe Jev / M3RKMUS1C (highlight montage, long clips, voices over the game); the fuller "dad gamer chaos" treatment (counters, GOAT MOMENT, two parts) is on request. Use by default for any request to edit, cut or make videos from Seb's streams or DaVinci timeline; use coryxkenshin-edit only when Cory-heavy editing is asked for.
 ---
 
-> **Current default (owner, Oct 25 2026): FaZe Jev / M3RKMUS1C style.** Pick the moments as below, then run
-> `python tools/jev_merk_plan.py plans/<name>.json` and render the `-jevmerk` plan (long clips, hard cuts,
-> a few face zooms and B&W freezes, no captions/sounds/music under gameplay). For a bare cut use
-> `python tools/clean_plan.py plans/<name>.json` and render the `-clean` plan: facecam + gameplay,
-> dead air cut, bleeps, intro/outro, no captions, zooms, sounds or music. Use the full treatment
-> below only when Seb asks for it. Recordings can play fast or have game audio out of sync: never add
-> slow-mo or speed changes, and time everything to the voice.
+# "Edit my timeline": the run, start to finish
+
+**Default style (owner, Oct 25 2026): FaZe Jev / M3RKMUS1C.** A 60-75 s highlight montage, the TV-static
+intro, then long commentary clips with hard cuts, 3-4 face zooms, 1-2 B&W freezes and one subscribe card.
+No captions, meme sounds or music under gameplay. Voices sit ~10 dB over the game. The "Seb The Goat
+feel" further down (counters, GOAT MOMENT, two parts) is only for when Seb asks for the full treatment;
+`tools/clean_plan.py` gives a bare cut.
+
+Run these in order without stopping to ask. Stop only for: a missing recording, a slur the check
+finds, or Seb's notes on the preview. Give Seb one short progress line per step. `PY` is
+`.venv/Scripts/python.exe` on his PC (`python` elsewhere). Every `resolve.py` call prints JSON.
+
+| # | Step | Command | Time |
+|---|---|---|---|
+| 1 | Find the recording on his Resolve timeline | `PY tools/resolve.py --wait 60 source` → `"recording"` | seconds |
+| 2 | Transcript, loud moments, overview, starter plan | `PY tools/prep_stream.py "<recording>" --name <slug>` | ~15 min per stream hour |
+| 3 | Pick 10-14 moments into `plans/<slug>.json` | read `work/<slug>_transcript.txt` whole, then `_loud.txt`, the overview | you |
+| 4 | Second bleep pass | `.venv-gpu/Scripts/python.exe tools/bleep_pass.py plans/<slug>.json` | ~2 min |
+| 5 | Jev/Merk plan | `PY tools/jev_merk_plan.py plans/<slug>.json` (plan `"game"` names the game) | seconds |
+| 6 | Render | `PY edit.py plans/<slug>-jevmerk.json --jobs 5` (add `--preview` first only if Seb wants to see a draft) | ~2 s per output second |
+| 7 | Into Resolve, with chapter markers | `PY tools/resolve.py import out/<slug>-jevmerk.mp4` | ~1 min |
+| 8 | Slur check by Resolve's own ears | `PY tools/resolve.py slurcheck` (exit 3 = slur found) | ~2 min |
+
+Rules that save a re-render:
+
+- **Step 1:** if `resolve.py` exits 2, read its `"fix"` line to Seb and stop. If the recording is in
+  `"missing"`, ask where the file went. If Resolve MCP tools are connected, they work too, but
+  `resolve.py` needs nothing but Resolve Studio being open. Not on Seb's PC (a cloud session)? There is
+  no Resolve to reach: ask for a Google Drive link to the recording and start at step 2.
+- **Step 2:** OBS records 3840x1080 (webcam left, game right) with 4 audio tracks; the starter plan
+  already carries the layout, the track numbers and the louder-voices settings. Everything in `work/`
+  is reused, so a re-run is free.
+- **Step 3:** each moment needs `label`, `chapter` (viewer-facing), `start`, `end`, and its best beats as
+  `fx` (`zoom` on the face at the reaction, `freeze` with a short caption on the punchline): the
+  montage and the kept accents are built from those beats. Lead with action or a punchline, never a
+  menu. Put `{"label": "intro", "clip": "../brand/intro.mp4"}` first and
+  `{"label": "outro", "clip": "../brand/outro.mp4"}` last. **Never keep a slur moment**, even bleeped; cut the line with `"cuts": [[start, end]]` or drop
+  the moment. Also skip sexual talk, jokes about hurting women and personal relationship stories.
+  Time everything to the voice: recordings can play fast or have game audio out of sync, so no
+  slow-mo or speed changes. Seb's son is his "co-host" in chapters and hooks.
+- **Step 6:** `crf` 10 masters are for Seb's own export from Resolve's Deliver page. Before rendering,
+  check every `fx` sits inside its segment.
+- **Step 7:** the importer re-wraps to PCM audio (his Resolve drops AAC partway through), files the
+  video under the "Seb The Goat edits" bin, makes a new timeline, switches the audio track on, and
+  reports any frame rate, size or length mismatch under `"check"`. His original timeline is untouched.
+- **Step 8:** a slur means: add a `"cuts"` entry, re-render, re-import. A swear listed there usually
+  means a badly timed bleep: listen, add a `"bleeps"` entry if it is audible. The check leaves the
+  subtitle track switched off. A Resolve pop-up blocks it at "Initializing" until Seb closes it.
+- **Finish:** tell Seb the timeline name and length, paste `out/<slug>-jevmerk_chapters.txt`, and
+  remind him to listen once before uploading (bleeps can miss) and that borrowed music can get
+  claimed. Offer Shorts (`tools/make_shorts.py plans/<slug>.json --top 4`) and the packaging below.
+  Every publish needs his explicit yes.
 
 # THE SEB THE GOAT FEEL
 
@@ -154,59 +199,11 @@ tracks itself: a bleep mutes only the voice that swore while the game keeps play
 `"track_levels": {"friends": 0.8}` sets a voice's level. Plan bleeps can name a voice:
 `[start, end, "friends"]`. Recordings with one audio track work exactly as before.
 
-## Pipeline on Seb's PC
+## If `resolve.py` can't be used
 
-When Seb says "edit my timeline", run this in order. Every step was dry-run end to end on
-2026-10-22 (raw recording → prep → master → Resolve import into a throwaway project).
-
-1. **Find the recording**: launch Resolve if needed (`launch_resolve`), then read the current
-   timeline with Resolve MCP `run_script`: each video item's `GetMediaPoolItem().GetClipProperty("File Path")`.
-   OBS records 3840x1080: webcam on the left, game on the right. Check the file exists before going on;
-   old recordings get moved or deleted.
-2. **Prep in one command** (transcript on the GPU, readable transcript, loudest moments, overview
-   grid, starter plan with the full header including `"layout"`):
-   `.venv/Scripts/python.exe tools/prep_stream.py "<recording>" --name <slug>`
-   About 15 min per hour of stream. `.venv-gpu` holds AMD's ROCm PyTorch build plus openai-whisper
-   (faster-whisper is NVIDIA-only). The plan points straight at the raw recording: edit.py rebuilds
-   game full-frame + cam bottom-right with a white border for only the kept moments. Tell Seb the
-   progress while it runs.
-3. Read `work/<slug>_transcript.txt` start to finish, `work/<slug>_loud.txt` and the overview.
-   For contact sheets of the raw recording, the cam is the left half and the game the right.
-4. **Pick moments** by reading the whole transcript (`tools/find_moments.py`) and checking deaths and
-   kid moments on contact sheets: Seb is sometimes away from the camera while his character dies.
-   **Never keep a slur moment**, even bleeped; also skip sexual talk and jokes about hurting women.
-   Split the moments into `plans/<slug>-part1.json`, `-part2.json` (copy the starter's header).
-   Check every effect sits inside its segment and that no kept range contains a slur before rendering.
-   Then run the second bleep pass, which re-transcribes each kept moment on its own and adds missed
-   swears to the plan's `"bleeps"`: `.venv-gpu/Scripts/python.exe tools/bleep_pass.py plans/<slug>-part1.json plans/<slug>-part2.json`.
-   It reports slurs; cut that line with the segment's `"cuts": [[start, end]]` (source seconds).
-   Skip personal relationship stories (Seb had the "girl's guy best friend" story pulled).
-5. **Preview both parts** (`edit.py <plan> --preview --jobs 5`, ~6 min a part), open them for Seb
-   (`Start-Process <file>`), apply his notes, then render the masters (`crf` 10: near-lossless,
-   because Seb exports from DaVinci's Deliver page with his own settings). A master takes about
-   2 s per second of output.
-6. **Import into Resolve** next to his original, which stays untouched. First re-wrap each master
-   with uncompressed audio, because Resolve on his PC drops AAC audio partway through playback:
-   `ffmpeg -i out/<slug>-part1.mp4 -map 0 -c:v copy -c:a pcm_s24le out/<slug>-part1.mov`
-   (video untouched, takes a minute). Import the `.mov`, then make sure the timeline's audio track
-   is enabled (`GetIsTrackEnabled("audio", 1)`; one came in switched off). In his current project:
-   ```python
-   mp = project.GetMediaPool()
-   folder = mp.AddSubFolder(mp.GetRootFolder(), "Seb The Goat edits")
-   mp.SetCurrentFolder(folder)
-   items = mp.ImportMedia([r"<full path to out/<slug>-part1.mov>"])
-   mp.CreateTimelineFromClips("<slug> part 1 - Seb The Goat edit", items)
-   ```
-   Then confirm the timeline's frame rate, resolution and duration match the master.
-   **Slur check with Resolve (required):** run `timeline.CreateSubtitlesFromAudio({...English...})`
-   on each new timeline and search the subtitle items for slurs and swears. A swear that still shows
-   up usually means a badly timed bleep (Whisper sometimes stamps a word with zero length; edit.py now
-   bleeps at least 0.4 s per word), so check the audio there and add a `"bleeps"` entry if needed. Whisper has twice heard
-   a slur as "this thing"; Resolve's transcription caught both. Any slur means: add a `"cuts"` entry,
-   re-render, re-import. Then turn the subtitle track off (`timeline.SetTrackEnable("subtitle", 1, False)`):
-   the video already has burned-in meme captions, and a visible track doubles them in the viewer and
-   in renders. Seb exports it only as a separate captions file for YouTube. A Resolve pop-up (e.g.
-   about a missing Extra) blocks these jobs at "Initializing" until Seb closes it.
-7. Remind him to listen once for missed bleeps and that music beds can get claimed.
-8. After upload: vidIQ for titles, thumbnails and chapters, then Vizard (`using-vizard-api`)
-   for Shorts to YouTube, TikTok and Instagram. Every publish needs Seb's explicit yes.
+The same steps by hand through Resolve MCP `run_script`: read each video item's
+`GetMediaPoolItem().GetClipProperty("File Path")`; re-wrap with
+`ffmpeg -i out/<slug>.mp4 -map 0 -c:v copy -c:a pcm_s24le out/<slug>.mov`; `ImportMedia` into a
+"Seb The Goat edits" bin and `CreateTimelineFromClips`; check `GetIsTrackEnabled("audio", 1)`;
+`timeline.CreateSubtitlesFromAudio({...English...})`, search the subtitle items, then
+`timeline.SetTrackEnable("subtitle", 1, False)`.

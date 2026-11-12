@@ -17,6 +17,10 @@ Seb The Goat's tool for turning gaming streams into CoryxKenshin-style YouTube e
   the TV-static brand intro as the glitch transition, then long commentary clips. `jev_merk_plan.py --montage`
   builds it (default 75 s; plan `"game"` names the game). Lead the montage with the strongest action/punchline,
   not a menu.
+- **"Edit my timeline" / anything in Resolve:** `python tools/resolve.py source | import <video> | chapters | slurcheck |
+  status` talks to the open DaVinci Resolve Studio directly and prints JSON (find the recording on the timeline,
+  import a render with PCM audio + chapter markers, slur check). The 8-step run is at the top of `sebthegoat-edit`.
+  It only works on the owner's PC: a cloud session has no Resolve, so ask for a Drive link there.
 - **Polish in Resolve:** `python tools/export_timeline.py plans/<name>.json --source <HD original>` writes an FCP 7 XML
   timeline (File > Import > Timeline in Resolve) plus FCPXML/OTIO/EDL/FilmCraft project, built with FilmCraft's CLI
   (`FILMCRAFT_CLI` or on PATH). Effects and bleeps come in as colored markers.

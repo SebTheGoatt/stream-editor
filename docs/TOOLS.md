@@ -10,7 +10,8 @@
 | [auto-editor](https://github.com/WyattBlue/auto-editor) | Optional rough cut of silence across a whole VOD (`edit.py` trims dead air itself per segment) | README | Unlicense |
 | [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) compact models + [PyTorch](https://pytorch.org) | AI 4x upscaling when only a low-res copy exists | `upscale.py`, `models/` | BSD-3 |
 | [EffectCraft](https://github.com/storytold/effectcraft) | Scripted motion graphics, rendered headless: the alternate intro and the animated LIKE + SUBSCRIBE pop-up (transparent ProRes 4444) | `intro/intro.jsx`, `intro/subscribe.jsx` → `brand/subscribe.mov` | MIT / Apache-2.0 |
-| [FilmCraft](https://github.com/storytold/filmcraft) | Builds each edit as a real timeline headless and exports it for Resolve (FCP 7 XML), FCPXML, OTIO, EDL and a FilmCraft project | `tools/export_timeline.py` | MIT / Apache-2.0 |
+| [FilmCraft](https://github.com/storytold/filmcraft) | Builds each edit as a real timeline headless and exports it for Resolve (FCP 7 XML), FCPXML, OTIO, EDL and a FilmCraft project | `tools/resolve.py` | DaVinci Resolve Studio from the command line, on Blackmagic's own scripting API (the one [pybmd](https://pypi.org/project/pybmd/), [dvr](https://github.com/mhadifilms/dvr) and [davinci-resolve-mcp](https://github.com/samuelgursky/davinci-resolve-mcp) wrap): find the recording on the open timeline, import a render with PCM audio and chapter markers, slur check with Resolve's transcription |
+| `tools/export_timeline.py` | MIT / Apache-2.0 |
 | [Anton](https://github.com/googlefonts/AntonFont) font | Meme captions | `fonts/` | SIL OFL |
 | Homemade sound effects | Boom, ding, scratch, fall, thud, bonk, crickets, sting, whoosh, fail, synthesized with FFmpeg | `make_sfx.py`, `sfx/` | original |
 | CoryxKenshin 8-BitRyan FX pack | Real meme sounds and music beds (bought by the channel owner) | `pack/` → `tools/import_pack.py` | purchased pack |
